@@ -3,11 +3,14 @@ using UnityEngine;
 public class Snowballs : MonoBehaviour
 {
     [SerializeField] private ParticleSystem snowExplosionPrefab;
-
+    private bool hasExploded = false;
     private void OnCollisionEnter(Collision collision)
     {
+        if (hasExploded) return;
+
         if (!collision.gameObject.CompareTag("NoCollision"))
         {
+            hasExploded = true;
             ParticleSystem particles = Instantiate(
                 snowExplosionPrefab,
                 transform.position,
