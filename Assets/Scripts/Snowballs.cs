@@ -1,11 +1,14 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Snowballs : MonoBehaviour
 {
     [SerializeField] private ParticleSystem snowExplosionPrefab;
     private bool hasExploded = false;
+
     private void OnCollisionEnter(Collision collision)
     {
+
         if (hasExploded) return;
 
         if (!collision.gameObject.CompareTag("NoCollision"))
@@ -19,6 +22,7 @@ public class Snowballs : MonoBehaviour
             particles.Play();
             Destroy(particles.gameObject, particles.main.duration + particles.main.startLifetime.constantMax);
             Destroy(gameObject);
-        }
+        }     
+        
     }
 }
