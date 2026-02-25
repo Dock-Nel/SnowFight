@@ -24,7 +24,9 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] int Speed;
     [SerializeField] int Gravity;
     [SerializeField] int Range;
-    
+
+    private enum State { Idle, Move, Attack }
+    private State currentState = State.Idle;
 
     void Awake()
     {
@@ -42,22 +44,53 @@ public class AIBehaviour : MonoBehaviour
         {
             PlayerDetection = false;
         }
-        if (PlayerDetection)
+        if (PlayerDetection && currentState != State.Attack)
         {
-            Linecast();
+            currentState = State.Move;
         }
-        else if (!PlayerDetection && Snowball < 3)//If the AI doesn't detect the player, then the AI reloads completely for another eventual fight
+        else if (!PlayerDetection && currentState != State.Attack)
         {
-            Reload();
+            currentState = State.Idle;
         }
-        MovementsAndShoot();
+
+        //Behaviour Switch
+        switch(currentState)
+        {
+            case State.Idle:
+                if (Snowball < 3 /*&& !Reload()*/)
+                {
+                    Reload();
+                }
+                else if (Snowball == 3)
+                {
+                    //Patrol movements
+                }
+                break;
+
+            case State.Move:
+                Linecast();
+                Movements();
+                break;
+
+            case State.Attack:
+                Movements();
+                if (Snowball > 0)
+                {
+                    Shoot();
+                }
+                else
+                {
+                    Reload();
+                }
+                break;
+        }
     }
 
     //AI Movements
-    void MovementsAndShoot()
+    void Movements()
     {
-        //Movements
-        if (Move || PlayerDetection && PlayerDistance > Range / 2)
+        //Velocity Movements
+        if (Move || PlayerDistance > Range / 2)
         {
             agent.destination = Player.transform.position;
         }
@@ -66,18 +99,21 @@ public class AIBehaviour : MonoBehaviour
             agent.destination = transform.position;
         }
 
-        //Shoot
-        if (Snowball > 0)
-        {
-            Snowball--;
-        }
-        else if (Snowball == 0) //Reload if no ammo
-        {
-            Reload();
-        }
+        //Gravity
+
+        //Rotation
+
+
     }
 
-    //reload ammos
+    //Snowball
+    void Shoot()
+    {
+        Snowball--;
+        currentState = State.Move;
+    }
+
+    //Reload ammos
     void Reload()
     {
         Snowball++;
