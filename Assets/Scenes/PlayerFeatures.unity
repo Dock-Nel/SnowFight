@@ -927,6 +927,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1461673155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6137215515991886513, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+  m_PrefabInstance: {fileID: 2846756430770893833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1461673163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461673155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d092d8785f64ea4a926818489c49883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerCamera: {fileID: 0}
+  health: 30
+  walkingSpeed: 7.5
+  runningSpeed: 15
+  jumpSpeed: 8
+  rotationSpeed: 2
+  rotationXLimit: 45
+  shootingDisctrict: {fileID: 0}
+  snowball: {fileID: 0}
+  snowballCount: 0
+  maxSnowball: 3
+  tmpNbSnowballs: {fileID: 0}
 --- !u!1 &1523148762
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +988,7 @@ Transform:
   - {fileID: 336728829}
   - {fileID: 569556589}
   - {fileID: 18944291}
+  - {fileID: 2007239171}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1627863592
@@ -974,7 +1004,7 @@ GameObject:
   - component: {fileID: 1627863595}
   - component: {fileID: 1627863594}
   - component: {fileID: 1627863600}
-  - component: {fileID: 1627863599}
+  - component: {fileID: 1627863601}
   m_Layer: 0
   m_Name: Player
   m_TagString: NoCollision
@@ -1078,29 +1108,6 @@ Transform:
   - {fileID: 2120103625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1627863599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627863592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d092d8785f64ea4a926818489c49883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFPS
-  playerCamera: {fileID: 685310418}
-  walkingSpeed: 7.5
-  runningSpeed: 15
-  jumpSpeed: 8
-  rotationSpeed: 2
-  rotationXLimit: 45
-  shootingDisctrict: {fileID: 2120103625}
-  snowball: {fileID: 8071646739076797029, guid: 8977ecbade1f91942a4569e43df732f5, type: 3}
-  snowballCount: 3
-  maxSnowball: 3
-  tmpNbSnowballs: {fileID: 239422435}
 --- !u!143 &1627863600
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1126,6 +1133,30 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1627863601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627863592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d092d8785f64ea4a926818489c49883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerCamera: {fileID: 685310418}
+  health: 30
+  walkingSpeed: 7.5
+  runningSpeed: 15
+  jumpSpeed: 8
+  rotationSpeed: 2
+  rotationXLimit: 45
+  shootingDisctrict: {fileID: 2120103625}
+  snowball: {fileID: 8071646739076797029, guid: 8977ecbade1f91942a4569e43df732f5, type: 3}
+  snowballCount: 3
+  maxSnowball: 3
+  tmpNbSnowballs: {fileID: 239422435}
 --- !u!1 &2007239167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1170,7 @@ GameObject:
   - component: {fileID: 2007239169}
   - component: {fileID: 2007239168}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: BaseBush
   m_TagString: Snow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1230,12 +1261,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007239167}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.396, y: 2.492, z: 3.566}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.0563, y: 0.8523501, z: -0.64407015}
   m_LocalScale: {x: 1.1131, y: 0.3759391, z: 2.2725325}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1523148763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2120103624
 GameObject:
@@ -1323,7 +1354,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6137215515991886513, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1461673163}
   m_SourcePrefab: {fileID: 100100000, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1334,4 +1368,3 @@ SceneRoots:
   - {fileID: 890112586}
   - {fileID: 1627863597}
   - {fileID: 1523148763}
-  - {fileID: 2007239171}

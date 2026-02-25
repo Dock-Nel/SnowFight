@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
 
+    public float health = 30;
     [SerializeField]
     private float walkingSpeed = 7.5f;
     [SerializeField]
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody snowball;
     [SerializeField]
-    private int snowballCount = 0;
+    private int snowballCount = 3;
     [SerializeField]
     private int maxSnowball = 3;
     private bool isReloading = false;
@@ -48,12 +50,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //------------Movements------------
+
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         float speedZ = Input.GetAxis("Vertical");
         float speedX = Input.GetAxis("Horizontal");
         float speedY = moveDirection.y;
+
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -148,11 +153,28 @@ public class PlayerController : MonoBehaviour
             clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 10);
         }
+
         //else if (snowballCount is <= 1)
         //{
         //    Debug.Log("No More Snowballs");
         //}
 
-      
+
+        //------------Player actions------------
+
+    }
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log(gameObject.name + " health is now at: " + health);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
