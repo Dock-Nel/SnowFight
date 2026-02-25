@@ -354,7 +354,6 @@ GameObject:
   - component: {fileID: 681887774}
   - component: {fileID: 681887775}
   - component: {fileID: 681887776}
-  - component: {fileID: 681887777}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -412,32 +411,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ebe09784337fc4397a31de64e1ecaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  Player: {fileID: 1227429133}
   Alive: 1
+  Snowball: 3
   PlayerDetection: 0
-  Agressivity: 0
+  Aggressivity: 0
+  PlayerDistance: 0
   Speed: 0
   Gravity: 0
---- !u!135 &681887777
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681887773}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
+  Range: 20
 --- !u!1 &799940573
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +572,7 @@ GameObject:
   - component: {fileID: 801676950}
   m_Layer: 0
   m_Name: Obstacle3
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -681,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 801676945}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0.4, z: -7}
+  m_LocalPosition: {x: -4, y: 0.5, z: -7}
   m_LocalScale: {x: 3, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,7 +700,7 @@ GameObject:
   - component: {fileID: 1077713614}
   m_Layer: 0
   m_Name: Obstacle1
-  m_TagString: Untagged
+  m_TagString: Cover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,7 +714,7 @@ Transform:
   m_GameObject: {fileID: 1077713609}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0.4, z: 6}
+  m_LocalPosition: {x: -6, y: 0.5, z: 6}
   m_LocalScale: {x: 3, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -937,8 +919,8 @@ Transform:
   m_GameObject: {fileID: 1082126553}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0.4, z: -2}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalPosition: {x: 5, y: 2.5, z: -2}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1751411715}
@@ -1066,7 +1048,7 @@ Transform:
   m_GameObject: {fileID: 1227429133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1604, y: 0, z: 2.27506}
+  m_LocalPosition: {x: -2.1604, y: 1, z: 2.27506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
