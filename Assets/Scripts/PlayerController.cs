@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody snowball;
     [SerializeField]
+    private Rigidbody biggerSnowball;
+    [SerializeField]
     private int snowballCount = 3;
     [SerializeField]
     private int maxSnowball = 3;
@@ -117,7 +119,8 @@ public class PlayerController : MonoBehaviour
         IEnumerator Wait()
         {
             isReloading = true;
-            yield return new WaitForSeconds(1f);
+            //need to change to 1, but 0 for test
+            yield return new WaitForSeconds(0f);
             snowballCount += 1;
             isReloading = false;
         }
@@ -153,6 +156,15 @@ public class PlayerController : MonoBehaviour
             clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 10);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && snowballCount >= 3)
+        {
+            snowballCount -= 3;
+            Rigidbody clone;
+            clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
+            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
+        }
+
 
         //else if (snowballCount is <= 1)
         //{
