@@ -5,15 +5,23 @@ using UnityEngine.Apple;
 public class AIBehaviour : MonoBehaviour
 {
     //Pathfinding
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
+
+    //Player
+    public GameObject Player;
 
     //Raycast call
     Ray ray;
     RaycastHit hit;
 
     //Variables
-    bool PlayerDetection = false;
-    bool Agressivity = false;
+    [SerializeField] bool Alive = true;
+    [SerializeField] bool PlayerDetection = false;
+    [SerializeField] bool Agressivity = false;
+
+    [SerializeField] int Speed;
+    [SerializeField] int Gravity;
+    [SerializeField] float PlayerDistance;
 
     void Awake()
     {
@@ -23,25 +31,24 @@ public class AIBehaviour : MonoBehaviour
     
     void Update()
     {
-        
+        PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
+        if (PlayerDistance < 10)
+        {
+            PlayerDetected();
+        }
     }
 
-    public void OnTriggerStay(Collider other)
+    void PlayerDetected()
     {
-        if (other.tag == "Player")
+        ray = new Ray(transform.position, Player.transform.position);
+        Debug.DrawLine(transform.position, Player.transform.position, Color.red);
+        if (!Physics.Raycast(ray, out hit))
         {
-            ray = new Ray(transform.position, other.transform.position);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log("Player Detected");
-                Vector3 destination = other.transform.position;
-                agent.destination = destination;
-            }
-            else
-            {
-                Debug.Log("Player in range, not detected");
-            }  
+            Debug.Log("Player Detected");
         }
+        else
+        {
+            Debug.Log("Player in range, not detected");
+        }  
     }
 }
