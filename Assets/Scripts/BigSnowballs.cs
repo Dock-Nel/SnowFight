@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Snowballs : MonoBehaviour
+public class BigSnowballs : MonoBehaviour
 {
     [SerializeField] private ParticleSystem snowExplosionPrefab;
     private bool hasExploded = false;
@@ -31,7 +31,7 @@ public class Snowballs : MonoBehaviour
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage(10);
+                player.TakeDamage(30);
             }
         }     
         
