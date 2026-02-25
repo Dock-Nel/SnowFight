@@ -10,22 +10,19 @@ public class AIBehaviour : MonoBehaviour
     //Player
     public GameObject Player;
 
-    //Raycast call
-    Ray ray;
-    RaycastHit hit;
-
     //Variables
     [SerializeField] bool Alive = true;
     [SerializeField] int Snowball = 3;
 
     [SerializeField] bool PlayerDetection = false;
+    [SerializeField] bool Move = false;
     [SerializeField] bool Aggressivity = false;
     [SerializeField] float PlayerDistance;
 
     //Constants 
     [SerializeField] int Speed;
     [SerializeField] int Gravity;
-    [SerializeField] int Range = 20;
+    [SerializeField] int Range;
     
 
     void Awake()
@@ -40,34 +37,40 @@ public class AIBehaviour : MonoBehaviour
         PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
         if (PlayerDistance < Range)
         {
-            Raycast();
             PlayerDetection = true;
         }
-        else
+        else if (PlayerDistance > Range*1.5)
         {
             PlayerDetection = false;
         }
+        if (PlayerDetection)
+        {
+            Linecast();
+        }
+
+        //AI movements 
+        if (Move || PlayerDetection && PlayerDistance > Range/2)
+        {
+            agent.destination = Player.transform.position;
+        }
+        else
+        {
+            agent.destination = transform.position;
+        }
     }
 
-    //Raycast function
-    void Raycast()
+    //Linecast function
+    void Linecast()
     {
-        //Raycast Calculation
-        ray = new Ray(transform.position, Player.transform.position);
         Debug.DrawLine(transform.position, Player.transform.position, Color.red); //Makes the Ray visible, debug feature only
 
         if (!Physics.Linecast(transform.position, Player.transform.position)) //If Ray reaches Player
         {
-            Aggressivity = true;
-            agent.destination = transform.position;
-
-            Debug.Log("test");
+            Move = false;
         }
         else
         {
-            agent.destination = Player.transform.position;
-
-            Debug.Log("Player in range, not detected");
+            Move = true;
         }
     }
 }
