@@ -281,7 +281,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -1397,10 +1397,10 @@ Transform:
   - {fileID: 10142236}
   - {fileID: 1077713610}
   - {fileID: 1082126557}
-  - {fileID: 1123074179}
-  - {fileID: 792600718}
   - {fileID: 801676949}
   - {fileID: 1796832592}
+  - {fileID: 1123074179}
+  - {fileID: 792600718}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1751411716

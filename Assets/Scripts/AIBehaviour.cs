@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Apple;
@@ -28,9 +29,7 @@ public class AIBehaviour : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    
+    }   
     void Update()
     {
         //Player detection system
@@ -47,9 +46,18 @@ public class AIBehaviour : MonoBehaviour
         {
             Linecast();
         }
+        else if (!PlayerDetection && Snowball < 3)//If the AI doesn't detect the player, then the AI reloads completely for another eventual fight
+        {
+            Reload();
+        }
+        MovementsAndShoot();
+    }
 
-        //AI movements 
-        if (Move || PlayerDetection && PlayerDistance > Range/2)
+    //AI Movements
+    void MovementsAndShoot()
+    {
+        //Movements
+        if (Move || PlayerDetection && PlayerDistance > Range / 2)
         {
             agent.destination = Player.transform.position;
         }
@@ -57,9 +65,25 @@ public class AIBehaviour : MonoBehaviour
         {
             agent.destination = transform.position;
         }
+
+        //Shoot
+        if (Snowball > 0)
+        {
+            Snowball--;
+        }
+        else if (Snowball == 0) //Reload if no ammo
+        {
+            Reload();
+        }
     }
 
-    //Linecast function
+    //reload ammos
+    void Reload()
+    {
+        Snowball++;
+    }
+
+    //Linecast function to determine if the AI sees the player or not
     void Linecast()
     {
         Debug.DrawLine(transform.position, Player.transform.position, Color.red); //Makes the Ray visible, debug feature only
@@ -71,6 +95,15 @@ public class AIBehaviour : MonoBehaviour
         else
         {
             Move = true;
+        }
+    }
+
+    //Death detection
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Amo")
+        {
+            Destroy(this);
         }
     }
 }
