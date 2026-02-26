@@ -848,6 +848,109 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &999062074
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1523148763}
+    m_Modifications:
+    - target: {fileID: 2549162995917482124, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 532e21256be17bd44b6f3333c5a3ed23, type: 2}
+    - target: {fileID: 4715697028539323391, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e5e59d97a8f4654bbb17b797d8dd3d8, type: 2}
+    - target: {fileID: 6137215515991886513, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_Name
+      value: PlayerBot 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0603622
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.04993
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6137215515991886513, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 999062077}
+  m_SourcePrefab: {fileID: 100100000, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+--- !u!4 &999062075 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9093589352883376293, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+  m_PrefabInstance: {fileID: 999062074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &999062076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6137215515991886513, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+  m_PrefabInstance: {fileID: 999062074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &999062077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999062076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d092d8785f64ea4a926818489c49883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerCamera: {fileID: 0}
+  health: 30
+  walkingSpeed: 7.5
+  runningSpeed: 15
+  jumpSpeed: 8
+  rotationSpeed: 2
+  rotationXLimit: 45
+  shootingDisctrict: {fileID: 0}
+  snowball: {fileID: 0}
+  biggerSnowball: {fileID: 0}
+  snowballCount: 0
+  maxSnowball: 3
+  tmpNbSnowballs: {fileID: 0}
 --- !u!1 &1222679863
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +1056,7 @@ MonoBehaviour:
   rotationXLimit: 45
   shootingDisctrict: {fileID: 0}
   snowball: {fileID: 0}
+  biggerSnowball: {fileID: 0}
   snowballCount: 0
   maxSnowball: 3
   tmpNbSnowballs: {fileID: 0}
@@ -986,6 +1090,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 336728829}
+  - {fileID: 999062075}
   - {fileID: 569556589}
   - {fileID: 18944291}
   - {fileID: 2007239171}
@@ -1154,6 +1259,7 @@ MonoBehaviour:
   rotationXLimit: 45
   shootingDisctrict: {fileID: 2120103625}
   snowball: {fileID: 8071646739076797029, guid: 8977ecbade1f91942a4569e43df732f5, type: 3}
+  biggerSnowball: {fileID: 8071646739076797029, guid: 51bd90bd6f79ea5439a63810686c52e6, type: 3}
   snowballCount: 3
   maxSnowball: 3
   tmpNbSnowballs: {fileID: 239422435}
