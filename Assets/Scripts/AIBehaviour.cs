@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Apple;
+using System.Collections;
 
 public class AIBehaviour : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] bool Aggressivity = false;
     [SerializeField] float PlayerDistance;
 
+    [SerializeField] bool CRrunning;
     //Constants 
     [SerializeField] int Speed;
     [SerializeField] int Gravity;
@@ -43,7 +45,9 @@ public class AIBehaviour : MonoBehaviour
         else if (PlayerDistance > Range*1.5)
         {
             PlayerDetection = false;
+            Move = false;
         }
+
         if (PlayerDetection && currentState != State.Attack)
         {
             currentState = State.Move;
@@ -57,13 +61,13 @@ public class AIBehaviour : MonoBehaviour
         switch(currentState)
         {
             case State.Idle:
-                if (Snowball < 3 /*&& !Reload()*/)
+                if (Snowball < 3 && !CRrunning)
                 {
-                    Reload();
+                    StartCoroutine(Reload());
                 }
                 else if (Snowball == 3)
                 {
-                    //Patrol movements
+                    //Movements();
                 }
                 break;
 
@@ -114,9 +118,13 @@ public class AIBehaviour : MonoBehaviour
     }
 
     //Reload ammos
-    void Reload()
+    IEnumerator Reload()
     {
+        Debug.Log("Reloading");
+        CRrunning = true;
         Snowball++;
+        yield return new WaitForSeconds(5);
+        CRrunning = false;
     }
 
     //Linecast function to determine if the AI sees the player or not
