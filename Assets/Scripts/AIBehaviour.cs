@@ -1,12 +1,18 @@
+using System;
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Apple;
-using System.Collections;
+using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using static UnityEngine.GraphicsBuffer;
+
 
 public class AIBehaviour : MonoBehaviour
 {
-    //Pathfinding
+    //Components
     NavMeshAgent agent;
 
     //Player
@@ -17,9 +23,10 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] int Snowball = 3;
 
     [SerializeField] bool PlayerDetection = false;
-    [SerializeField] bool Move = false;
+    [SerializeField] bool MoveTowardsPlayer = false;
     [SerializeField] bool Aggressivity = false;
     [SerializeField] float PlayerDistance;
+    [SerializeField] float TargetRotation;
 
     [SerializeField] bool CRrunning;
     //Constants 
@@ -35,7 +42,8 @@ public class AIBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }   
     void Update()
-    {
+    {   
+
         //Player detection system
         PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
         if (PlayerDistance < Range)
@@ -45,7 +53,7 @@ public class AIBehaviour : MonoBehaviour
         else if (PlayerDistance > Range*1.5)
         {
             PlayerDetection = false;
-            Move = false;
+            MoveTowardsPlayer = false;
         }
 
         if (PlayerDetection && currentState != State.Attack)
@@ -60,31 +68,41 @@ public class AIBehaviour : MonoBehaviour
         //Behaviour Switch
         switch(currentState)
         {
-            case State.Idle:
+            case State.Idle: //When the player is *NOT detected*
                 if (Snowball < 3 && !CRrunning)
                 {
                     StartCoroutine(Reload());
                 }
                 else if (Snowball == 3)
                 {
-                    //Movements();
+                    Movements();
                 }
                 break;
 
-            case State.Move:
+            case State.Move: //When the player is *detected*
                 Linecast();
-                Movements();
-                break;
 
-            case State.Attack:
-                Movements();
-                if (Snowball > 0)
+                if (PlayerDistance > Range/2)
                 {
-                    Shoot();
+                    MoveTowardsPlayer = true;
                 }
                 else
                 {
-                    Reload();
+                    MoveTowardsPlayer = false;
+                }
+
+                Movements();
+                break;
+
+            case State.Attack: //When the AI attacks the player
+                Movements();
+                if (Snowball > 0)
+                {
+                    StartCoroutine(Shoot());
+                }
+                else
+                {
+                    StartCoroutine(Reload());
                 }
                 break;
         }
@@ -94,36 +112,43 @@ public class AIBehaviour : MonoBehaviour
     void Movements()
     {
         //Velocity Movements
-        if (Move || PlayerDistance > Range / 2)
+        if (MoveTowardsPlayer)
         {
             agent.destination = Player.transform.position;
+            Debug.Log("Moving Towards Player");
         }
         else
         {
             agent.destination = transform.position;
         }
 
-        //Gravity
-
-        //Rotation
-
-
+        //Rotation only when player is in range (as the sprite only faces the player, only useful because of the snowball cast)
+        if (PlayerDetection)
+        {
+            TargetRotation = Mathf.Atan2(Player.transform.position.x - transform.position.x, Player.transform.position.z - transform.position.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, TargetRotation, 0f);
+        }
     }
 
     //Snowball
-    void Shoot()
+    IEnumerator Shoot()
     {
+        Debug.Log("Shooting...");
+        CRrunning = true;
+        yield return new WaitForSeconds(5);
         Snowball--;
         currentState = State.Move;
+        CRrunning = false;
     }
 
     //Reload ammos
     IEnumerator Reload()
     {
-        Debug.Log("Reloading");
+        Debug.Log("Reloading...");
         CRrunning = true;
-        Snowball++;
         yield return new WaitForSeconds(5);
+        Debug.Log("Reload");
+        Snowball++;
         CRrunning = false;
     }
 
@@ -134,11 +159,11 @@ public class AIBehaviour : MonoBehaviour
 
         if (!Physics.Linecast(transform.position, Player.transform.position)) //If Ray reaches Player
         {
-            Move = false;
+            MoveTowardsPlayer = false;
         }
         else
         {
-            Move = true;
+            MoveTowardsPlayer = true;
         }
     }
 
@@ -147,7 +172,7 @@ public class AIBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Amo")
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
