@@ -6,8 +6,7 @@ TagManager:
   tags:
   - Snow
   - NoCollision
-  - Destroyable
-  - Amo
+  - Bots
   layers:
   - Default
   - TransparentFX
