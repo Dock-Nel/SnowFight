@@ -1261,6 +1261,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681887774}
     m_Modifications:
+    - target: {fileID: 2549162995917482124, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6137215515991886513, guid: b15652e4a4d324e428fd8e8297f35c10, type: 3}
       propertyPath: m_Name
       value: PlayerBot

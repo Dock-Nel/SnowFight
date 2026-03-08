@@ -43,7 +43,6 @@ public class AIBehaviour : MonoBehaviour
     }   
     void Update()
     {   
-
         //Player detection system
         PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
         if (PlayerDistance < Range)
@@ -80,9 +79,7 @@ public class AIBehaviour : MonoBehaviour
                 break;
 
             case State.Move: //When the player is *detected*
-                Linecast();
-
-                if (PlayerDistance > Range/2)
+                if (PlayerDistance > Range / 2 || Linecast() == false)
                 {
                     MoveTowardsPlayer = true;
                 }
@@ -90,7 +87,6 @@ public class AIBehaviour : MonoBehaviour
                 {
                     MoveTowardsPlayer = false;
                 }
-
                 Movements();
                 break;
 
@@ -125,7 +121,7 @@ public class AIBehaviour : MonoBehaviour
         //Rotation only when player is in range (as the sprite only faces the player, only useful because of the snowball cast)
         if (PlayerDetection)
         {
-            TargetRotation = Mathf.Atan2(Player.transform.position.x - transform.position.x, Player.transform.position.z - transform.position.z) * Mathf.Rad2Deg;
+            TargetRotation = Mathf.Atan2(transform.position.x - Player.transform.position.x, transform.position.z - Player.transform.position.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, TargetRotation, 0f);
         }
     }
@@ -153,17 +149,17 @@ public class AIBehaviour : MonoBehaviour
     }
 
     //Linecast function to determine if the AI sees the player or not
-    void Linecast()
+    bool Linecast()
     {
         Debug.DrawLine(transform.position, Player.transform.position, Color.red); //Makes the Ray visible, debug feature only
 
         if (!Physics.Linecast(transform.position, Player.transform.position)) //If Ray reaches Player
         {
-            MoveTowardsPlayer = false;
+            return true;
         }
         else
         {
-            MoveTowardsPlayer = true;
+            return false;
         }
     }
 
