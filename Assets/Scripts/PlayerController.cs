@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
         float speedX = Input.GetAxis("Horizontal");
         float speedY = moveDirection.y;
 
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
@@ -170,9 +169,6 @@ public class PlayerController : MonoBehaviour
         //{
         //    Debug.Log("No More Snowballs");
         //}
-
-
-        //------------Player actions------------
 
     }
     public void TakeDamage(float damage)
