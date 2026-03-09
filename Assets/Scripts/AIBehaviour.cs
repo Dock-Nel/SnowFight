@@ -19,8 +19,8 @@ public class AIBehaviour : MonoBehaviour
     public GameObject Player;
 
     //Variables
-    [SerializeField] bool Alive = true;
     [SerializeField] int Snowball = 3;
+    [SerializeField] int Health = 3;
 
     [SerializeField] bool PlayerDetection = false;
     [SerializeField] bool MoveTowardsPlayer = false;
@@ -100,7 +100,13 @@ public class AIBehaviour : MonoBehaviour
                 {
                     StartCoroutine(Reload());
                 }
+
                 break;
+        }
+
+        if (Health <= 0)
+        {
+            Death();
         }
     }
 
@@ -163,12 +169,17 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
-    //Death detection
+    //Collision with a snowball detection
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Amo")
         {
-            Destroy(gameObject);
+            Health--;
         }
+    }
+
+    void Death()
+    {
+        Destroy(gameObject);
     }
 }
