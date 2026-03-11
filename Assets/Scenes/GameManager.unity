@@ -1190,6 +1190,7 @@ GameObject:
   - component: {fileID: 888358028}
   - component: {fileID: 888358027}
   - component: {fileID: 888358026}
+  - component: {fileID: 888358029}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -1299,6 +1300,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888358024}
   m_CullTransparentMesh: 1
+--- !u!114 &888358029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888358024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2690d20f78b354d9c56026c75171d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
+  nameText: {fileID: 0}
+  descText: {fileID: 0}
+  iconImage: {fileID: 0}
 --- !u!1 &890112582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2213,7 @@ GameObject:
   - component: {fileID: 1895759882}
   - component: {fileID: 1895759881}
   - component: {fileID: 1895759880}
+  - component: {fileID: 1895759883}
   m_Layer: 5
   m_Name: Button2
   m_TagString: Untagged
@@ -2306,6 +2323,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895759878}
   m_CullTransparentMesh: 1
+--- !u!114 &1895759883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895759878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2690d20f78b354d9c56026c75171d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
+  nameText: {fileID: 0}
+  descText: {fileID: 0}
+  iconImage: {fileID: 0}
 --- !u!1 &1975919524
 GameObject:
   m_ObjectHideFlags: 0
