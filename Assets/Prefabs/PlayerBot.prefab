@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c7dc9d4fa9a284c88d1bf69c5ee538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotController
-  health: 30
+  health: 10
 --- !u!54 &2531125463697277219
 Rigidbody:
   m_ObjectHideFlags: 0

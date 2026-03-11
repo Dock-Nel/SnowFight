@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         //------------Movements------------
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
