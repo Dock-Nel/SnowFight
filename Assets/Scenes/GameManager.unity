@@ -503,6 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316845007}
   - component: {fileID: 316845008}
+  - component: {fileID: 316845009}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -541,12 +542,35 @@ MonoBehaviour:
   upgrade2: {fileID: 1895759880}
   camSecondary: {fileID: 975380861}
   camMain: {fileID: 685310418}
-  playerScript: {fileID: 1627863601}
+  playerScript: {fileID: 0}
   tmpRounds: {fileID: 1076760325}
   roundCount: 1
   Bots: []
   botPrefab: {fileID: 6137215515991886513, guid: 47d124238ffda7c498691d1bdeeecf4a, type: 3}
   spawnPoint: {fileID: 1992386285}
+--- !u!114 &316845009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316845006}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e046a4fb5ca793b43856ba181cf77be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpManager
+  passifPool:
+  - {fileID: 11400000, guid: 0800182ff91a6784a8a6e39d8d189c54, type: 2}
+  - {fileID: 11400000, guid: 67e8bad12a2b2ad41a9d2055b574d294, type: 2}
+  toolPool:
+  - {fileID: 11400000, guid: a804a971faa7eeb46af33aaf318b42b2, type: 2}
+  - {fileID: 11400000, guid: a08cf6d3867f8d347a9f5c709f08dedb, type: 2}
+  ephemerePool:
+  - {fileID: 11400000, guid: f30604496a782b748830249de5adf37e, type: 2}
+  - {fileID: 11400000, guid: 2d21c31723c9de944b3f07ceabcfc327, type: 2}
+  buttonOne: {fileID: 888358029}
+  buttonTwo: {fileID: 1895759883}
 --- !u!1 &391072485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2690d20f78b354d9c56026c75171d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
-  nameText: {fileID: 0}
+  nameText: {fileID: 556531820}
   descText: {fileID: 0}
   iconImage: {fileID: 0}
 --- !u!1 &890112582
@@ -1935,7 +1959,6 @@ GameObject:
   - component: {fileID: 1627863595}
   - component: {fileID: 1627863594}
   - component: {fileID: 1627863600}
-  - component: {fileID: 1627863601}
   m_Layer: 0
   m_Name: Player
   m_TagString: NoCollision
@@ -2065,31 +2088,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1627863601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627863592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d092d8785f64ea4a926818489c49883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  playerCamera: {fileID: 685310418}
-  health: 30
-  walkingSpeed: 7.5
-  runningSpeed: 15
-  jumpSpeed: 8
-  rotationSpeed: 2
-  rotationXLimit: 45
-  shootingDisctrict: {fileID: 2120103625}
-  snowball: {fileID: 8071646739076797029, guid: 8977ecbade1f91942a4569e43df732f5, type: 3}
-  biggerSnowball: {fileID: 8071646739076797029, guid: 51bd90bd6f79ea5439a63810686c52e6, type: 3}
-  snowballCount: 3
-  maxSnowball: 3
-  tmpNbSnowballs: {fileID: 239422435}
 --- !u!1 &1719590861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2690d20f78b354d9c56026c75171d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
-  nameText: {fileID: 0}
+  nameText: {fileID: 633078450}
   descText: {fileID: 0}
   iconImage: {fileID: 0}
 --- !u!1 &1975919524

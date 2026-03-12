@@ -14,8 +14,8 @@ public class PowerUpButton : MonoBehaviour
     {
         currentData = data;
         nameText.text = data.powerUpName;
-        descText.text = data.description;
-        iconImage.sprite = data.icon;
+        //descText.text = data.description;
+        //iconImage.sprite = data.icon;
     }
 
     public void OnClick()

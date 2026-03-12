@@ -3,10 +3,15 @@ using System.Collections.Generic;
 
 public class PowerUpManager : MonoBehaviour
 {
-    [Header("Pools de Données")]
+    [Header("Data Pools")]
     public List<DataPowerUp> passifPool;
     public List<DataPowerUp> toolPool;     
-    public List<DataPowerUp> ephemerePool; 
+    public List<DataPowerUp> ephemerePool;
+
+    [Header("UI References")]
+    public PowerUpButton buttonOne;
+    public PowerUpButton buttonTwo;
+
     public void GenerateChoice()
     {
         DataPowerUp choice1 = GetRandomPowerUp();
@@ -21,6 +26,8 @@ public class PowerUpManager : MonoBehaviour
         Debug.Log("Choix 2 : " + choice2.powerUpName);
 
         // send to UI
+        buttonOne.Setup(choice1);
+        buttonTwo.Setup(choice2);
     }
 
     private DataPowerUp GetRandomPowerUp()
