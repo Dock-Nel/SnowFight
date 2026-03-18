@@ -5,7 +5,7 @@ public class PowerUpManager : MonoBehaviour
 {
     [Header("Data Pools")]
     public List<DataPowerUp> passifPool;
-    public List<DataPowerUp> toolPool;     
+    public List<DataPowerUp> toolPool;
     public List<DataPowerUp> ephemerePool;
 
     [Header("UI References")]
@@ -64,4 +64,57 @@ public class PowerUpManager : MonoBehaviour
         }
         return pool[0];
     }
+
+
+    //Cette partie est faite par l'IA, elle me sert à tester les tirages et la cohérence d'apparation des powerups
+
+    [ContextMenu("Lancer Simulation (10 000 tirages)")]
+    public void RunSimulation()
+    {
+        int totalTrials = 10000;
+
+        // Dictionnaires pour compter les résultats
+        Dictionary<DataPowerUp.PoolType, int> categoryCounts = new Dictionary<DataPowerUp.PoolType, int>();
+        Dictionary<string, int> itemCounts = new Dictionary<string, int>();
+
+        // Initialisation
+        categoryCounts[DataPowerUp.PoolType.Passif] = 0;
+        categoryCounts[DataPowerUp.PoolType.Tool] = 0;
+        categoryCounts[DataPowerUp.PoolType.Ephemere] = 0;
+
+        for (int i = 0; i < totalTrials; i++)
+        {
+            // On simule un tirage complet
+            DataPowerUp result = GetRandomPowerUp();
+
+            // On compte la catégorie
+            categoryCounts[result.category]++;
+
+            // On compte l'objet précis
+            if (!itemCounts.ContainsKey(result.powerUpName))
+                itemCounts[result.powerUpName] = 0;
+            itemCounts[result.powerUpName]++;
+        }
+
+        // --- AFFICHAGE DU RÉSUMÉ ---
+        string report = $"<b>RÉSULTAT DE LA SIMULATION ({totalTrials} tirages)</b>\n\n";
+
+        report += "<b>PAR CATÉGORIE (Rouge) :</b>\n";
+        foreach (var cat in categoryCounts)
+        {
+            float pct = (cat.Value / (float)totalTrials) * 100f;
+            report += $"- {cat.Key}: {pct:F1}% (Attendu: {(cat.Key == DataPowerUp.PoolType.Passif ? 35 : cat.Key == DataPowerUp.PoolType.Tool ? 25 : 40)}%)\n";
+        }
+
+        report += "\n<b>PAR OBJET (Vert) :</b>\n";
+        foreach (var item in itemCounts)
+        {
+            float pct = (item.Value / (float)totalTrials) * 100f;
+            report += $"- {item.Key}: {pct:F1}%\n";
+        }
+
+        Debug.Log(report);
+    }
+
+
 }

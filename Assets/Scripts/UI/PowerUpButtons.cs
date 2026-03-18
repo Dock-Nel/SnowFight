@@ -4,16 +4,16 @@ using TMPro;
 
 public class PowerUpButton : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descText;
-    public Image iconImage;
+    public TextMeshProUGUI nameText;    
+    //public TextMeshProUGUI descText;
+    //public Image iconImage;
 
     private DataPowerUp currentData;
 
     public void Setup(DataPowerUp data)
     {
         currentData = data;
-        nameText.text = data.powerUpName;
+        nameText.text = data.powerUpName;   
         //descText.text = data.description;
         //iconImage.sprite = data.icon;
     }
