@@ -503,6 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316845007}
   - component: {fileID: 316845008}
+  - component: {fileID: 316845009}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -537,6 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bb5ecdef4a9084793f17e6309a24be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  managePowerup: {fileID: 316845009}
   upgrade1: {fileID: 888358026}
   upgrade2: {fileID: 1895759880}
   camSecondary: {fileID: 975380861}
@@ -547,6 +549,29 @@ MonoBehaviour:
   Bots: []
   botPrefab: {fileID: 6137215515991886513, guid: 47d124238ffda7c498691d1bdeeecf4a, type: 3}
   spawnPoint: {fileID: 1992386285}
+--- !u!114 &316845009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316845006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e046a4fb5ca793b43856ba181cf77be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpManager
+  passifPool:
+  - {fileID: 11400000, guid: 0800182ff91a6784a8a6e39d8d189c54, type: 2}
+  - {fileID: 11400000, guid: 67e8bad12a2b2ad41a9d2055b574d294, type: 2}
+  toolPool:
+  - {fileID: 11400000, guid: a804a971faa7eeb46af33aaf318b42b2, type: 2}
+  - {fileID: 11400000, guid: a08cf6d3867f8d347a9f5c709f08dedb, type: 2}
+  ephemerePool:
+  - {fileID: 11400000, guid: f30604496a782b748830249de5adf37e, type: 2}
+  - {fileID: 11400000, guid: 2d21c31723c9de944b3f07ceabcfc327, type: 2}
+  buttonOne: {fileID: 888358029}
+  buttonTwo: {fileID: 1895759883}
 --- !u!1 &391072485
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +601,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.010289775, y: 0.7073416, z: -0.0099875005, w: 0.7067264}
   m_LocalPosition: {x: -0.075051, y: 0.24407, z: 12.153}
-  m_LocalScale: {x: 0.1623753, y: 13.778425, z: 32.158222}
+  m_LocalScale: {x: 0.1623753, y: 2.611287, z: 32.158222}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523148763}
@@ -1190,6 +1215,7 @@ GameObject:
   - component: {fileID: 888358028}
   - component: {fileID: 888358027}
   - component: {fileID: 888358026}
+  - component: {fileID: 888358029}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -1299,6 +1325,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888358024}
   m_CullTransparentMesh: 1
+--- !u!114 &888358029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888358024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2690d20f78b354d9c56026c75171d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
+  nameText: {fileID: 556531820}
 --- !u!1 &890112582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1824,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0070436355, y: 0.70737386, z: 0.007360898, w: 0.70676625}
   m_LocalPosition: {x: -0.075051, y: 0.24407, z: -20.163}
-  m_LocalScale: {x: 0.1623753, y: 13.778425, z: 32.158222}
+  m_LocalScale: {x: 0.1623753, y: 2.611287, z: 32.158222}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523148763}
@@ -2058,7 +2097,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627863592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d092d8785f64ea4a926818489c49883, type: 3}
+  m_Script: {fileID: 11500000, guid: d6c2164bdacace741b4109776a390213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerCamera: {fileID: 685310418}
@@ -2103,7 +2142,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 16.015, y: 0.24407, z: -3.879}
-  m_LocalScale: {x: 0.1623753, y: 13.778425, z: 32.158222}
+  m_LocalScale: {x: 0.1623753, y: 2.611287, z: 32.158222}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523148763}
@@ -2197,6 +2236,7 @@ GameObject:
   - component: {fileID: 1895759882}
   - component: {fileID: 1895759881}
   - component: {fileID: 1895759880}
+  - component: {fileID: 1895759883}
   m_Layer: 5
   m_Name: Button2
   m_TagString: Untagged
@@ -2306,6 +2346,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895759878}
   m_CullTransparentMesh: 1
+--- !u!114 &1895759883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895759878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2690d20f78b354d9c56026c75171d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
+  nameText: {fileID: 633078450}
 --- !u!1 &1975919524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,7 +2465,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -15.887, y: 0.24407, z: -3.879}
-  m_LocalScale: {x: 0.1623753, y: 13.778425, z: 32.158222}
+  m_LocalScale: {x: 0.1623753, y: 2.611287, z: 32.158222}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523148763}

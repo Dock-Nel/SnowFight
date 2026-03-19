@@ -8,6 +8,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+    //Powerup
+    public PowerUpManager managePowerup;
+    private bool choicePowerup = false;
+
     //Buttons
 
     [SerializeField]
@@ -43,8 +48,8 @@ public class GameManager : MonoBehaviour
         SpawnBots();
         upgrade1.onClick.AddListener(OnUpgradeSelected);
         upgrade2.onClick.AddListener(OnUpgradeSelected);
-        camMain.enabled = true;
-        camSecondary.enabled = false;
+        camMain.gameObject.SetActive(true);
+        camSecondary.gameObject.SetActive(false);
     }
 
     void Update()
@@ -52,12 +57,16 @@ public class GameManager : MonoBehaviour
         tmpRounds.SetText("Round " + roundCount.ToString());
         if (Bots.Count == 0) 
         {
-
+            if (choicePowerup == false)
+            {
+                managePowerup.GenerateChoice();
+                choicePowerup = true;
+            }
             StartCoroutine(Wait());
             Cursor.visible = true;
             playerScript.enabled = false;
-            camMain.enabled = false;
-            camSecondary.enabled = true;
+            camMain.gameObject.SetActive(false);
+            camSecondary.gameObject.SetActive(true);
             Time.timeScale = 0;
             ButtonEnable();
         }
@@ -72,12 +81,13 @@ public class GameManager : MonoBehaviour
     void OnUpgradeSelected()
     {
         ButtonDisable();
-        camMain.enabled = !camMain.enabled;
-        camSecondary.enabled = !camSecondary.enabled;
+        camSecondary.gameObject.SetActive(false);
+        camMain.gameObject.SetActive(true);
         playerScript.enabled = true;
         Cursor.visible = false;
         Time.timeScale = 1;
         roundCount++;
+        choicePowerup = false;
         SpawnBots();
     }
 
