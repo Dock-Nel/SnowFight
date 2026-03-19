@@ -6,8 +6,7 @@ TagManager:
   tags:
   - Snow
   - NoCollision
-  - Cover
-  - Obstacle
+  - Bots
   layers:
   - Default
   - TransparentFX
