@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d34eff0e40d7004ea6bd09fde0341b3, type: 3}
+  m_Name: Snowball Cannon
+  m_EditorClassIdentifier: Assembly-CSharp::DataPowerUp
+  powerUpName: Snowball Cannon
+  description: "Canon \xE0 boule de neige (tire trois boules \xE0 la suite, en consomme
+    2)"
+  icon: {fileID: 0}
+  category: 1
+  percentage: 20

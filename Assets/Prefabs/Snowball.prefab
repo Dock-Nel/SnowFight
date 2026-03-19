@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4185344772618530948}
   - component: {fileID: 6554837807966645612}
   - component: {fileID: 8071646739076797029}
-  - component: {fileID: -8345124155842581911}
+  - component: {fileID: 9068972989210286850}
   m_Layer: 0
   m_Name: Snowball
-  m_TagString: Amo
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8345124155842581911
+--- !u!114 &9068972989210286850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480177764706321249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fc973152f64a340b0139eb1b2d900f, type: 3}
+  m_Script: {fileID: 11500000, guid: ffde4bff7af66ce49a4b97b05b8060bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Snowballs
   snowExplosionPrefab: {fileID: 2305397894697483, guid: 4fa68b9c90e77a442a78d991ff1245c6, type: 3}

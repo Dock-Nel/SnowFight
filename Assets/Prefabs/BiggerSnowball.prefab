@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4185344772618530948}
   - component: {fileID: 6554837807966645612}
   - component: {fileID: 8071646739076797029}
-  - component: {fileID: -653260054546399577}
+  - component: {fileID: 775587953746106602}
   m_Layer: 0
   m_Name: BiggerSnowball
   m_TagString: Amo
@@ -141,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-653260054546399577
+--- !u!114 &775587953746106602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480177764706321249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b28b5b20e1d38046ab6dcc8b89432d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5194274e90768c54e8920012068bcfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigSnowballs
   snowExplosionPrefab: {fileID: 2305397894697483, guid: 4fa68b9c90e77a442a78d991ff1245c6, type: 3}

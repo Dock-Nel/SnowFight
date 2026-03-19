@@ -7,10 +7,7 @@ public class BigSnowballs : MonoBehaviour
     [SerializeField] private ParticleSystem snowExplosionPrefab;
     private bool hasExploded = false;
     private PlayerController player;
-    private void Start()
-    {
-        player = player.GetComponent<PlayerController>();
-    }
+    private BotController bot;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -29,9 +26,15 @@ public class BigSnowballs : MonoBehaviour
             Destroy(particles.gameObject, particles.main.duration + particles.main.startLifetime.constantMax);
             Destroy(gameObject);
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            BotController bot = collision.gameObject.GetComponent<BotController>();
             if (player != null)
             {
                 player.TakeDamage(30);
+            }
+            else if (bot != null)
+            {
+                bot.TakeDamage(30);
+                // don't die if ennemies with bigger health are implemented
             }
         }     
         

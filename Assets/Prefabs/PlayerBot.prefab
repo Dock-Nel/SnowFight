@@ -123,9 +123,11 @@ GameObject:
   - component: {fileID: 3198801017359652972}
   - component: {fileID: 2549162995917482124}
   - component: {fileID: 1275819607144699726}
+  - component: {fileID: 3803602271073213942}
+  - component: {fileID: 2531125463697277219}
   m_Layer: 0
   m_Name: PlayerBot
-  m_TagString: Destroyable
+  m_TagString: Bots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 6137215515991886513}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.70027804, y: 1.0603622, z: 5.04993}
+  m_LocalPosition: {x: -459.9803, y: -894.3, z: 9.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -183,7 +185,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e5e59d97a8f4654bbb17b797d8dd3d8, type: 2}
+  - {fileID: 2100000, guid: 532e21256be17bd44b6f3333c5a3ed23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -229,6 +231,46 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3803602271073213942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137215515991886513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c7dc9d4fa9a284c88d1bf69c5ee538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotController
+  health: 10
+--- !u!54 &2531125463697277219
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137215515991886513}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6925988695132751969
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +338,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 532e21256be17bd44b6f3333c5a3ed23, type: 2}
+  - {fileID: 2100000, guid: 0e5e59d97a8f4654bbb17b797d8dd3d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
