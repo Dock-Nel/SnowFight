@@ -10,7 +10,7 @@ public class PowerUpManager : MonoBehaviour
 
     [Header("UI References")]
     public PowerUpButton buttonOne;
-    public PowerUpButton buttonTwo;
+    public PowerUpButton buttonTwo;     
 
     public void GenerateChoice()
     {
@@ -62,7 +62,19 @@ public class PowerUpManager : MonoBehaviour
                 return item;
             }
         }
-        return pool[0];
+        return pool[0]; 
+    }
+    public void NoMorePowerUps (DataPowerUp data)
+    {
+        if (data.IsMaxedOut())
+        {
+          
+            if (passifPool.Contains(data)) passifPool.Remove(data);
+            if (toolPool.Contains(data)) toolPool.Remove(data);
+            if (ephemerePool.Contains(data)) ephemerePool.Remove(data);
+
+            Debug.Log("Le powerup " + data.powerUpName + " a été définitivement retiré des tirages !");
+        }
     }
 
 

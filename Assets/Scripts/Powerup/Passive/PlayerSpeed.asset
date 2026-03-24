@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d34eff0e40d7004ea6bd09fde0341b3, type: 3}
-  m_Name: Shot Velocity
-  m_EditorClassIdentifier: Assembly-CSharp::DataPowerUp
-  powerUpName: Shot Velocity
-  description: "Plus de v\xE9locit\xE9 des tirs (*10 \u2192 *13 \u2192 *16)"
-  icon: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 1315c523efa78984eba7883d60462749, type: 3}
+  m_Name: PlayerSpeed
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpeed
+  powerUpName: Increase Speed
   category: 0
   percentage: 22
+  bonusSteps: 010000000100000001000000

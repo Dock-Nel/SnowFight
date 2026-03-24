@@ -562,14 +562,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpManager
   passifPool:
-  - {fileID: 11400000, guid: 0800182ff91a6784a8a6e39d8d189c54, type: 2}
-  - {fileID: 11400000, guid: 67e8bad12a2b2ad41a9d2055b574d294, type: 2}
+  - {fileID: 11400000, guid: 626ef609dec995b458a5b7bf5b26c597, type: 2}
+  - {fileID: 11400000, guid: d31c3a02cd547cd41a1088b0c8185e20, type: 2}
+  - {fileID: 11400000, guid: 88bf190f7c9107f47a7781e13721eb52, type: 2}
+  - {fileID: 11400000, guid: 2fe7ede298378de4fa1f52c1926dc4fc, type: 2}
   toolPool:
-  - {fileID: 11400000, guid: a804a971faa7eeb46af33aaf318b42b2, type: 2}
   - {fileID: 11400000, guid: a08cf6d3867f8d347a9f5c709f08dedb, type: 2}
-  ephemerePool:
-  - {fileID: 11400000, guid: f30604496a782b748830249de5adf37e, type: 2}
-  - {fileID: 11400000, guid: 2d21c31723c9de944b3f07ceabcfc327, type: 2}
+  ephemerePool: []
   buttonOne: {fileID: 888358029}
   buttonTwo: {fileID: 1895759883}
 --- !u!1 &391072485
@@ -1241,7 +1240,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -213, y: 27}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888358026
 MonoBehaviour:
@@ -1286,7 +1285,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 888358027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 888358029}
+        m_TargetAssemblyTypeName: PowerUpButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &888358027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2112,6 +2123,7 @@ MonoBehaviour:
   biggerSnowball: {fileID: 8071646739076797029, guid: 51bd90bd6f79ea5439a63810686c52e6, type: 3}
   snowballCount: 3
   maxSnowball: 3
+  shootVelocity: 10
   tmpNbSnowballs: {fileID: 239422435}
 --- !u!1 &1719590861
 GameObject:
@@ -2262,7 +2274,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 249, y: 27}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895759880
 MonoBehaviour:
@@ -2307,7 +2319,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1895759881}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1895759883}
+        m_TargetAssemblyTypeName: PowerUpButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1895759881
 MonoBehaviour:
   m_ObjectHideFlags: 0

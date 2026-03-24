@@ -11,4 +11,14 @@ public class DataPowerUp : ScriptableObject
 
     [Range(0, 100)]
     public float percentage;
+
+    public virtual void ApplyEffect(PlayerController player)
+    {
+
+    }
+
+    public virtual bool IsMaxedOut()
+    {
+        return false;
+    }
 }
