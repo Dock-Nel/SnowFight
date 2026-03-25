@@ -10,16 +10,36 @@ public class PowerUpManager : MonoBehaviour
 
     [Header("UI References")]
     public PowerUpButton buttonOne;
-    public PowerUpButton buttonTwo;     
+    public PowerUpButton buttonTwo;
 
     public void GenerateChoice()
     {
         DataPowerUp choice1 = GetRandomPowerUp();
         DataPowerUp choice2 = GetRandomPowerUp();
 
-        while (choice1 == choice2)
+
+        
+        if (choice1.familyID == 6)
         {
-            choice2 = GetRandomPowerUp();
+            choice2 = choice1;
+        }
+        else if (choice2.familyID == 6)
+        {
+            choice1 = choice2;
+        }
+        else
+        {
+            while (choice1 == choice2)
+            {
+                choice2 = GetRandomPowerUp();
+            }
+
+            while (choice1.familyID == choice2.familyID)
+            {
+                choice2 = GetRandomPowerUp();
+                choice1 = GetRandomPowerUp();
+            }
+
         }
 
         Debug.Log("Choix 1 : " + choice1.powerUpName);
@@ -62,13 +82,13 @@ public class PowerUpManager : MonoBehaviour
                 return item;
             }
         }
-        return pool[0]; 
+        return pool[0];
     }
-    public void NoMorePowerUps (DataPowerUp data)
+    public void NoMorePowerUps(DataPowerUp data)
     {
         if (data.IsMaxedOut())
         {
-          
+
             if (passifPool.Contains(data)) passifPool.Remove(data);
             if (toolPool.Contains(data)) toolPool.Remove(data);
             if (ephemerePool.Contains(data)) ephemerePool.Remove(data);

@@ -9,6 +9,8 @@ public class DataPowerUp : ScriptableObject
     public enum PoolType { Passif, Tool, Ephemere }
     public PoolType category;
 
+    public int familyID;
+
     [Range(0, 100)]
     public float percentage;
 

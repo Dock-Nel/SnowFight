@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShotVelocity
   powerUpName: Increase Shot Velocity
   category: 0
+  familyID: 4
   percentage: 22
   bonusSteps: 020000000300000003000000

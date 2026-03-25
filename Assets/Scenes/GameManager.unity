@@ -562,13 +562,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpManager
   passifPool:
-  - {fileID: 11400000, guid: 626ef609dec995b458a5b7bf5b26c597, type: 2}
-  - {fileID: 11400000, guid: d31c3a02cd547cd41a1088b0c8185e20, type: 2}
-  - {fileID: 11400000, guid: 88bf190f7c9107f47a7781e13721eb52, type: 2}
   - {fileID: 11400000, guid: 2fe7ede298378de4fa1f52c1926dc4fc, type: 2}
+  - {fileID: 11400000, guid: 88bf190f7c9107f47a7781e13721eb52, type: 2}
+  - {fileID: 11400000, guid: d31c3a02cd547cd41a1088b0c8185e20, type: 2}
+  - {fileID: 11400000, guid: 626ef609dec995b458a5b7bf5b26c597, type: 2}
   toolPool:
   - {fileID: 11400000, guid: a08cf6d3867f8d347a9f5c709f08dedb, type: 2}
-  ephemerePool: []
+  ephemerePool:
+  - {fileID: 11400000, guid: f30604496a782b748830249de5adf37e, type: 2}
+  - {fileID: 11400000, guid: 2d21c31723c9de944b3f07ceabcfc327, type: 2}
+  - {fileID: 11400000, guid: af9e079f3fbf98d4abc270046cbeeb42, type: 2}
   buttonOne: {fileID: 888358029}
   buttonTwo: {fileID: 1895759883}
 --- !u!1 &391072485

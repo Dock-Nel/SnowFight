@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   powerUpName: Health Upgrade
   category: 0
+  familyID: 2
   percentage: 22
   bonusSteps: 0a0000000a00000014000000

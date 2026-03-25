@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpeed
   powerUpName: Increase Speed
   category: 0
+  familyID: 3
   percentage: 22
   bonusSteps: 010000000100000001000000

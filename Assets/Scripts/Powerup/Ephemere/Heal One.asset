@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d34eff0e40d7004ea6bd09fde0341b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 51ba9bb5f14c19646a05e49464292c2f, type: 3}
   m_Name: Heal One
-  m_EditorClassIdentifier: Assembly-CSharp::DataPowerUp
-  powerUpName: Heal One
-  description: "rends un \u2665"
-  icon: {fileID: 0}
-  category: 2
+  m_EditorClassIdentifier: Assembly-CSharp::HealOne
+  powerUpName: Heal 10 Hp
+  category: 0
+  familyID: 1
   percentage: 30
