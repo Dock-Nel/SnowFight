@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunning = false;
     float rotationX = 0;
     [SerializeField]
-    private float rotationSpeed = 2.0f;
+    public float rotationSpeed = 2.0f;
     [SerializeField]
     private float rotationXLimit = 45.0f;
 

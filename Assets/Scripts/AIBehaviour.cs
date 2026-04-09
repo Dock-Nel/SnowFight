@@ -24,7 +24,6 @@ public class AIBehaviour : MonoBehaviour
 
     [SerializeField] bool PlayerDetection = false;
     [SerializeField] bool MoveTowardsPlayer = false;
-    [SerializeField] bool Aggressivity = false;
     [SerializeField] float PlayerDistance;
     [SerializeField] float TargetRotation;
 
