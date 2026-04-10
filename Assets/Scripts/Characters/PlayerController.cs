@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && snowballCount >= 1 && snowballCount <= maxSnowball)
+        if (Input.GetMouseButtonDown(0) && snowballCount >= 1 && snowballCount <= maxSnowball && Time.timeScale != 0)
         {
             snowballCount -= 1;
             Rigidbody clone;
@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && snowballCount >= 3)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && snowballCount >= 3 && Time.timeScale != 0)
         {
             snowballCount -= 3;
             Rigidbody clone;
