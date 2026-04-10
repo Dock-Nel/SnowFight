@@ -874,7 +874,7 @@ Transform:
   m_GameObject: {fileID: 962108964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: 2.5, z: 0}
+  m_LocalPosition: {x: -23, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1066,6 +1066,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotControllerNoGameManager
   health: 30
+  Title: Congratulations !
+  TextTuto: You finished the tutorial ! You will now automatically be thrown in a
+    new adventure, we hope you will enjoy !
+  PanelTuto: {fileID: 272400631}
+  Gingerbread: {fileID: 2055544059}
 --- !u!1 &1174725291
 GameObject:
   m_ObjectHideFlags: 0

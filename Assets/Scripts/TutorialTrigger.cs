@@ -21,9 +21,9 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (other.tag == "NoCollision")
         {
-            PanelTuto.SetActive(true);
             VisualTitle.text = Title;
             VisualTextTuto.text = TextTuto;
+            PanelTuto.SetActive(true);
         } 
     }
 
