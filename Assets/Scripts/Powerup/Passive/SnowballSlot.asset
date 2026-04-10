@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d34eff0e40d7004ea6bd09fde0341b3, type: 3}
-  m_Name: Shot Velocity
-  m_EditorClassIdentifier: Assembly-CSharp::DataPowerUp
-  powerUpName: Shot Velocity
-  description: "Plus de v\xE9locit\xE9 des tirs (*10 \u2192 *13 \u2192 *16)"
-  icon: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f127eaadffe888c429445560254ac502, type: 3}
+  m_Name: SnowballSlot
+  m_EditorClassIdentifier: Assembly-CSharp::SnowballSlotPowerUp
+  powerUpName: More Snowballs
   category: 0
+  familyID: 5
   percentage: 22
+  bonusSteps: 020000000300000004000000

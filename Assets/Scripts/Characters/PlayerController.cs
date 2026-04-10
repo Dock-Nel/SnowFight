@@ -9,13 +9,38 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
 
-    public float health = 30;
+    [SerializeField]
+    private float health = 30;
+    public float Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
     [SerializeField]
     private float walkingSpeed = 7.5f;
+    public float WalkingSpeed
+    {
+        get { return walkingSpeed; }
+        set { walkingSpeed = value; }
+    }
+
     [SerializeField]
-    private float runningSpeed = 15f;
+    private float runningSpeed = 10f;
+    public float RunningSpeed
+    {
+        get { return runningSpeed; }
+        set { runningSpeed = value; }
+    }
+
     [SerializeField]
     private float jumpSpeed = 8f;
+    public float JumpSpeed
+    {
+        get { return jumpSpeed; }
+        set { jumpSpeed = value; }
+    }
+
     float gravity = 20f;
     Vector3 moveDirection;
     private bool isRunning = false;
@@ -36,6 +61,18 @@ public class PlayerController : MonoBehaviour
     private int snowballCount = 3;
     [SerializeField]
     private int maxSnowball = 3;
+    public int MaxSnowball
+    {
+        get { return maxSnowball; }
+        set { maxSnowball = value; }
+    }
+    [SerializeField]
+    private int shootVelocity = 10;
+    public int ShootVelocity
+    {
+        get { return shootVelocity; }
+        set { shootVelocity = value; }
+    }
     private bool isReloading = false;
 
     //TMP
@@ -47,6 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         //Hide cursor
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
     }
 
@@ -119,7 +157,7 @@ public class PlayerController : MonoBehaviour
         IEnumerator Wait()
         {
             isReloading = true;
-            //need to change to 1, but 0 for test
+            //need to change to 1 or lower, but 0 for test
             yield return new WaitForSeconds(0f);
             snowballCount += 1;
             isReloading = false;
@@ -141,20 +179,19 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Snow"))
             {
                 Debug.Log("R to reload");
-                if (Input.GetKeyDown(KeyCode.R) && snowballCount < maxSnowball && isReloading == false)
+                if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && isReloading == false)
                 {
                     StartCoroutine(Wait());
-
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && snowballCount is >= 1 and <= 3)
+        if (Input.GetMouseButtonDown(0) && snowballCount >= 1 && snowballCount <= maxSnowball)
         {
             snowballCount -= 1;
             Rigidbody clone;
             clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
-            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 10);
+            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && snowballCount >= 3)
@@ -164,12 +201,6 @@ public class PlayerController : MonoBehaviour
             clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
         }
-
-
-        //else if (snowballCount is <= 1)
-        //{
-        //    Debug.Log("No More Snowballs");
-        //}
 
     }
     public void TakeDamage(float damage)

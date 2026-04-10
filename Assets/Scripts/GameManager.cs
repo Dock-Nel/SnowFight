@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
 
     //Powerup
+
     public PowerUpManager managePowerup;
     private bool choicePowerup = false;
 
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
             }
             StartCoroutine(Wait());
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             playerScript.enabled = false;
             camMain.gameObject.SetActive(false);
             camSecondary.gameObject.SetActive(true);
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
         camMain.gameObject.SetActive(true);
         playerScript.enabled = true;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         roundCount++;
         choicePowerup = false;
@@ -118,42 +121,46 @@ public class GameManager : MonoBehaviour
 
     private void SpawnBots()
     {
-       switch (roundCount)
-       {
-            case <= 3:
-                for (int i = 0; i < roundCount + 2; i++)
-                {
-                    GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                    Bots.Add(newBot);
 
-                }
-                break;
-            case > 3 and <= 6 :
-                for (int i = 0; i < roundCount + 4; i++)
-                {
-                    GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                    Bots.Add(newBot);
+        GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+        Bots.Add(newBot);
 
-                }
-                break;
-            case > 6 and <= 10:
-                for (int i = 0; i < roundCount + 8; i++)
-                {
-                    GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                    Bots.Add(newBot);
+        //switch (roundCount)
+        //{
+        //     case <= 3:
+        //         for (int i = 0; i < roundCount + 2; i++)
+        //         {
+        //             GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+        //             Bots.Add(newBot);
 
-                }
-                break;
-            case > 10:
-                //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
-                for (int i = 0; i < roundCount * 1.5 + 15; i++)
-                {
-                    GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                    Bots.Add(newBot);
+        //         }
+        //         break;
+        //     case > 3 and <= 6 :
+        //         for (int i = 0; i < roundCount + 4; i++)
+        //         {
+        //             GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+        //             Bots.Add(newBot);
 
-                }
-                break;
-       }
+        //         }
+        //         break;
+        //     case > 6 and <= 10:
+        //         for (int i = 0; i < roundCount + 8; i++)
+        //         {
+        //             GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+        //             Bots.Add(newBot);
+
+        //         }
+        //         break;
+        //     case > 10:
+        //         //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
+        //         for (int i = 0; i < roundCount * 1.5 + 15; i++)
+        //         {
+        //             GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+        //             Bots.Add(newBot);
+
+        //         }
+        //         break;
+        //}
 
     }
     public void RemoveBotFromList(GameObject botToRemove)

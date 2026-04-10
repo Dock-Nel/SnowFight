@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5af153d084a1784daef8a9af1844886, type: 3}
-  m_Name: Heal Two
-  m_EditorClassIdentifier: Assembly-CSharp::HealTwo
-  powerUpName: ' Heal 20 Hp'
+  m_Script: {fileID: 11500000, guid: 996f6b99d2ab6c04fa260a3b04db0e7c, type: 3}
+  m_Name: Candy Cane
+  m_EditorClassIdentifier: Assembly-CSharp::CandyCane
+  powerUpName: Candy Cane
   category: 0
-  familyID: 1
-  percentage: 5
+  familyID: 6
+  percentage: 3
