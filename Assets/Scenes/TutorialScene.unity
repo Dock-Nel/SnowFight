@@ -167,7 +167,7 @@ MonoBehaviour:
   Title: Snowballs
   TextTuto: "The game being a snow fight, you are able to grab and drop snow. You
     can check on the number of snowballs you currently carry with the number at the
-    bottom left corner of the screen. \n\n[JSP] - Throw Snowball\n[JSP] - Reload
+    bottom left corner of the screen. \n\n[LMB] - Throw Snowball\n[RMB] - Reload
     Snowball\n\nTo reload, look at the ground to grab the snow ! Also, watch out
     : the snowballs are affected by gravity !"
   PanelTuto: {fileID: 272400631}
@@ -192,6 +192,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 5, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &270131792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 270131794}
+  - component: {fileID: 270131793}
+  m_Layer: 0
+  m_Name: SceneSwitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &270131793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270131792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f76e7ff9466ba4eb45706c12aa5974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSwitcher
+--- !u!4 &270131794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270131792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &272400631
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialPrompt
   Player: {fileID: 721732493}
+  Bot: {fileID: 1157419607}
 --- !u!1 &396384798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,10 +1111,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotControllerNoGameManager
   health: 30
+  dead: 0
   Title: Congratulations !
   TextTuto: You finished the tutorial ! You will now automatically be thrown in a
     new adventure, we hope you will enjoy !
+  Prompt: Press Return to finish...
   PanelTuto: {fileID: 272400631}
+  SceneSwitch: {fileID: 270131793}
   Gingerbread: {fileID: 2055544059}
 --- !u!1 &1174725291
 GameObject:
@@ -2040,7 +2088,7 @@ GameObject:
   - component: {fileID: 1637438704}
   - component: {fileID: 1637438703}
   m_Layer: 0
-  m_Name: Wall1
+  m_Name: Wall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2770,7 +2818,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 251509444931880753, guid: a0b7b2dddb7109141bc8e32d076773dc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0b7b2dddb7109141bc8e32d076773dc, type: 3}
@@ -2787,3 +2836,4 @@ SceneRoots:
   - {fileID: 1157419603}
   - {fileID: 2119792289}
   - {fileID: 1426715909}
+  - {fileID: 270131794}

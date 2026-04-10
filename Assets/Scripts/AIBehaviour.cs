@@ -20,7 +20,6 @@ public class AIBehaviour : MonoBehaviour
 
     //Variables
     [SerializeField] int Snowball = 3;
-    [SerializeField] int Health = 3;
 
     [SerializeField] bool PlayerDetection = false;
     [SerializeField] bool MoveTowardsPlayer = false;
@@ -39,16 +38,16 @@ public class AIBehaviour : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-    }   
+    }
     void Update()
-    {   
+    {
         //Player detection system
         PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
         if (PlayerDistance < Range)
         {
             PlayerDetection = true;
         }
-        else if (PlayerDistance > Range*1.5)
+        else if (PlayerDistance > Range * 1.5)
         {
             PlayerDetection = false;
             MoveTowardsPlayer = false;
@@ -64,7 +63,7 @@ public class AIBehaviour : MonoBehaviour
         }
 
         //Behaviour Switch
-        switch(currentState)
+        switch (currentState)
         {
             case State.Idle: //When the player is *NOT detected*
                 if (Snowball < 3 && !CRrunning)
@@ -101,11 +100,6 @@ public class AIBehaviour : MonoBehaviour
                 }
 
                 break;
-        }
-
-        if (Health <= 0)
-        {
-            Death();
         }
     }
 
@@ -166,19 +160,5 @@ public class AIBehaviour : MonoBehaviour
         {
             return false;
         }
-    }
-
-    //Collision with a snowball detection
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Amo")
-        {
-            Health--;
-        }
-    }
-
-    void Death()
-    {
-        Destroy(gameObject);
     }
 }

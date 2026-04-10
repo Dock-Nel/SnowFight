@@ -6,6 +6,7 @@ public class TutorialPrompt : MonoBehaviour
 {
     float MouseSensitivity;
     public GameObject Player;
+    public BotControllerNoGameManager Bot;
 
     void Awake()
     {
@@ -18,7 +19,7 @@ public class TutorialPrompt : MonoBehaviour
         Time.timeScale = 0f;
         Player.GetComponent<PlayerController>().rotationSpeed = 0f;
 
-        if (Input.GetKey("return"))
+        if (Input.GetKey("return") && !Bot.dead)
         {
             Time.timeScale = 1.0f;
             gameObject.SetActive(false);
