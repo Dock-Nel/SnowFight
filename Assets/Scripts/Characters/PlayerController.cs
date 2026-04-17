@@ -17,6 +17,17 @@ public class PlayerController : MonoBehaviour
         set { health = value; }
     }
 
+    public bool isInvincible = false;
+
+    [SerializeField] private DataPowerUp currentTool;
+    public DataPowerUp GetCurrentTool() => currentTool; //Similar as Get Set
+    [SerializeField] private DataPowerUp currentEphemeral;
+    public DataPowerUp GetCurrentEphemeral() => currentEphemeral;
+
+
+    //New system, like ringing a bell - Not sure about using it right but i try.
+    public System.Action OnInventoryChanged;
+
     [SerializeField]
     private float walkingSpeed = 7.5f;
     public float WalkingSpeed
@@ -74,6 +85,8 @@ public class PlayerController : MonoBehaviour
         set { shootVelocity = value; }
     }
     private bool isReloading = false;
+
+    public bool hasInfiniteSnowballs = false;
 
     //TMP
 
@@ -188,23 +201,63 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && snowballCount >= 1 && snowballCount <= maxSnowball)
         {
-            snowballCount -= 1;
             Rigidbody clone;
             clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+            if(hasInfiniteSnowballs == false)
+            {
+                snowballCount -= 1;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && snowballCount >= 3)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (hasInfiniteSnowballs || snowballCount >= 3))
         {
-            snowballCount -= 3;
             Rigidbody clone;
             clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
+
+            if (!hasInfiniteSnowballs)
+            {
+                snowballCount -= 3;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && currentEphemeral != null)
+        {
+            currentEphemeral.ApplyEffect(this);
+            currentEphemeral = null; // Empty slot
+        }
+
+        //------------- Items ---------------
+
+        if (Input.GetKeyDown(KeyCode.A) && currentEphemeral != null)
+        {
+            currentEphemeral.ApplyEffect(this);
+            currentEphemeral = null;
+            OnInventoryChanged?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && currentTool != null)
+        {
+            currentTool.ApplyEffect(this);
         }
 
     }
+
+    public IEnumerator InfiniteSnowballsCoroutine(float duration)
+    {
+        hasInfiniteSnowballs = true;
+        tmpNbSnowballs.SetText("INFINY"); // à corriger c'est en dur pour le moment, ça me fait gagner du temps on va pas chipoter hein
+        yield return new WaitForSeconds(duration);
+        hasInfiniteSnowballs = false;
+        tmpNbSnowballs.SetText(snowballCount.ToString());
+    }
+
     public void TakeDamage(float damage)
     {
+
+        if (isInvincible) return;
+
         health -= damage;
         Debug.Log(gameObject.name + " health is now at: " + health);
 
@@ -216,5 +269,36 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+    }
+    public void EquipEphemeral(DataPowerUp powerUp)
+    {
+        currentEphemeral = powerUp;
+        Debug.Log("Nouvel objet éphémère : " + powerUp.powerUpName);
+        OnInventoryChanged?.Invoke();
+    }
+    public IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+        Debug.Log("Début Invincibilité");
+
+        yield return new WaitForSeconds(duration);
+
+        isInvincible = false;
+        Debug.Log("Fin Invincibilité");
+    }
+
+    //------------ Slots ------------
+
+    public void EquipPowerUp(DataPowerUp powerUp)
+    {
+        if (powerUp.category == DataPowerUp.PoolType.Tool)
+        {
+            currentTool = powerUp;
+        }
+        else if (powerUp.category == DataPowerUp.PoolType.Ephemere)
+        {
+            currentEphemeral = powerUp;
+        }
+        OnInventoryChanged?.Invoke(); // Signal Update to UI
     }
 }
