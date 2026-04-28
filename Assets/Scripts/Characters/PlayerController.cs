@@ -2,10 +2,12 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
+    public Slider HealthBar;
 
     CharacterController characterController;
 
@@ -90,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        HealthBar.value = Health;
 
         //------------Movements------------
 
@@ -178,7 +181,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Snow"))
             {
-                Debug.Log("R to reload");
+                //Debug.Log("R to reload");
                 if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && isReloading == false)
                 {
                     StartCoroutine(Wait());
