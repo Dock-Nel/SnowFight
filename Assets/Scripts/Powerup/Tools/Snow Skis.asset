@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a871073a125d974fb4db61e02c659ef, type: 3}
+  m_Name: Snow Skis
+  m_EditorClassIdentifier: Assembly-CSharp::SnowSkis
+  powerUpName: Skis
+  icon: {fileID: 21300000, guid: 10cb7c5de9f26a84dbbef0592ec9025a, type: 3}
+  category: 1
+  familyID: 687
+  percentage: 20
+  walkingSpeedMultiplier: 1.5
+  runningSpeedMultiplier: 1.5
+  jumpHeightMultiplier: 1.3
+  reloadDelay: 0.1

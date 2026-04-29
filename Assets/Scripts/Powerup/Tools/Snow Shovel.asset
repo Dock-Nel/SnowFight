@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c247c0de91df8d24a94fb06d205ed458, type: 3}
+  m_Name: Snow Shovel
+  m_EditorClassIdentifier: Assembly-CSharp::SnowShovel
+  powerUpName: Snow Shovel
+  icon: {fileID: 21300000, guid: f2cf00547d9f3864a94c3066b806d95b, type: 3}
+  category: 1
+  familyID: 625
+  percentage: 20
+  reloadAmount: 4
