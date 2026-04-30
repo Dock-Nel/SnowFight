@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b22073bde150b458e3ded0574a421c, type: 3}
+  m_Name: Snow Canon
+  m_EditorClassIdentifier: Assembly-CSharp::SnowCanon
+  powerUpName: Snow Canon
+  icon: {fileID: 21300000, guid: 22e86063cc3378a4e94b987532db531e, type: 3}
+  category: 1
+  familyID: 0
+  percentage: 20
+  ballsPerShot: 3
+  ammoCost: 2
+  delayBetweenBalls: 0.1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5050982411f589340a1af8bf9545cd89, type: 3}
+  m_Name: Ski Goggles
+  m_EditorClassIdentifier: Assembly-CSharp::SkiGoggles
+  powerUpName: Ski Goggles
+  icon: {fileID: 21300000, guid: 86c08af401a46c94a8aef2f7641e14c1, type: 3}
+  category: 1
+  familyID: 412
+  percentage: 20
+  invincibilityDuration: 5
+  cooldown: 40

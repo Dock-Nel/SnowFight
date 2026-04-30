@@ -2,12 +2,10 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
-    public Slider HealthBar;
 
     CharacterController characterController;
 
@@ -18,6 +16,17 @@ public class PlayerController : MonoBehaviour
         get { return health; }
         set { health = value; }
     }
+
+    public bool isInvincible = false;
+
+    [SerializeField] private DataPowerUp currentTool;
+    public DataPowerUp GetCurrentTool() => currentTool; //Similar as Get Set
+    [SerializeField] private DataPowerUp currentEphemeral;
+    public DataPowerUp GetCurrentEphemeral() => currentEphemeral;
+
+
+    //New system, like ringing a bell - Not sure about using it right but i try.
+    public System.Action OnInventoryChanged;
 
     [SerializeField]
     private float walkingSpeed = 7.5f;
@@ -48,7 +57,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunning = false;
     float rotationX = 0;
     [SerializeField]
-    public float rotationSpeed = 2.0f;
+    private float rotationSpeed = 2.0f;
     [SerializeField]
     private float rotationXLimit = 45.0f;
 
@@ -75,7 +84,23 @@ public class PlayerController : MonoBehaviour
         get { return shootVelocity; }
         set { shootVelocity = value; }
     }
+    [SerializeField]
+    private float baseReloadDelay = 0.5f;
+    private bool isFiringTool = false;
     private bool isReloading = false;
+
+    public bool hasInfiniteSnowballs = false;
+
+    private float toolCooldownTimer = 0f;
+
+    //TOOLS
+    [SerializeField]
+    private GameObject gogglesVisualEffect; // Glisse ton "GogglesOverlay" ici
+    [Header("Turret Settings")]
+    private System.Collections.Generic.List<GameObject> activeTurrets = new System.Collections.Generic.List<GameObject>();
+    [SerializeField]
+    private float spawnDistance = 2f;
+
 
     //TMP
 
@@ -92,7 +117,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        HealthBar.value = Health;
 
         //------------Movements------------
 
@@ -112,15 +136,29 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
 
+        float speedMult = 1f;
+        float jumpMult = 1f;
+
+        if (currentTool is SnowSkis activeSkis)
+        {
+            speedMult = activeSkis.walkingSpeedMultiplier;
+            jumpMult = activeSkis.jumpHeightMultiplier;
+        }
+
         if (isRunning)
         {
-            speedX = speedX * runningSpeed;
-            speedZ = speedZ * runningSpeed;
+            speedX = speedX * runningSpeed * speedMult;
+            speedZ = speedZ * runningSpeed * speedMult;
         }
         else
         {
-            speedX = speedX * walkingSpeed;
-            speedZ = speedZ * walkingSpeed;
+            speedX = speedX * walkingSpeed * speedMult;
+            speedZ = speedZ * walkingSpeed * speedMult;
+        }
+
+        if (Input.GetButton("Jump") && characterController.isGrounded)
+        {
+            moveDirection.y = jumpSpeed * jumpMult;
         }
 
         moveDirection = forward * speedZ + right * speedX;
@@ -157,19 +195,28 @@ public class PlayerController : MonoBehaviour
 
 
         //------------Shooting------------
-        IEnumerator Wait()
-        {
-            isReloading = true;
-            //need to change to 1 or lower, but 0 for test
-            yield return new WaitForSeconds(0f);
-            snowballCount += 1;
-            isReloading = false;
-        }
 
-        tmpNbSnowballs.SetText(snowballCount.ToString());
+        if (!hasInfiniteSnowballs)
+            tmpNbSnowballs.SetText(snowballCount.ToString());
+        else
+            tmpNbSnowballs.SetText("INFINY");
 
         Vector3 fwd = playerCamera.transform.forward;
         RaycastHit hit;
+
+        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 2))
+        {
+            if (hit.collider.CompareTag("Snow"))
+            {
+                if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && !isReloading)
+                {
+                    StartCoroutine(ReloadWait());
+                }
+            }
+        }
+
+
+        tmpNbSnowballs.SetText(snowballCount.ToString());
 
         Debug.DrawRay(
             shootingDisctrict.position,
@@ -177,37 +224,131 @@ public class PlayerController : MonoBehaviour
             Color.red
         );
 
-        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 2))
+        if (Input.GetMouseButtonDown(0) && !isFiringTool)
         {
-            if (hit.collider.CompareTag("Snow"))
+            if (currentTool is SnowCanon canon)
             {
-                //Debug.Log("R to reload");
-                if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && isReloading == false)
+                if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
                 {
-                    StartCoroutine(Wait());
+                    StartCoroutine(FireCanonRoutine(canon));
                 }
+            }
+            else if (hasInfiniteSnowballs || snowballCount >= 1)
+            {
+                FireSingleSnowball();
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && snowballCount >= 1 && snowballCount <= maxSnowball && Time.timeScale != 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (hasInfiniteSnowballs || snowballCount >= 3))
         {
-            snowballCount -= 1;
-            Rigidbody clone;
-            clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
-            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+            FireBigSnowball();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && snowballCount >= 3 && Time.timeScale != 0)
+
+        //------------- Items ---------------
+
+
+        if (Input.GetKeyDown(KeyCode.A) && currentEphemeral != null)
         {
-            snowballCount -= 3;
-            Rigidbody clone;
-            clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
-            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
+            currentEphemeral.ApplyEffect(this);
+            currentEphemeral = null;
+            OnInventoryChanged?.Invoke();
         }
 
+        if (Input.GetKeyDown(KeyCode.E) && currentTool != null)
+        {
+            if (currentTool is SnowTurretTool turretTool)
+            {
+                turretTool.PlaceTurret(this);
+            }
+            else if (currentTool is SkiGoggles goggles)
+            {
+                if (toolCooldownTimer <= 0)
+                {
+                    goggles.Activate(this);
+                    toolCooldownTimer = goggles.cooldown;
+                    Debug.Log("Lunettes de ski activées ! Invincible pour 5s.");
+                }
+                else
+                {
+                    Debug.Log("Lunettes en recharge... " + Mathf.Ceil(toolCooldownTimer) + "s restantes.");
+                }
+            }
+            else
+            {
+                currentTool.ApplyEffect(this);
+            }
+        }
+
+        if (toolCooldownTimer > 0)
+        {
+            toolCooldownTimer -= Time.deltaTime;
+        }
     }
+
+    void FireSingleSnowball()
+    {
+        Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+        if (!hasInfiniteSnowballs) snowballCount -= 1;
+    }
+
+    void FireBigSnowball()
+    {
+        Rigidbody clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
+        if (!hasInfiniteSnowballs) snowballCount -= 3;
+    }
+
+    IEnumerator FireCanonRoutine(SnowCanon canon)
+    {
+        isFiringTool = true;
+
+        if (!hasInfiniteSnowballs) snowballCount -= canon.ammoCost;
+
+        for (int i = 0; i < canon.ballsPerShot; i++)
+        {
+            Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
+            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+            yield return new WaitForSeconds(canon.delayBetweenBalls);
+        }
+
+        isFiringTool = false;
+    }
+
+    IEnumerator ReloadWait()
+    {
+        isReloading = true;
+
+        float delay = baseReloadDelay;
+        if (currentTool is SnowSkis skis)
+        {
+            delay = skis.reloadDelay;
+        }
+
+        yield return new WaitForSeconds(delay);
+
+        int amountToReload = 1;
+        if (currentTool is SnowShovel shovel) amountToReload = shovel.reloadAmount;
+
+        snowballCount = Mathf.Min(snowballCount + amountToReload, maxSnowball);
+        isReloading = false;
+    }
+
+    public IEnumerator InfiniteSnowballsCoroutine(float duration)
+    {
+        hasInfiniteSnowballs = true;
+        tmpNbSnowballs.SetText("INFINY"); // à corriger c'est en dur pour le moment, ça me fait gagner du temps on va pas chipoter hein
+        yield return new WaitForSeconds(duration);
+        hasInfiniteSnowballs = false;
+        tmpNbSnowballs.SetText(snowballCount.ToString());
+    }
+
     public void TakeDamage(float damage)
     {
+
+        if (isInvincible) return;
+
         health -= damage;
         Debug.Log(gameObject.name + " health is now at: " + health);
 
@@ -219,5 +360,78 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+    }
+    public void EquipTool(DataPowerUp powerUp)
+    {
+        ClearAllTurrets();
+
+        currentTool = powerUp;
+        OnInventoryChanged?.Invoke();
+    }
+
+    public void EquipEphemeral(DataPowerUp powerUp)
+    {
+        currentEphemeral = powerUp;
+        Debug.Log("Nouvel objet éphémère : " + powerUp.powerUpName);
+        OnInventoryChanged?.Invoke();
+    }
+
+    public IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+
+        if (gogglesVisualEffect != null && currentTool is SkiGoggles)
+        {
+            gogglesVisualEffect.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        if (gogglesVisualEffect != null)
+        {
+            gogglesVisualEffect.SetActive(false);
+        }
+
+        isInvincible = false;
+    }
+
+    public void SpawnTurret(GameObject prefab)
+    {
+        //Position devant joueur
+        Vector3 spawnPos = transform.position + transform.forward * spawnDistance;
+        spawnPos.y = transform.position.y; 
+
+        GameObject newTurret = Instantiate(prefab, spawnPos, transform.rotation);
+        activeTurrets.Add(newTurret);
+
+        if (activeTurrets.Count > 3)
+        {
+            Destroy(activeTurrets[0]);
+            activeTurrets.RemoveAt(0);
+        }
+    }
+
+    private void ClearAllTurrets()
+    {
+        foreach (GameObject t in activeTurrets)
+        {
+            if (t != null) Destroy(t);
+        }
+        activeTurrets.Clear();
+    }
+
+    //------------ Slots ------------
+
+    public void EquipPowerUp(DataPowerUp powerUp)
+    {
+        if (powerUp.category == DataPowerUp.PoolType.Tool)
+        {
+            currentTool = powerUp;
+        }
+        else if (powerUp.category == DataPowerUp.PoolType.Ephemere)
+        {
+            currentEphemeral = powerUp;
+        }
+        OnInventoryChanged?.Invoke(); // Signal Update to UI
     }
 }

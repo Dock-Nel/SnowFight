@@ -5,7 +5,7 @@ public class DataPowerUp : ScriptableObject
 {
     public string powerUpName;
     //[TextArea] public string description;
-    //public Sprite icon;
+    public Sprite icon;
     public enum PoolType { Passif, Tool, Ephemere }
     public PoolType category;
 
