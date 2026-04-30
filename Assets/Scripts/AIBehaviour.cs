@@ -16,24 +16,27 @@ public class AIBehaviour : MonoBehaviour
     NavMeshAgent agent;
 
     //Player
-    public GameObject Player;
+    public GameObject Player; 
+    [SerializeField] private Rigidbody snowball;
+    [SerializeField] private Transform shootingDisctrict;
 
     //Variables
     [SerializeField] int Snowball = 3;
 
     [SerializeField] bool PlayerDetection = false;
     [SerializeField] bool MoveTowardsPlayer = false;
+    [SerializeField] bool Aggressivity = false;
     [SerializeField] float PlayerDistance;
     [SerializeField] float TargetRotation;
 
-    [SerializeField] bool CRrunning;
+    [SerializeField] bool CRRunning;
     //Constants 
     [SerializeField] int Speed;
     [SerializeField] int Gravity;
     [SerializeField] int Range;
 
     private enum State { Idle, Move, Attack }
-    private State currentState = State.Idle;
+    [SerializeField] private State currentState = State.Idle;
 
     void Awake()
     {
@@ -53,54 +56,61 @@ public class AIBehaviour : MonoBehaviour
             MoveTowardsPlayer = false;
         }
 
-        if (PlayerDetection && currentState != State.Attack)
+        if (PlayerDetection && Aggressivity)
+        {
+            currentState = State.Attack;
+        }
+        else if (PlayerDetection)
         {
             currentState = State.Move;
         }
-        else if (!PlayerDetection && currentState != State.Attack)
+        else if (!PlayerDetection)
         {
             currentState = State.Idle;
         }
 
+
         //Behaviour Switch
         switch (currentState)
-        {
-            case State.Idle: //When the player is *NOT detected*
-                if (Snowball < 3 && !CRrunning)
-                {
-                    StartCoroutine(Reload());
-                }
-                else if (Snowball == 3)
-                {
+            {
+                case State.Idle: //When the player is *NOT detected*
+                    if (Snowball < 3 && !CRRunning)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                    else if (Snowball == 3)
+                    {
+                        Movements();
+                    }
+                    break;
+
+                case State.Move: //When the player is *detected*
+                    if (PlayerDistance > Range / 2 || Linecast() == false)
+                    {
+                        MoveTowardsPlayer = true;
+                    }
+                    else
+                    {
+                        MoveTowardsPlayer = false;
+                        Aggressivity = true;
+                    }
                     Movements();
-                }
-                break;
+                    break;
 
-            case State.Move: //When the player is *detected*
-                if (PlayerDistance > Range / 2 || Linecast() == false)
-                {
-                    MoveTowardsPlayer = true;
-                }
-                else
-                {
-                    MoveTowardsPlayer = false;
-                }
-                Movements();
-                break;
+                case State.Attack: //When the AI attacks the player
 
-            case State.Attack: //When the AI attacks the player
-                Movements();
-                if (Snowball > 0)
-                {
-                    StartCoroutine(Shoot());
-                }
-                else
-                {
-                    StartCoroutine(Reload());
-                }
-
-                break;
-        }
+                    if (Snowball > 0 && !CRRunning)
+                    {
+                        StartCoroutine(Shoot());
+                    }
+                    else if (!CRRunning)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                    Aggressivity = false;
+                    Movements();
+                    break;
+            }
     }
 
     //AI Movements
@@ -110,7 +120,6 @@ public class AIBehaviour : MonoBehaviour
         if (MoveTowardsPlayer)
         {
             agent.destination = Player.transform.position;
-            Debug.Log("Moving Towards Player");
         }
         else
         {
@@ -120,7 +129,7 @@ public class AIBehaviour : MonoBehaviour
         //Rotation only when player is in range (as the sprite only faces the player, only useful because of the snowball cast)
         if (PlayerDetection)
         {
-            TargetRotation = Mathf.Atan2(transform.position.x - Player.transform.position.x, transform.position.z - Player.transform.position.z) * Mathf.Rad2Deg;
+            TargetRotation = Mathf.Atan2(Player.transform.position.x - transform.position.x, Player.transform.position.z - transform.position.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, TargetRotation, 0f);
         }
     }
@@ -129,22 +138,24 @@ public class AIBehaviour : MonoBehaviour
     IEnumerator Shoot()
     {
         Debug.Log("Shooting...");
-        CRrunning = true;
-        yield return new WaitForSeconds(5);
+        CRRunning = true;
+        Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up/10)) * 10);
+        yield return new WaitForSeconds(3); //Cooldown so the AI doesn't become a AK47
         Snowball--;
         currentState = State.Move;
-        CRrunning = false;
+        CRRunning = false;
     }
 
     //Reload ammos
     IEnumerator Reload()
     {
         Debug.Log("Reloading...");
-        CRrunning = true;
-        yield return new WaitForSeconds(5);
+        CRRunning = true;
+        yield return new WaitForSeconds(2);
         Debug.Log("Reload");
         Snowball++;
-        CRrunning = false;
+        CRRunning = false;
     }
 
     //Linecast function to determine if the AI sees the player or not

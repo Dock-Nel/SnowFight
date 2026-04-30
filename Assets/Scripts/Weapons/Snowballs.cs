@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -16,6 +17,7 @@ public class Snowballs : MonoBehaviour
 
         if (!collision.gameObject.CompareTag("NoCollision"))
         {
+            Debug.Log(collision.gameObject.name);
             hasExploded = true;
             ParticleSystem particles = Instantiate(
                 snowExplosionPrefab,

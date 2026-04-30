@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject botPrefab;
     [SerializeField]
-    private Transform spawnPoint;
+    private List<Transform> spawnPoint = new List<Transform>();
 
 
     void Start()
@@ -113,52 +113,64 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 600; i++)
         {
-            GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject newBot = Instantiate(botPrefab, spawnPoint[0].position, spawnPoint[0].rotation);
             Bots.Add(newBot);
+            newBot.SetActive(true);
             RoutineSec();
         }
     }
 
     private void SpawnBots()
     {
-
-        GameObject newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
+        int Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+        Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+        GameObject newBot = Instantiate(botPrefab, spawnPoint[Random].position, spawnPoint[Random].rotation);
+        newBot.SetActive(true);
         Bots.Add(newBot);
+        Debug.Log(Random);
 
         switch (roundCount)
         {
              case <= 3:
                  for (int i = 0; i < roundCount + 2; i++)
                  {
-                     newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                     Bots.Add(newBot);
-
-                 }
+                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
+                    newBot.SetActive(true);
+                    Bots.Add(newBot);
+                }
                  break;
              case > 3 and <= 6 :
                  for (int i = 0; i < roundCount + 4; i++)
                  {
-                     newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                     Bots.Add(newBot);
-
-                 }
+                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
+                    newBot.SetActive(true);
+                    Bots.Add(newBot);
+                }
                  break;
              case > 6 and <= 10:
                  for (int i = 0; i < roundCount + 8; i++)
                  {
-                     newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                     Bots.Add(newBot);
-
-                 }
+                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
+                    newBot.SetActive(true);
+                    Bots.Add(newBot);
+                }
                  break;
              case > 10:
                  //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
                  for (int i = 0; i < roundCount * 1.5 + 15; i++)
                  {
-                     newBot = Instantiate(botPrefab, spawnPoint.position, spawnPoint.rotation);
-                     Bots.Add(newBot);
-
-                 }
+                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
+                    newBot.SetActive(true);
+                    Bots.Add(newBot);
+                }
                  break;
              
         }

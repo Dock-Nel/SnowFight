@@ -2,10 +2,12 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
+    public Slider HealthBar;
 
     CharacterController characterController;
 
@@ -16,6 +18,14 @@ public class PlayerController : MonoBehaviour
         get { return health; }
         set { health = value; }
     }
+    [SerializeField]
+    private float maxHealth = 30;
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
+
 
     public bool isInvincible = false;
 
@@ -57,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunning = false;
     float rotationX = 0;
     [SerializeField]
-    private float rotationSpeed = 2.0f;
+    public float rotationSpeed = 2.0f;
     [SerializeField]
     private float rotationXLimit = 45.0f;
 
@@ -117,7 +127,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        HealthBar.value = Health;
+        HealthBar.maxValue = MaxHealth;
         //------------Movements------------
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
