@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpriteCameraBehaviour : MonoBehaviour
+public class SpriteCameraBehaviourY : MonoBehaviour
 {
     public Camera Camera;
 
@@ -11,3 +11,4 @@ public class SpriteCameraBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, TargetRotation, 0f);
     }
 }
+

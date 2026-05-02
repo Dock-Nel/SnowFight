@@ -1,6 +1,8 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PowerUpButton : MonoBehaviour
 {
@@ -8,13 +10,18 @@ public class PowerUpButton : MonoBehaviour
     //public TextMeshProUGUI descText;
     //public Image iconImage;
 
+    [SerializeField]
+    private TextMeshProUGUI Title;
+    [SerializeField]
+    private TextMeshProUGUI Description;
+
     private DataPowerUp currentData;
 
     public void Setup(DataPowerUp data)
     {
         currentData = data;
-        nameText.text = data.powerUpName;
-        //descText.text = data.description;
+        Title.text = data.powerUpName;
+        Description.text = "Test";
         //iconImage.sprite = data.icon;
     }
 

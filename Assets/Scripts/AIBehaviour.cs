@@ -140,7 +140,8 @@ public class AIBehaviour : MonoBehaviour
         Debug.Log("Shooting...");
         CRRunning = true;
         Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
-        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up/10)) * 10);
+        clone.gameObject.SetActive(true);
+        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (5 - (PlayerDistance/5)))) * 10);
         yield return new WaitForSeconds(3); //Cooldown so the AI doesn't become a AK47
         Snowball--;
         currentState = State.Move;

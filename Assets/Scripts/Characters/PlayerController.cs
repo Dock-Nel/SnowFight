@@ -300,6 +300,7 @@ public class PlayerController : MonoBehaviour
     void FireSingleSnowball()
     {
         Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        clone.gameObject.SetActive(true);
         clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
         if (!hasInfiniteSnowballs) snowballCount -= 1;
     }
@@ -307,6 +308,7 @@ public class PlayerController : MonoBehaviour
     void FireBigSnowball()
     {
         Rigidbody clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        clone.gameObject.SetActive(true);
         clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
         if (!hasInfiniteSnowballs) snowballCount -= 3;
     }
@@ -320,6 +322,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < canon.ballsPerShot; i++)
         {
             Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
+            clone.gameObject.SetActive(true);
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
             yield return new WaitForSeconds(canon.delayBetweenBalls);
         }

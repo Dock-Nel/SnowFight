@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Button upgrade2;
 
+    [SerializeField]
+    private GameObject UIGame;
+    [SerializeField]
+    private GameObject UIItemPool;
+
     //Cam
 
     [SerializeField]
@@ -96,13 +101,13 @@ public class GameManager : MonoBehaviour
 
     void ButtonEnable()
     {
-        upgrade1.gameObject.SetActive(true);
-        upgrade2.gameObject.SetActive(true);
+        UIGame.SetActive(false);
+        UIItemPool.SetActive(true);
     }
     void ButtonDisable()
     {
-        upgrade1.gameObject.SetActive(false);
-        upgrade2.gameObject.SetActive(false);
+        UIGame.SetActive(true);
+        UIItemPool.SetActive(false);
     }
     IEnumerator RoutineSec()
     {
