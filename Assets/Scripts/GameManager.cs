@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         upgrade2.onClick.AddListener(OnUpgradeSelected);
         camMain.gameObject.SetActive(true);
         camSecondary.gameObject.SetActive(false);
+        Time.timeScale = 1.0f; 
     }
 
     void Update()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class AIBehaviour : MonoBehaviour
 {
     //Components
     NavMeshAgent agent;
+    [SerializeField] private List<Transform> wayPoints = new List<Transform>();
+    [SerializeField] Transform Destination;
 
     //Player
     public GameObject Player; 
@@ -69,7 +72,6 @@ public class AIBehaviour : MonoBehaviour
             currentState = State.Idle;
         }
 
-
         //Behaviour Switch
         switch (currentState)
             {
@@ -121,10 +123,19 @@ public class AIBehaviour : MonoBehaviour
         {
             agent.destination = Player.transform.position;
         }
+        else if (!MoveTowardsPlayer && !PlayerDetection)
+        {
+            if (Destination == null || agent.remainingDistance <= 5)
+            {
+                Destination = wayPoints[UnityEngine.Random.Range(0, wayPoints.Count)];
+            }
+            agent.destination = Destination.position;
+        }
         else
         {
             agent.destination = transform.position;
         }
+        
 
         //Rotation only when player is in range (as the sprite only faces the player, only useful because of the snowball cast)
         if (PlayerDetection)

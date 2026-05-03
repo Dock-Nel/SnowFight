@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         set { jumpSpeed = value; }
     }
 
-    float gravity = 20f;
+    [SerializeField] float gravity = 20f;
     Vector3 moveDirection;
     private bool isRunning = false;
     float rotationX = 0;
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
         //------------Shooting------------
 
         if (!hasInfiniteSnowballs)
-            tmpNbSnowballs.SetText(snowballCount.ToString());
+            tmpNbSnowballs.SetText(snowballCount.ToString() + " / " + maxSnowball.ToString());
         else
             tmpNbSnowballs.SetText("INFINY");
 
@@ -225,9 +225,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-
-        tmpNbSnowballs.SetText(snowballCount.ToString());
 
         Debug.DrawRay(
             shootingDisctrict.position,
