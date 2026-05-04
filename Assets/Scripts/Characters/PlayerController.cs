@@ -298,6 +298,8 @@ public class PlayerController : MonoBehaviour
     {
         Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
         clone.gameObject.SetActive(true);
+        Snowballs SnowballScript = clone.GetComponent<Snowballs>();
+        SnowballScript.Source = "Player";
         clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
         if (!hasInfiniteSnowballs) snowballCount -= 1;
     }
