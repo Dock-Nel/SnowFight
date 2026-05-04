@@ -1,7 +1,8 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -372,7 +373,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Die()
     {
-        Destroy(gameObject);
+        SceneManager.LoadScene("Main Menu");
     }
     public void EquipTool(DataPowerUp powerUp)
     {
