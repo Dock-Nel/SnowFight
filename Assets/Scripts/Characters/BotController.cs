@@ -7,6 +7,7 @@ public class BotController : MonoBehaviour
 {
     private GameManager gameManager;
     public float health = 30;
+    public GameObject FrozenGingerbread;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class BotController : MonoBehaviour
     private void Die()
     {
         gameManager.RemoveBotFromList(this.gameObject);
+        Instantiate(FrozenGingerbread, transform.position, transform.rotation).SetActive(true);
         Destroy(gameObject);    
     }
 }
