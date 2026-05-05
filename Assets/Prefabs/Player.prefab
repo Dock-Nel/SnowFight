@@ -28,10 +28,11 @@ Transform:
   m_GameObject: {fileID: 1084131378205088096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.089999914, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6392452625635384222}
   m_Father: {fileID: 2079443870000025999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7414410857823309057
@@ -171,7 +172,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6392452625635384222}
   - {fileID: 8894827545927674909}
   - {fileID: 4437225463495407622}
   m_Father: {fileID: 0}
@@ -293,10 +293,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerCamera: {fileID: 7414410857823309057}
+  HealthBar: {fileID: 0}
+  ReloadCooldown: {fileID: 0}
   health: 30
+  maxHealth: 30
+  isInvincible: 0
+  currentTool: {fileID: 0}
+  currentEphemeral: {fileID: 0}
   walkingSpeed: 7.5
   runningSpeed: 15
   jumpSpeed: 8
+  gravity: 20
   rotationSpeed: 2
   rotationXLimit: 45
   shootingDisctrict: {fileID: 6392452625635384222}
@@ -304,6 +311,11 @@ MonoBehaviour:
   biggerSnowball: {fileID: 8071646739076797029, guid: 51bd90bd6f79ea5439a63810686c52e6, type: 3}
   snowballCount: 3
   maxSnowball: 3
+  shootVelocity: 10
+  baseReloadDelay: 0.5
+  hasInfiniteSnowballs: 0
+  gogglesVisualEffect: {fileID: 0}
+  spawnDistance: 2
   tmpNbSnowballs: {fileID: 0}
 --- !u!1 &6530764435910708267
 GameObject:
@@ -329,12 +341,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530764435910708267}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.59}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2079443870000025999}
+  m_Father: {fileID: 8894827545927674909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7246030507478103112
 GameObject:

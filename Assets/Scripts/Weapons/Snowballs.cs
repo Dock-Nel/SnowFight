@@ -9,6 +9,7 @@ public class Snowballs : MonoBehaviour
     private bool hasExploded = false;
     private PlayerController player;
     private BotController bot;
+    private BotControllerNoGameManager botDumb;
     public string Source;
 
     private void OnCollisionEnter(Collision collision)
@@ -30,6 +31,7 @@ public class Snowballs : MonoBehaviour
             Destroy(gameObject);
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             BotController bot = collision.gameObject.GetComponent<BotController>();
+            BotControllerNoGameManager botDumb = collision.gameObject.GetComponent<BotControllerNoGameManager>();
             if (player != null && Source == "Bot")
             {
                 player.TakeDamage(10);
@@ -37,6 +39,10 @@ public class Snowballs : MonoBehaviour
             else if (bot != null && Source == "Player")
             {
                 bot.TakeDamage(10);
+            }
+            else if (botDumb != null)
+            {
+                botDumb.TakeDamage(10);
             }
         }     
         

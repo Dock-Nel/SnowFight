@@ -6,8 +6,8 @@ public class SnowballsTutorial : MonoBehaviour
 {
     [SerializeField] private ParticleSystem snowExplosionPrefab;
     private bool hasExploded = false;
-    private PlayerController player;
     private BotControllerNoGameManager bot;
+    public string Source;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,13 +25,8 @@ public class SnowballsTutorial : MonoBehaviour
             particles.Play();
             Destroy(particles.gameObject, particles.main.duration + particles.main.startLifetime.constantMax);
             Destroy(gameObject);
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             BotControllerNoGameManager bot = collision.gameObject.GetComponent<BotControllerNoGameManager>();
-            if (player != null)
-            {
-                player.TakeDamage(10);
-            }
-            else if (bot != null)
+            if (bot != null)
             {
                 bot.TakeDamage(10);
             }
