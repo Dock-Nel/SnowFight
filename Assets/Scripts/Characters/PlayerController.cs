@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
     public Slider HealthBar;
+    public Slider ReloadCooldown;
 
     CharacterController characterController;
 
@@ -340,7 +341,17 @@ public class PlayerController : MonoBehaviour
             delay = skis.reloadDelay;
         }
 
-        yield return new WaitForSeconds(delay);
+        ReloadCooldown.maxValue = delay;
+        ReloadCooldown.value = delay;
+        ReloadCooldown.gameObject.SetActive(true);
+
+        while (ReloadCooldown.value > 0)
+        {
+            ReloadCooldown.value -= delay/100;
+            yield return new WaitForSeconds(delay/100);
+        }
+
+        ReloadCooldown.gameObject.SetActive(false);
 
         int amountToReload = 1;
         if (currentTool is SnowShovel shovel) amountToReload = shovel.reloadAmount;
