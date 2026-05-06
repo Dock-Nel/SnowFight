@@ -8,6 +8,7 @@ using UnityEngine.AI;
 using UnityEngine.Apple;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 
@@ -17,6 +18,7 @@ public class AIBehaviour : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
     [SerializeField] Transform Destination;
+    public GameObject Shadow;
 
     //Player
     public GameObject Player; 
@@ -47,6 +49,16 @@ public class AIBehaviour : MonoBehaviour
     }
     void Update()
     {
+        Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
+        RaycastHit hitShadow;
+
+        if (Physics.Raycast(downRay, out hitShadow))
+        {
+            print(hitShadow.transform);
+            Vector3 hitPosition = hitShadow.point;
+            Shadow.transform.position = hitPosition;
+        }
+
         //Player detection system
         PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
         if (PlayerDistance < Range)

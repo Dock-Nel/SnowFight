@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public Slider HealthBar;
     public Slider ReloadCooldown;
+    public GameObject Shadow;
 
     CharacterController characterController;
 
@@ -131,6 +132,18 @@ public class PlayerController : MonoBehaviour
     {
         HealthBar.value = Health;
         HealthBar.maxValue = MaxHealth;
+
+        Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
+        RaycastHit hitShadow;
+        
+        if (Physics.Raycast(downRay, out hitShadow))
+        {
+            print(hitShadow.transform);
+            Vector3 hitPosition = hitShadow.point;
+            Shadow.transform.position = hitPosition;
+        }
+
+
         //------------Movements------------
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
