@@ -238,20 +238,29 @@ public class PlayerController : MonoBehaviour
         {
             if (currentTool is SnowCanon canon)
             {
-                if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
+                if (Time.timeScale != 0)
                 {
-                    StartCoroutine(FireCanonRoutine(canon));
-                }
+                    if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
+                    {
+                        StartCoroutine(FireCanonRoutine(canon));
+                    }
+                }  
             }
             else if (hasInfiniteSnowballs || snowballCount >= 1)
             {
-                FireSingleSnowball();
+                if (Time.timeScale != 0)
+                {
+                    FireSingleSnowball();
+                }
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && (hasInfiniteSnowballs || snowballCount >= 3))
         {
-            FireBigSnowball();
+            if (Time.timeScale != 0)
+            {
+                FireBigSnowball();
+            }                
         }
 
 

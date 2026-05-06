@@ -154,7 +154,7 @@ public class AIBehaviour : MonoBehaviour
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
         SnowballScript.Source = "Bot";
         clone.gameObject.SetActive(true);
-        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (5 - (PlayerDistance/5)))) * 10);
+        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (4 - (PlayerDistance/6)))) * 10);
         yield return new WaitForSeconds(3); //Cooldown so the AI doesn't become a AK47
         Snowball--;
         currentState = State.Move;

@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private GameObject UIGame;
     [SerializeField]
     private GameObject UIItemPool;
+    [SerializeField]
+    private TextMeshProUGUI UIGingerbreadCountdown;
 
     //Cam
 
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         tmpRounds.SetText("Round " + roundCount.ToString());
+        UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
         if (Bots.Count == 0) 
         {
             if (choicePowerup == false)
