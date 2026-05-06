@@ -14,6 +14,7 @@ public class PlayerHealth : DataPowerUp
         {
             int bonus = bonusSteps[currentLevel];
             player.MaxHealth += bonus;
+            player.Health = player.MaxHealth;
             currentLevel++;
         }
     }

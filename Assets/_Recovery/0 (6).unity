@@ -11873,7 +11873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6392452625635384222, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: Shadow
@@ -11896,10 +11896,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
-      propertyPath: isInvincible
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: ReloadCooldown
       value: 
       objectReference: {fileID: 45046870}
@@ -11907,17 +11903,9 @@ PrefabInstance:
       propertyPath: tmpNbSnowballs
       value: 
       objectReference: {fileID: 1973783308}
-    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
-      propertyPath: hasInfiniteSnowballs
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7246030507478103112, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7273021635427039127, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
-      propertyPath: m_Center.y
-      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7392330555916061517, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: m_Enabled
@@ -11963,8 +11951,7 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.995
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4584217388454760512, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2079443870000025999, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}

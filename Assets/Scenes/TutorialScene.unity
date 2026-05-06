@@ -4993,7 +4993,7 @@ PrefabInstance:
     - target: {fileID: 301933365263288449, guid: a0b7b2dddb7109141bc8e32d076773dc, type: 3}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 93285812}
     - target: {fileID: 301933365263288449, guid: a0b7b2dddb7109141bc8e32d076773dc, type: 3}
       propertyPath: ReloadCooldown
       value: 

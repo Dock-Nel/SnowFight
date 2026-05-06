@@ -54,8 +54,8 @@ public class AIBehaviour : MonoBehaviour
 
         if (Physics.Raycast(downRay, out hitShadow))
         {
-            print(hitShadow.transform);
             Vector3 hitPosition = hitShadow.point;
+            hitPosition.y += 0.05f;
             Shadow.transform.position = hitPosition;
         }
 

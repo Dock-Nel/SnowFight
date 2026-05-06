@@ -138,8 +138,8 @@ public class PlayerController : MonoBehaviour
         
         if (Physics.Raycast(downRay, out hitShadow))
         {
-            print(hitShadow.transform);
             Vector3 hitPosition = hitShadow.point;
+            hitPosition.y += 0.05f;
             Shadow.transform.position = hitPosition;
         }
 
@@ -321,10 +321,11 @@ public class PlayerController : MonoBehaviour
     void FireSingleSnowball()
     {
         Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
-        clone.gameObject.SetActive(true);
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
         SnowballScript.Source = "Player";
         clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+        clone.gameObject.SetActive(true);
         if (!hasInfiniteSnowballs) snowballCount -= 1;
     }
 
