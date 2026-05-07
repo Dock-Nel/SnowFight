@@ -394,21 +394,12 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-
         if (isInvincible) return;
 
         health -= damage;
         Debug.Log(gameObject.name + " health is now at: " + health);
+    }
 
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-    private void Die()
-    {
-        SceneManager.LoadScene("Main Menu");
-    }
     public void EquipTool(DataPowerUp powerUp)
     {
         ClearAllTurrets();

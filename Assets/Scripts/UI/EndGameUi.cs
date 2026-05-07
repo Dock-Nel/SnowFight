@@ -6,8 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class EndGameUI : MonoBehaviour
 {
+    [Header("Player and Cameras")]
+    [SerializeField] PlayerController playerController;
+    [SerializeField] private Camera camSecondary;
+    [SerializeField] private Camera camMain;
+
     [Header("UI References")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject UIGame;
+    [SerializeField] private GameObject UIGeneral;
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TMP_Text roundsDisplay;
 
@@ -18,7 +25,7 @@ public class EndGameUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (playerController.Health == 0 || Input.GetKey(KeyCode.K))
         {
             OpenEndGameScreen();
         }
@@ -41,13 +48,20 @@ public class EndGameUI : MonoBehaviour
         }
 
         gameOverPanel.SetActive(true);
+        camMain.gameObject.SetActive(false);
+        camSecondary.gameObject.SetActive(true);
+        UIGame.SetActive(false);
+        UIGeneral.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        playerController.rotationSpeed = 0f;
+
+        Time.timeScale = 0f;
 
         if (roundsDisplay != null)
         {
-            roundsDisplay.text = "Vous avez atteint le Round : " + finalScore;
+            roundsDisplay.text = ("You reached round " + finalScore + " !" );
         }
     }
 
@@ -64,7 +78,7 @@ public class EndGameUI : MonoBehaviour
         {
             Debug.LogError("LeaderboardManager introuvable dans la scène !");
         }
-
+        Debug.Log("clic");
         SceneManager.LoadScene("Main Menu");
     }
 }

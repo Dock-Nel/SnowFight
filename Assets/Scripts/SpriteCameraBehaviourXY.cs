@@ -2,10 +2,20 @@ using UnityEngine;
 
 public class SpriteCameraBehaviourXY : MonoBehaviour
 {
-    public Camera Camera;
+    public Camera MainCamera;
+    public Camera SideCamera;
+    private Camera CodeCamera;
 
     void Update()
     {
-        transform.LookAt(Camera.transform);
+        if (MainCamera.isActiveAndEnabled == true)
+        {
+            CodeCamera = MainCamera;
+        }
+        else
+        {
+            CodeCamera = SideCamera;
+        }
+        transform.LookAt(CodeCamera.transform.position);
     }
 }
