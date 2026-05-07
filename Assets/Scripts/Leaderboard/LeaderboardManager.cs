@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-
 [System.Serializable]
 public class PlayerScore
 {
@@ -25,37 +24,10 @@ public class LeaderboardData
 
 public class LeaderboardManager : MonoBehaviour
 {
+    public static LeaderboardManager instance;
+
     private string filePath;
     public LeaderboardData leaderboardData = new LeaderboardData();
-    void Update()
-    {
-        // TEST 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            int scoreRandom = Random.Range(1, 20);
-            AddScore("JoueurTest", scoreRandom);
-            Debug.Log("Scire ajouté");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            ToggleLeaderboard();
-        }
-    }
-
-    public void ToggleLeaderboard()
-    {
-        if (leaderboardBackground != null)
-        {
-            bool isCurrentlyActive = leaderboardBackground.activeSelf;
-            leaderboardBackground.SetActive(!isCurrentlyActive);
-        }
-    }
-        [ContextMenu("Ouvrir le dossier de sauvegarde")]
-    public void OpenSaveFolder()
-    {
-        System.Diagnostics.Process.Start("explorer.exe", Application.persistentDataPath.Replace("/", "\\"));
-    }
 
     [Header("Configuration UI")]
     [SerializeField] private TMPro.TMP_Text displayArea;
@@ -63,6 +35,18 @@ public class LeaderboardManager : MonoBehaviour
 
     void Awake()
     {
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         filePath = Application.persistentDataPath + "/leaderboard.json";
         LoadScores();
     }
@@ -73,6 +57,7 @@ public class LeaderboardManager : MonoBehaviour
 
         leaderboardData.scores.Add(new PlayerScore(name, rounds));
 
+        // trier et top 10
         leaderboardData.scores = leaderboardData.scores
             .OrderByDescending(s => s.roundsReached)
             .Take(10)
@@ -82,7 +67,7 @@ public class LeaderboardManager : MonoBehaviour
         UpdateDisplay();
     }
 
-    [ContextMenu("Save Scores")] // Right click save
+    [ContextMenu("Save Scores")]
     private void SaveScores()
     {
         string json = JsonUtility.ToJson(leaderboardData, true);
@@ -97,7 +82,6 @@ public class LeaderboardManager : MonoBehaviour
         {
             string json = File.ReadAllText(filePath);
             leaderboardData = JsonUtility.FromJson<LeaderboardData>(json);
-            UpdateDisplay();
         }
     }
 
@@ -112,5 +96,20 @@ public class LeaderboardManager : MonoBehaviour
             var entry = leaderboardData.scores[i];
             displayArea.text += $"{i + 1}. {entry.playerName} - Round {entry.roundsReached}\n";
         }
+    }
+
+    public void ToggleLeaderboard()
+    {
+        if (leaderboardBackground != null)
+        {
+            bool isCurrentlyActive = leaderboardBackground.activeSelf;
+            leaderboardBackground.SetActive(!isCurrentlyActive);
+        }
+    }
+
+    [ContextMenu("Ouvrir le dossier de sauvegarde")]
+    public void OpenSaveFolder()
+    {
+        System.Diagnostics.Process.Start("explorer.exe", Application.persistentDataPath.Replace("/", "\\"));
     }
 }
