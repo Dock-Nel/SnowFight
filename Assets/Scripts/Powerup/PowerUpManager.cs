@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PowerUpManager : MonoBehaviour
 {
@@ -69,7 +70,11 @@ public class PowerUpManager : MonoBehaviour
     private DataPowerUp GetItem(List<DataPowerUp> pool)
     {
         float totalPercent = 0;
-        foreach (var item in pool) totalPercent += item.percentage;
+
+        foreach (var item in pool)
+        {
+            totalPercent += item.percentage;
+        }
 
         float randomRoll = Random.Range(0, totalPercent);
         float currentWeight = 0;
