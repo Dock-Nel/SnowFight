@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Heal One
   m_EditorClassIdentifier: Assembly-CSharp::HealOne
   powerUpName: Heal 10 Hp
+  powerUpDescription: 'Don''t forget to heal sometimes !
+
+    Here you go 10 hp for
+    you !'
+  icon: {fileID: 0}
   category: 0
   familyID: 1
   percentage: 30

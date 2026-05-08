@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1968d795426c35f419a4682c3c9a0cef, type: 3}
   m_Name: ShotVelocity
   m_EditorClassIdentifier: Assembly-CSharp::ShotVelocity
-  powerUpName: Increase Shot Velocity
+  powerUpName: Shot Velocity
+  powerUpDescription: 'Are your snowballs falling too quickly?
+
+    Take this up
+    to 3 times and they will fly!'
+  icon: {fileID: 0}
   category: 0
   familyID: 4
   percentage: 22

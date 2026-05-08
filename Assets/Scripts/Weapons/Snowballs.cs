@@ -20,15 +20,11 @@ public class Snowballs : MonoBehaviour
 
         if (!collision.gameObject.CompareTag("NoCollision"))
         {
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             BotController bot = collision.gameObject.GetComponent<BotController>();
             BotControllerNoGameManager botDumb = collision.gameObject.GetComponent<BotControllerNoGameManager>();
-            if (player != null && Source == "Player")
-            {
-                Debug.Log("Si ce message fonctionne, alors le code ne fonctionne pas");
-            }
-            else if (player != null && Source == "Bot")
+            if (player != null && Source == "Bot")
             {
                 player.TakeDamage(10);
                 Explodes();

@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Snow Canon
   m_EditorClassIdentifier: Assembly-CSharp::SnowCanon
   powerUpName: Snow Canon
+  powerUpDescription: '-- ACTIVABLE TOOL --
+
+    You can only carry one tool!
+
+
+    Look
+    at this, shoot 3 snowballs for the cost of 2 !'
   icon: {fileID: 21300000, guid: 22e86063cc3378a4e94b987532db531e, type: 3}
   category: 1
-  familyID: 0
+  familyID: 5465
   percentage: 20
   ballsPerShot: 3
   ammoCost: 2
-  delayBetweenBalls: 0.1
+  delayBetweenBalls: 0.2

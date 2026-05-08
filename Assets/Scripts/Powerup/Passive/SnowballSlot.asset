@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: SnowballSlot
   m_EditorClassIdentifier: Assembly-CSharp::SnowballSlotPowerUp
   powerUpName: More Snowballs
+  powerUpDescription: 'Want to carry more ? :
+
+    +2 max snowballs the first time
+    you pick this up.
+
+    +3 max snowballs the second time.
+
+    +4 max snowballs
+    the third time.'
+  icon: {fileID: 0}
   category: 0
   familyID: 5
   percentage: 22

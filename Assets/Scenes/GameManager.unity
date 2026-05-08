@@ -887,6 +887,9 @@ MonoBehaviour:
   managePowerup: {fileID: 316845009}
   upgrade1: {fileID: 888358026}
   upgrade2: {fileID: 1895759880}
+  UIGame: {fileID: 0}
+  UIItemPool: {fileID: 0}
+  UIGingerbreadCountdown: {fileID: 0}
   camSecondary: {fileID: 975380861}
   camMain: {fileID: 685310418}
   playerScript: {fileID: 1627863601}
@@ -894,7 +897,8 @@ MonoBehaviour:
   roundCount: 1
   Bots: []
   botPrefab: {fileID: 6137215515991886513, guid: 47d124238ffda7c498691d1bdeeecf4a, type: 3}
-  spawnPoint: {fileID: 1992386285}
+  spawnPoint:
+  - {fileID: 0}
 --- !u!114 &316845009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,7 +942,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12c8565aaf1fe740a2fb2da28b50fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndGameUI
+  playerController: {fileID: 0}
+  camSecondary: {fileID: 0}
+  camMain: {fileID: 0}
   gameOverPanel: {fileID: 1579630825}
+  UIGame: {fileID: 0}
+  UIGeneral: {fileID: 0}
   nameInputField: {fileID: 587137922}
   roundsDisplay: {fileID: 1758376894}
   currentRoundsText: {fileID: 1076760325}
@@ -2260,6 +2269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
   nameText: {fileID: 556531820}
+  Title: {fileID: 0}
+  Description: {fileID: 0}
 --- !u!1 &890112582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,8 +2396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
   player: {fileID: 1627863601}
   toolIcon: {fileID: 680628946}
-  ephemeralIcon: {fileID: 324980163}
-  emptySlotSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &950659008
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,13 +3465,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerCamera: {fileID: 685310418}
+  HealthBar: {fileID: 0}
+  ReloadCooldown: {fileID: 0}
+  Shadow: {fileID: 0}
   health: 30
+  maxHealth: 30
   isInvincible: 0
   currentTool: {fileID: 0}
   currentEphemeral: {fileID: 0}
   walkingSpeed: 7.5
   runningSpeed: 15
   jumpSpeed: 8
+  gravity: 20
   rotationSpeed: 2
   rotationXLimit: 45
   shootingDisctrict: {fileID: 2120103625}
@@ -4082,6 +4096,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpButton
   nameText: {fileID: 633078450}
+  Title: {fileID: 0}
+  Description: {fileID: 0}
 --- !u!1 &1975919524
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: Snow Turret Tool
   m_EditorClassIdentifier: Assembly-CSharp::SnowTurretTool
   powerUpName: Turrets
+  powerUpDescription: '-- ACTIVABLE TOOL --
+
+    You can only carry one tool!
+
+
+    Press
+    E to place a turret in front of you that shoots automatically.
+
+    Up to 3
+    turrets simultaneously.
+
+'
   icon: {fileID: 21300000, guid: 590639be27880584799baa1edc6bcea5, type: 3}
   category: 1
   familyID: 948

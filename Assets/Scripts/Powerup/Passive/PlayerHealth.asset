@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   powerUpName: Health Upgrade
+  powerUpDescription: 'Gain bonus Max HP:
+
+    +10 HP the first time you pick this
+    up.
+
+    +10 HP the second time.
+
+    +20 HP the third time.'
+  icon: {fileID: 0}
   category: 0
   familyID: 2
   percentage: 22

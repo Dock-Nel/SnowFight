@@ -72,7 +72,6 @@ public class LeaderboardManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(leaderboardData, true);
         File.WriteAllText(filePath, json);
-        Debug.Log("Leaderboard sauvegardé dans : " + filePath);
     }
 
     [ContextMenu("Load Scores")]

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Apple;
@@ -160,7 +159,7 @@ public class AIBehaviour : MonoBehaviour
     //Snowball
     IEnumerator Shoot()
     {
-        Debug.Log("Shooting...");
+        //Debug.Log("Shooting...");
         CRRunning = true;
         Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
@@ -176,10 +175,10 @@ public class AIBehaviour : MonoBehaviour
     //Reload ammos
     IEnumerator Reload()
     {
-        Debug.Log("Reloading...");
+        //Debug.Log("Reloading...");
         CRRunning = true;
         yield return new WaitForSeconds(2);
-        Debug.Log("Reload");
+        //Debug.Log("Reload");
         Snowball++;
         CRRunning = false;
     }
@@ -187,7 +186,7 @@ public class AIBehaviour : MonoBehaviour
     //Linecast function to determine if the AI sees the player or not
     bool Linecast()
     {
-        Debug.DrawLine(transform.position, Player.transform.position, Color.red); //Makes the Ray visible, debug feature only
+        //Debug.DrawLine(transform.position, Player.transform.position, Color.red); //Makes the Ray visible, debug feature only
 
         if (!Physics.Linecast(transform.position, Player.transform.position)) //If Ray reaches Player
         {

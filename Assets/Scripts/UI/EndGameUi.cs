@@ -35,7 +35,6 @@ public class EndGameUI : MonoBehaviour
     {
         if (gameOverPanel == null)
         {
-            Debug.LogError("Le panneau GameOverPanel n'est pas assigné !");
             return;
         }
 
@@ -72,13 +71,7 @@ public class EndGameUI : MonoBehaviour
         if (LeaderboardManager.instance != null)
         {
             LeaderboardManager.instance.AddScore(playerName, finalScore);
-            Debug.Log("Score soumis : " + playerName + " - Round : " + finalScore);
         }
-        else
-        {
-            Debug.LogError("LeaderboardManager introuvable dans la scène !");
-        }
-        Debug.Log("clic");
         SceneManager.LoadScene("Main Menu");
     }
 }

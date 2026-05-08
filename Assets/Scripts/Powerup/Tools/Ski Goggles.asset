@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: Ski Goggles
   m_EditorClassIdentifier: Assembly-CSharp::SkiGoggles
   powerUpName: Ski Goggles
+  powerUpDescription: '-- ACTIVABLE TOOL --
+
+    You can only carry one tool!
+
+    
+
+    Press
+    E with the goggles to become invincible for 5 seconds.
+
+    Cooldown: 40 seconds.'
   icon: {fileID: 21300000, guid: 86c08af401a46c94a8aef2f7641e14c1, type: 3}
   category: 1
   familyID: 412
