@@ -14,14 +14,13 @@ public class PowerUpButton : MonoBehaviour
     private TextMeshProUGUI Title;
     [SerializeField]
     private TextMeshProUGUI Description;
-
     private DataPowerUp currentData;
 
     public void Setup(DataPowerUp data)
     {
         currentData = data;
         Title.text = data.powerUpName;
-        Description.text = "Test";
+        Description.text = data.powerUpDescription;
         //iconImage.sprite = data.icon;
     }
 

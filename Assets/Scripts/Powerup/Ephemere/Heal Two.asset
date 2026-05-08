@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Heal Two
   m_EditorClassIdentifier: Assembly-CSharp::HealTwo
   powerUpName: ' Heal 20 Hp'
+  powerUpDescription: 'Lucky you !
+
+    Recover 20hp.'
+  icon: {fileID: 0}
   category: 0
   familyID: 1
   percentage: 5

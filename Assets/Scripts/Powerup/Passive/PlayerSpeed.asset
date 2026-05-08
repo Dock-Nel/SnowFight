@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PlayerSpeed
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpeed
   powerUpName: Increase Speed
+  powerUpDescription: Become the fastest! Stacks up to 3 times.
+  icon: {fileID: 0}
   category: 0
   familyID: 3
   percentage: 22

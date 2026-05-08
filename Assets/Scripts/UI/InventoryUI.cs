@@ -4,11 +4,7 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
-
     [SerializeField] private Image toolIcon;
-    [SerializeField] private Image ephemeralIcon;
-
-    [SerializeField] private Sprite emptySlotSprite;
 
     void OnEnable()
     {
@@ -22,35 +18,27 @@ public class InventoryUI : MonoBehaviour
             player.OnInventoryChanged -= UpdateInventoryDisplay;
     }
 
-    void Start()
+    private void Start()
     {
-        UpdateInventoryDisplay();
+        toolIcon.enabled = false;
     }
 
     public void UpdateInventoryDisplay()
     {
         UpdateSlot(toolIcon, player.GetCurrentTool());
-        UpdateSlot(ephemeralIcon, player.GetCurrentEphemeral());
     }
 
     private void UpdateSlot(Image iconDisplay, DataPowerUp data)
     {
         if (data != null && data.icon != null)
         {
+            toolIcon.enabled = true;
             iconDisplay.sprite = data.icon;
             iconDisplay.enabled = true; 
         }
         else
         {
-            if (emptySlotSprite != null)
-            {
-                iconDisplay.sprite = emptySlotSprite;
-                iconDisplay.enabled = true;
-            }
-            else
-            {
-                iconDisplay.enabled = false;
-            }
+            iconDisplay.enabled = false;
         }
     }
 }

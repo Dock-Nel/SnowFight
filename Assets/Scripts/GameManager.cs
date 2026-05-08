@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
         GameObject newBot = Instantiate(botPrefab, spawnPoint[Random].position, spawnPoint[Random].rotation);
         newBot.SetActive(true);
         Bots.Add(newBot);
-        Debug.Log(Random);
+        //Debug.Log(Random);
 
         switch (roundCount)
         {

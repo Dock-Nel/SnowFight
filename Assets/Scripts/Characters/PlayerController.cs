@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -241,11 +240,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Debug.DrawRay(
-            shootingDisctrict.position,
-            fwd * 3,
-            Color.red
-        );
+        //Debug.DrawRay(
+        //    shootingDisctrict.position,
+        //    fwd * 3,
+        //    Color.red
+        //);
 
         if (Input.GetMouseButtonDown(0) && !isFiringTool)
         {
@@ -299,11 +298,6 @@ public class PlayerController : MonoBehaviour
                 {
                     goggles.Activate(this);
                     toolCooldownTimer = goggles.cooldown;
-                    Debug.Log("Lunettes de ski activées ! Invincible pour 5s.");
-                }
-                else
-                {
-                    Debug.Log("Lunettes en recharge... " + Mathf.Ceil(toolCooldownTimer) + "s restantes.");
                 }
             }
             else
@@ -411,7 +405,6 @@ public class PlayerController : MonoBehaviour
     public void EquipEphemeral(DataPowerUp powerUp)
     {
         currentEphemeral = powerUp;
-        Debug.Log("Nouvel objet éphémère : " + powerUp.powerUpName);
         OnInventoryChanged?.Invoke();
     }
 

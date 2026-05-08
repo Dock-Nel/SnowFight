@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Snow Skis
   m_EditorClassIdentifier: Assembly-CSharp::SnowSkis
   powerUpName: Skis
+  powerUpDescription: "-- ACTIVABLE TOOL --\nYou can only carry one tool!\n\nWant
+    stats upgrade ? :\n+ Walking speed \n+ Jump Heigh \n+ Faster reload"
   icon: {fileID: 21300000, guid: 10cb7c5de9f26a84dbbef0592ec9025a, type: 3}
   category: 1
   familyID: 687

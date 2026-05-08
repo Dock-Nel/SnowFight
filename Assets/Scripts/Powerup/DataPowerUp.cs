@@ -4,7 +4,7 @@ using UnityEngine;
 public class DataPowerUp : ScriptableObject
 {
     public string powerUpName;
-    //[TextArea] public string description;
+    [TextArea] public string powerUpDescription;
     public Sprite icon;
     public enum PoolType { Passif, Tool, Ephemere }
     public PoolType category;
