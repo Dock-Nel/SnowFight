@@ -2,12 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
+    public DifficultRoundsManager manageDifficultRounds;
+    private bool DifficultRoundSetup = false;
+    DataDifficultRound currentData;
 
     //Powerup
 
@@ -65,13 +70,16 @@ public class GameManager : MonoBehaviour
     {
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
-        if (Bots.Count == 0) 
+        if (Bots.Count == 0 && !DifficultRoundSetup) 
         {
             if (choicePowerup == false)
             {
                 managePowerup.GenerateChoice();
                 choicePowerup = true;
             }
+            currentData.RevertEffect(playerScript);
+            Debug.Log("End of Difficult Round");
+
             StartCoroutine(Wait());
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -91,6 +99,33 @@ public class GameManager : MonoBehaviour
 
     void OnUpgradeSelected()
     {
+        roundCount++;
+        if (roundCount % 3 == 0)
+        {
+            UIItemPool.SetActive(false);
+            currentData = manageDifficultRounds.GenerateChoice();
+            manageDifficultRounds.UISwitch(currentData.DifficultRoundDescription);
+            currentData.ApplyEffect(playerScript);
+            DifficultRoundSetup = true;
+            Debug.Log("Difficult Round");
+        }
+        else
+        {
+            ButtonDisable();
+            camSecondary.gameObject.SetActive(false);
+            camMain.gameObject.SetActive(true);
+            playerScript.enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+            choicePowerup = false;
+            SpawnBots();
+        }
+    }
+
+    public void OnDifficultRoundAknowledged()
+    {
+        DifficultRoundSetup = false;
         ButtonDisable();
         camSecondary.gameObject.SetActive(false);
         camMain.gameObject.SetActive(true);
@@ -98,7 +133,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
-        roundCount++;
         choicePowerup = false;
         SpawnBots();
     }
@@ -179,12 +213,10 @@ public class GameManager : MonoBehaviour
                     newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
                     newBot.SetActive(true);
                     Bots.Add(newBot);
-                }
+                 }
                  break;
              
-        }
-        
-
+        }  
     }
     public void RemoveBotFromList(GameObject botToRemove)
     {

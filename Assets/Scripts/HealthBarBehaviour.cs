@@ -14,7 +14,6 @@ public class HealthBarBehaviour : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (slider.maxValue == 30)
@@ -44,6 +43,13 @@ public class HealthBarBehaviour : MonoBehaviour
             Quarter.SetActive(false);
             Fifth.SetActive(false);
             Seventh.SetActive(true);
+        }
+        else
+        {
+            Third.SetActive(false);
+            Quarter.SetActive(false);
+            Fifth.SetActive(false);
+            Seventh.SetActive(false);
         }
     }
 }

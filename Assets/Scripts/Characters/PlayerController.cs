@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Slider HealthBar;
     public Slider ReloadCooldown;
     public GameObject Shadow;
+    public GameObject DamageFilter;
 
     CharacterController characterController;
 
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
     private float baseReloadDelay = 0.5f;
     private bool isFiringTool = false;
     private bool isReloading = false;
+    private bool isDamaged = false;
 
     public bool hasInfiniteSnowballs = false;
 
@@ -199,7 +201,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //If the player don't touch the ground
+        //If the player doesn't touch the ground
         if (!characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
@@ -331,6 +333,8 @@ public class PlayerController : MonoBehaviour
         if (!hasInfiniteSnowballs) snowballCount -= 3;
     }
 
+    
+
     IEnumerator FireCanonRoutine(SnowCanon canon)
     {
         isFiringTool = true;
@@ -388,10 +392,20 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (isInvincible) return;
+        if (isInvincible || isDamaged) return;
 
-        health -= damage;
+        StartCoroutine(TakeDamageCoroutine(damage));
         Debug.Log(gameObject.name + " health is now at: " + health);
+    }
+
+    public IEnumerator TakeDamageCoroutine(float damage)
+    {
+        isDamaged = true;
+        Health -= damage;
+        DamageFilter.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        isDamaged = false;
+        DamageFilter.SetActive(false);
     }
 
     public void EquipTool(DataPowerUp powerUp)
