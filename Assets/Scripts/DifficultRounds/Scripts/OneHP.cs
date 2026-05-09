@@ -1,18 +1,18 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "OneHP", menuName = "Scriptable Objects/OneHP")]
+[CreateAssetMenu(fileName = "OneHP", menuName = "Scriptable Objects/DataDifficultRound/OneHP")]
 public class OneHP : DataDifficultRound
 {
     float currentHealth;
     float currentMaxHealth;
-    public override void ApplyEffect(PlayerController player)
+    public override void ApplyEffect(PlayerController player, GameManager manager)
     {
         currentHealth = player.Health;
         currentMaxHealth = player.MaxHealth;
         player.Health = 10;
         player.MaxHealth = 10;
     }
-    public override void RevertEffect(PlayerController player)
+    public override void RevertEffect(PlayerController player, GameManager manager)
     {
         player.Health = currentHealth; 
         player.MaxHealth = currentMaxHealth;

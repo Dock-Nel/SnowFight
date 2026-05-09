@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed208d34c49f5ca4387631a959d4b871, type: 3}
   m_Name: OneHP
   m_EditorClassIdentifier: Assembly-CSharp::OneHP
-  DifficultRoundName: 
+  DifficultRoundName: OneHP
   DifficultRoundDescription: "This round, you will only have one HP ! \n(Your health
     value will be given back after the round is complete)"
   ID: 0
-  percentage: 100
+  percentage: 0

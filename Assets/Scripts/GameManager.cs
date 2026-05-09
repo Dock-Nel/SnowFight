@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int roundCount = 1;
     [SerializeField]
-    private List<GameObject> Bots = new List<GameObject>();
+    public List<GameObject> Bots = new List<GameObject>();
     [SerializeField]
     private GameObject botPrefab;
     [SerializeField]
@@ -77,7 +77,11 @@ public class GameManager : MonoBehaviour
                 managePowerup.GenerateChoice();
                 choicePowerup = true;
             }
-            currentData.RevertEffect(playerScript);
+            if (currentData != null)
+            {
+                currentData.RevertEffect(playerScript, this);
+                currentData = null;
+            }
             Debug.Log("End of Difficult Round");
 
             StartCoroutine(Wait());
@@ -105,9 +109,11 @@ public class GameManager : MonoBehaviour
             UIItemPool.SetActive(false);
             currentData = manageDifficultRounds.GenerateChoice();
             manageDifficultRounds.UISwitch(currentData.DifficultRoundDescription);
-            currentData.ApplyEffect(playerScript);
+            SpawnBots();
+            currentData.ApplyEffect(playerScript, this);
             DifficultRoundSetup = true;
             Debug.Log("Difficult Round");
+            
         }
         else
         {
@@ -134,7 +140,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         choicePowerup = false;
-        SpawnBots();
     }
 
     void ButtonEnable()

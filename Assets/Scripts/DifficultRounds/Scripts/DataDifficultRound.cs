@@ -11,12 +11,12 @@ public class DataDifficultRound : ScriptableObject
     [Range(0, 100)]
     public float percentage;
 
-    public virtual void ApplyEffect(PlayerController player)
+    public virtual void ApplyEffect(PlayerController player, GameManager manager)
     {
 
     }
 
-    public virtual void RevertEffect(PlayerController player)
+    public virtual void RevertEffect(PlayerController player, GameManager manager)
     {
 
     }
