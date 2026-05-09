@@ -26,12 +26,28 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Button upgrade2;
 
+
+    [Header("UI")]
     [SerializeField]
     private GameObject UIGame;
     [SerializeField]
     private GameObject UIItemPool;
+    [SerializeField] 
+    private GameObject UIGeneral;
+    [SerializeField] 
+    private GameObject UIDifficultRound;
+    [SerializeField]
+    private GameObject UIGameOver;
+    [SerializeField] 
+    private GameObject UIPause;
     [SerializeField]
     private TextMeshProUGUI UIGingerbreadCountdown;
+    [SerializeField] 
+    bool WasInGame = false;
+    [SerializeField] 
+    bool WasChoosingItems = false;
+    [SerializeField] 
+    bool WasOnDifficultWarning = false;
 
     //Cam
 
@@ -69,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
-        if (Bots.Count == 0 && !DifficultRoundSetup) 
+        if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf) 
         {
             if (choicePowerup == false)
             {
@@ -81,7 +97,6 @@ public class GameManager : MonoBehaviour
                 currentData.RevertEffect(playerScript, this);
                 currentData = null;
             }
-            Debug.Log("End of Difficult Round");
 
             StartCoroutine(Wait());
             Cursor.visible = true;
@@ -93,6 +108,73 @@ public class GameManager : MonoBehaviour
             ButtonEnable();
         }
 
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!UIPause.activeSelf && !UIGameOver.activeSelf)
+            {
+                Debug.Log("Pause");
+
+                if (UIGame.activeSelf)
+                {
+                    WasInGame = true;
+                }
+                else if (UIItemPool.activeSelf)
+                {
+                    WasChoosingItems = true;
+                }
+                else if (UIDifficultRound.activeSelf)
+                {
+                    WasOnDifficultWarning = true;
+                }
+                Time.timeScale = 0f;
+                playerScript.enabled = false;
+
+                camMain.gameObject.SetActive(false);
+                camSecondary.gameObject.SetActive(true);
+
+                UIGeneral.SetActive(false);
+
+                UIGame.SetActive(false);
+                UIItemPool.SetActive(false);
+                UIDifficultRound.SetActive(false);
+
+                UIPause.SetActive(true);
+            }
+            else if (WasInGame)
+            {
+                Debug.Log("Play");
+                Time.timeScale = 1f;
+                playerScript.enabled = true;
+
+                camMain.gameObject.SetActive(true);
+                camSecondary.gameObject.SetActive(false);
+
+                UIGeneral.SetActive(true);
+                UIGame.SetActive(true);
+
+                UIPause.SetActive(false);
+
+                WasInGame = false;
+            }
+            else if (WasChoosingItems)
+            {
+                Debug.Log("Play");
+                UIPause.SetActive(false);
+                UIGeneral.SetActive(true);
+                UIItemPool.SetActive(true);
+
+                WasChoosingItems = false;
+            }
+            else if (WasOnDifficultWarning)
+            {
+                Debug.Log("Play");
+                UIGeneral.SetActive(true);
+                UIDifficultRound.SetActive(true);
+                UIPause.SetActive(false);
+
+                WasOnDifficultWarning = false;
+            }
+        }
     }
 
     IEnumerator Wait()

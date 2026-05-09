@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
     public Slider HealthBar;
+    public Image HealthBarInside;
     public Slider ReloadCooldown;
     public GameObject Shadow;
     public GameObject DamageFilter;
@@ -144,7 +145,15 @@ public class PlayerController : MonoBehaviour
         HealthBar.value = Health;
         HealthBar.maxValue = MaxHealth;
 
-        Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
+        if (isInvincible)
+        {
+            HealthBarInside.color = new Color(255,214,00); //Yellow
+        }
+        else
+        {
+            HealthBarInside.color = new Color(00,241,255); //Blue
+        }
+            Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
         RaycastHit hitShadow;
         
         if (Physics.Raycast(downRay, out hitShadow))

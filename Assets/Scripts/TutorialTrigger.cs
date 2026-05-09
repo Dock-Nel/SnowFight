@@ -19,7 +19,7 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "NoCollision")
+        if (other.tag == "Player")
         {
             VisualTitle.text = Title;
             VisualTextTuto.text = TextTuto;
@@ -29,7 +29,7 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "NoCollision")
+        if (other.tag == "Player")
         {
             Destroy(gameObject);
         }
