@@ -10961,7 +10961,7 @@ MonoBehaviour:
   camMain: {fileID: 1563064214}
   playerScript: {fileID: 1563064213}
   tmpRounds: {fileID: 326800326}
-  roundCount: 1
+  roundCount: 2
   Bots: []
   botPrefab: {fileID: 1731197405}
   spawnPoint:
@@ -11022,8 +11022,10 @@ MonoBehaviour:
   DifficultRoundDescription: {fileID: 994343108}
   Pool:
   - {fileID: 11400000, guid: 0ba4760d32de9dd42a6f627678f8f981, type: 2}
+  - {fileID: 11400000, guid: 00dedb967d1302543a08002960489db8, type: 2}
   - {fileID: 11400000, guid: c153f4449e6ad4a4da84d240a99bea84, type: 2}
   - {fileID: 11400000, guid: 913a7b8be83d71349b2204501e52e7c3, type: 2}
+  - {fileID: 11400000, guid: 9203c85b6572b92468ce5c84229bfba9, type: 2}
 --- !u!1 &1489669049
 GameObject:
   m_ObjectHideFlags: 0
@@ -11400,6 +11402,10 @@ PrefabInstance:
       propertyPath: Shadow
       value: 
       objectReference: {fileID: 532588083}
+    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+      propertyPath: Turret
+      value: 
+      objectReference: {fileID: 2066584067}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: health
       value: 30
@@ -21403,6 +21409,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054087841}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2066584067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6162612722795688323, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
+  m_PrefabInstance: {fileID: 1125546320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2081847937
 GameObject:
   m_ObjectHideFlags: 0

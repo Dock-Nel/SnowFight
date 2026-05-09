@@ -5,10 +5,7 @@ public class DoubleEnemyCount : DataDifficultRound
 {
     public override void ApplyEffect(PlayerController player, GameManager manager)
     {
-        foreach (GameObject bot in manager.Bots)
-        {
-            manager.SpawnSingleBot();
-        }
+        manager.SpawnBots();
     }
     public override void RevertEffect(PlayerController player, GameManager manager)
     {

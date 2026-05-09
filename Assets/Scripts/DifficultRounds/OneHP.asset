@@ -16,4 +16,4 @@ MonoBehaviour:
   DifficultRoundDescription: "This round, you will only have one HP ! \n(Your health
     value will be given back after the round is complete)"
   ID: 0
-  percentage: 50
+  percentage: 24

@@ -54,9 +54,6 @@ public class GameManager : MonoBehaviour
     private GameObject botPrefab;
     [SerializeField]
     private List<Transform> spawnPoint = new List<Transform>();
-    [SerializeField]
-    public SnowTurretEntity Turret;
-
 
     void Start()
     {
@@ -108,10 +105,10 @@ public class GameManager : MonoBehaviour
         roundCount++;
         if (roundCount % 3 == 0)
         {
+            SpawnBots();
             UIItemPool.SetActive(false);
             currentData = manageDifficultRounds.GenerateChoice();
             manageDifficultRounds.UISwitch(currentData.DifficultRoundDescription);
-            SpawnBots();
             currentData.ApplyEffect(playerScript, this);
             DifficultRoundSetup = true;
             Debug.Log("Difficult Round");
@@ -168,7 +165,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnBots()
+    public void SpawnBots()
     {
         SpawnSingleBot();
 

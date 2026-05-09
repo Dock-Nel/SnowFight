@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 782c38501c1e9bd4597b60fcba35945c, type: 3}
-  m_Name: DoubleEnemyCount
-  m_EditorClassIdentifier: Assembly-CSharp::DoubleEnemyCount
+  m_Script: {fileID: 11500000, guid: a51be9da00f3fee47b5eb061f023c394, type: 3}
+  m_Name: OneSnowball
+  m_EditorClassIdentifier: Assembly-CSharp::OneSnowball
   DifficultRoundName: 
-  DifficultRoundDescription: This round, there will be twice as enemies as usual
-    !
+  DifficultRoundDescription: 'This round, you will be able to only carry one Snowball
+    ! '
   ID: 0
   percentage: 24

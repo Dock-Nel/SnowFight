@@ -96,7 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffde4bff7af66ce49a4b97b05b8060bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Snowballs
+  Player: {fileID: 0}
   snowExplosionPrefab: {fileID: 2305397894697483, guid: 4fa68b9c90e77a442a78d991ff1245c6, type: 3}
+  Source: 
 --- !u!1 &7865107061880231522
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,9 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9e6edba3d94dd4bb41ea77df35011a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteCameraBehaviour3
-  Camera: {fileID: 0}
-  TargetRotationX: 0
-  TargetRotationY: 0
+  MainCamera: {fileID: 0}
+  SideCamera: {fileID: 0}
 --- !u!1001 &4101959941154484464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,6 +268,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7365975312948396083, guid: 4fa68b9c90e77a442a78d991ff1245c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 78617a6ba0bb406449577e7e7492477c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

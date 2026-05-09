@@ -83,6 +83,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody biggerSnowball;
     [SerializeField]
     private int snowballCount = 3;
+
+    public int SnowballCount
+    {
+        get { return snowballCount; }
+        set { snowballCount = value; }
+    }
+
     [SerializeField]
     private int maxSnowball = 3;
     public int MaxSnowball
@@ -229,7 +236,7 @@ public class PlayerController : MonoBehaviour
         if (!hasInfiniteSnowballs)
             tmpNbSnowballs.SetText(snowballCount.ToString() + " / " + maxSnowball.ToString());
         else
-            tmpNbSnowballs.SetText("INFINY");
+            tmpNbSnowballs.SetText("INFINITY");
 
         Vector3 fwd = playerCamera.transform.forward;
         RaycastHit hit;
@@ -260,6 +267,10 @@ public class PlayerController : MonoBehaviour
                     if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
                     {
                         StartCoroutine(FireCanonRoutine(canon));
+                    }
+                    else if (snowballCount >= 1)
+                    {
+                        FireSingleSnowball();
                     }
                 }  
             }
@@ -391,7 +402,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator InfiniteSnowballsCoroutine(float duration)
     {
         hasInfiniteSnowballs = true;
-        tmpNbSnowballs.SetText("INFINY"); // à corriger c'est en dur pour le moment, ça me fait gagner du temps on va pas chipoter hein
+        tmpNbSnowballs.SetText("INFINITY"); // à corriger c'est en dur pour le moment, ça me fait gagner du temps on va pas chipoter hein
         yield return new WaitForSeconds(duration);
         hasInfiniteSnowballs = false;
         tmpNbSnowballs.SetText(snowballCount.ToString());
