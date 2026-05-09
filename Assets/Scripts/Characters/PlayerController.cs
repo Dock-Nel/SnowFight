@@ -110,6 +110,9 @@ public class PlayerController : MonoBehaviour
     //TOOLS
     [SerializeField]
     private GameObject gogglesVisualEffect; // Glisse ton "GogglesOverlay" ici
+
+    [SerializeField]
+    private GameObject Turret;
     [Header("Turret Settings")]
     private System.Collections.Generic.List<GameObject> activeTurrets = new System.Collections.Generic.List<GameObject>();
     [SerializeField]
@@ -328,8 +331,9 @@ public class PlayerController : MonoBehaviour
     void FireBigSnowball()
     {
         Rigidbody clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
-        clone.gameObject.SetActive(true);
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
         clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
+        clone.gameObject.SetActive(true);
         if (!hasInfiniteSnowballs) snowballCount -= 3;
     }
 
@@ -344,8 +348,11 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < canon.ballsPerShot; i++)
         {
             Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
-            clone.gameObject.SetActive(true);
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
+            Snowballs SnowballScript = clone.GetComponent<Snowballs>();
+            SnowballScript.Source = "Player";
             clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+            clone.gameObject.SetActive(true);
             yield return new WaitForSeconds(canon.delayBetweenBalls);
         }
 
@@ -441,13 +448,14 @@ public class PlayerController : MonoBehaviour
         isInvincible = false;
     }
 
-    public void SpawnTurret(GameObject prefab)
+    public void SpawnTurret()
     {
         //Position devant joueur
         Vector3 spawnPos = transform.position + transform.forward * spawnDistance;
         spawnPos.y = transform.position.y; 
 
-        GameObject newTurret = Instantiate(prefab, spawnPos, transform.rotation);
+        GameObject newTurret = Instantiate(Turret, spawnPos, transform.rotation);
+        newTurret.SetActive(true);
         activeTurrets.Add(newTurret);
 
         if (activeTurrets.Count > 3)

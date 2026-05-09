@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     private GameObject botPrefab;
     [SerializeField]
     private List<Transform> spawnPoint = new List<Transform>();
+    [SerializeField]
+    public SnowTurretEntity Turret;
 
 
     void Start()
@@ -161,68 +163,55 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 600; i++)
         {
-            GameObject newBot = Instantiate(botPrefab, spawnPoint[0].position, spawnPoint[0].rotation);
-            Bots.Add(newBot);
-            newBot.SetActive(true);
+            SpawnSingleBot();
             RoutineSec();
         }
     }
 
     private void SpawnBots()
     {
-        int Random = UnityEngine.Random.Range(0, spawnPoint.Count);
-        Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-        GameObject newBot = Instantiate(botPrefab, spawnPoint[Random].position, spawnPoint[Random].rotation);
-        newBot.SetActive(true);
-        Bots.Add(newBot);
-        //Debug.Log(Random);
+        SpawnSingleBot();
 
         switch (roundCount)
         {
              case <= 3:
                  for (int i = 0; i < roundCount + 2; i++)
                  {
-                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
-                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
-                    newBot.SetActive(true);
-                    Bots.Add(newBot);
+                    SpawnSingleBot();
                 }
                  break;
              case > 3 and <= 6 :
                  for (int i = 0; i < roundCount + 4; i++)
                  {
-                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
-                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
-                    newBot.SetActive(true);
-                    Bots.Add(newBot);
+                    SpawnSingleBot();
                 }
                  break;
              case > 6 and <= 10:
                  for (int i = 0; i < roundCount + 8; i++)
                  {
-                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
-                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
-                    newBot.SetActive(true);
-                    Bots.Add(newBot);
+                    SpawnSingleBot();
                 }
                  break;
              case > 10:
                  //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
                  for (int i = 0; i < roundCount * 1.5 + 15; i++)
                  {
-                    Random = UnityEngine.Random.Range(0, spawnPoint.Count);
-                    RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-                    newBot = Instantiate(botPrefab, spawnPoint[Random].position + RandomPosition, spawnPoint[Random].rotation);
-                    newBot.SetActive(true);
-                    Bots.Add(newBot);
+                    SpawnSingleBot();
                  }
                  break;
              
         }  
     }
+
+    public void SpawnSingleBot()
+    {
+        int Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+        Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+        GameObject newBot = Instantiate(botPrefab, spawnPoint[Random].position, spawnPoint[Random].rotation);
+        newBot.SetActive(true);
+        Bots.Add(newBot);
+    }
+
     public void RemoveBotFromList(GameObject botToRemove)
     {
         if (Bots.Contains(botToRemove))

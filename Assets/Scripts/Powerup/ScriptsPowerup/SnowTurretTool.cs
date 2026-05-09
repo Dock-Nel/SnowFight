@@ -12,6 +12,6 @@ public class SnowTurretTool : DataPowerUp
 
     public void PlaceTurret(PlayerController player)
     {
-        player.SpawnTurret(turretPrefab);
+        player.SpawnTurret();
     }
 }
