@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyHPDoubled", menuName = "Scriptable Objects/DataDifficultRound/EnemyHPDoubled")]
+[CreateAssetMenu(fileName = "EnemyHPDoubled", menuName = "DifficultRound/EnemyHPDoubled")]
 public class EnemyHPDoubled : DataDifficultRound
 {
     public override void ApplyEffect(PlayerController player, GameManager manager)

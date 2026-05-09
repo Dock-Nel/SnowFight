@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "OneHP", menuName = "Scriptable Objects/DataDifficultRound/OneHP")]
+[CreateAssetMenu(fileName = "OneHP", menuName = "DifficultRound/OneHP")]
 public class OneHP : DataDifficultRound
 {
     float currentHealth;
