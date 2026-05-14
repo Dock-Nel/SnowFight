@@ -127,6 +127,8 @@ public class GameManager : MonoBehaviour
                     WasOnDifficultWarning = true;
                 }
                 Time.timeScale = 0f;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 playerScript.enabled = false;
 
                 camMain.gameObject.SetActive(false);
@@ -140,40 +142,55 @@ public class GameManager : MonoBehaviour
 
                 UIPause.SetActive(true);
             }
-            else if (WasInGame)
+            else
             {
-                Debug.Log("Play");
-                Time.timeScale = 1f;
-                playerScript.enabled = true;
-
-                camMain.gameObject.SetActive(true);
-                camSecondary.gameObject.SetActive(false);
-
-                UIGeneral.SetActive(true);
-                UIGame.SetActive(true);
-
-                UIPause.SetActive(false);
-
-                WasInGame = false;
+                ResumeGame();
             }
-            else if (WasChoosingItems)
-            {
-                Debug.Log("Play");
-                UIPause.SetActive(false);
-                UIGeneral.SetActive(true);
-                UIItemPool.SetActive(true);
+        }
+    }
 
-                WasChoosingItems = false;
-            }
-            else if (WasOnDifficultWarning)
-            {
-                Debug.Log("Play");
-                UIGeneral.SetActive(true);
-                UIDifficultRound.SetActive(true);
-                UIPause.SetActive(false);
+    public void ResumeGame()
+    {
+        if (WasInGame)
+        {
+            Debug.Log("Play");
 
-                WasOnDifficultWarning = false;
-            }
+            Time.timeScale = 1f;
+            playerScript.enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            camMain.gameObject.SetActive(true);
+            camSecondary.gameObject.SetActive(false);
+
+            UIGeneral.SetActive(true);
+            UIGame.SetActive(true);
+
+            UIPause.SetActive(false);
+
+            WasInGame = false;
+        }
+        else if (WasChoosingItems)
+        {
+            Debug.Log("Play");
+            
+            UIGeneral.SetActive(true);
+            UIItemPool.SetActive(true);
+
+            UIPause.SetActive(false);
+
+            WasChoosingItems = false;
+        }
+        else if (WasOnDifficultWarning)
+        {
+            Debug.Log("Play");
+
+            UIGeneral.SetActive(true);
+            UIDifficultRound.SetActive(true);
+
+            UIPause.SetActive(false);
+
+            WasOnDifficultWarning = false;
         }
     }
 

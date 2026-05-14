@@ -20,7 +20,7 @@ MonoBehaviour:
 
     Look
     at this, shoot 3 snowballs for the cost of 2 !'
-  icon: {fileID: 21300000, guid: 22e86063cc3378a4e94b987532db531e, type: 3}
+  icon: {fileID: 21300000, guid: d4c1ad1520dcbb04db07d2d6a919f07c, type: 3}
   category: 1
   familyID: 5465
   percentage: 20

@@ -72,6 +72,6 @@ public class EndGameUI : MonoBehaviour
         {
             LeaderboardManager.instance.AddScore(playerName, finalScore);
         }
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
