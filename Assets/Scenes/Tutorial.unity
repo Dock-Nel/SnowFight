@@ -313,11 +313,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Title: Snowballs
-  TextTuto: "The game being a snow fight, you are able to grab and drop snow. You
-    can check on the number of snowballs you currently carry with the number at the
-    bottom left corner of the screen. \n\n[LMB] - Throw Snowball\n[RMB] - Reload
-    Snowball\n\nTo reload, look at the ground to grab the snow ! Also, watch out
-    : the snowballs are affected by gravity !"
+  TextTuto: "The game being a snow fight, you need snow !\nYou can check on the number
+    of snowballs you currently carry with the number at the bottom left corner of
+    the screen. \n\n[LMB] - Throw Snowball\n[RMB] - Reload Snowball\n\nTo reload,
+    look at the ground to grab the snow ! Also, watch out : the snowballs are affected
+    by gravity !"
   PanelTuto: {fileID: 272400631}
 --- !u!65 &229041892
 BoxCollider:
@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 272400634}
   - component: {fileID: 272400633}
   - component: {fileID: 272400635}
+  - component: {fileID: 272400636}
   m_Layer: 5
   m_Name: PanelTuto
   m_TagString: Untagged
@@ -439,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.13725491}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9843137}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -478,6 +479,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialPrompt
   Player: {fileID: 470131962}
   Bot: {fileID: 1157419607}
+  PanelTuto: {fileID: 272400631}
+--- !u!95 &272400636
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272400631}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58c9d5e3f1f4f584d9826bb2a8da8377, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &282649679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1948,7 @@ MonoBehaviour:
 
 
     The goal of the game is to
-    reach as many rounds as possible ! You can also check your records on the Learderboard
+    reach as much rounds as possible ! You can also check your records on the Learderboard
     in the main menu !'
   PanelTuto: {fileID: 272400631}
 --- !u!65 &962108966
@@ -2298,8 +2322,8 @@ MonoBehaviour:
   health: 20
   dead: 0
   Title: Congratulations !
-  TextTuto: You finished the tutorial ! You will now automatically be thrown in a
-    new adventure, we hope you will enjoy !
+  TextTuto: "You finished the tutorial ! \n\nYou will now automatically be thrown
+    in a new adventure, enjoy !"
   Prompt: Press Return to finish...
   PanelTuto: {fileID: 272400631}
   SceneSwitch: {fileID: 270131793}
@@ -5312,14 +5336,11 @@ MonoBehaviour:
     [Shift] (Hold)
     - Sprint
 
-    [SpaceBar] - Jump
-
     [Mouse] - Look Around
 
 
-    Your goal in
-    this tutorial will be to reach the end of the corridor ! Once the tutorial is
-    done, you will automatically hop on the game !'
+    Reach the end of the corridor ! Once
+    the tutorial is done, ou will automatically hop on the game !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8bc29119efb8d945b974957a2888232, type: 2}
   m_sharedMaterial: {fileID: -5861113687713040678, guid: d8bc29119efb8d945b974957a2888232, type: 2}
