@@ -47,6 +47,7 @@ public class AIBehaviour : MonoBehaviour
     }
     void Update()
     {
+
         Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
         RaycastHit hitShadow;
 
@@ -165,7 +166,7 @@ public class AIBehaviour : MonoBehaviour
         SnowballScript.Source = "Bot";
         clone.gameObject.SetActive(true);
         clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (4 - (PlayerDistance/6)))) * 10);
-        yield return new WaitForSeconds(3); //Cooldown so the AI doesn't become a AK47
+        yield return new WaitForSeconds(3); 
         Snowball--;
         currentState = State.Move;
         CRRunning = false;
