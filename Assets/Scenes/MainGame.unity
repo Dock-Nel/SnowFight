@@ -5777,6 +5777,7 @@ MonoBehaviour:
   nameText: {fileID: 700513885}
   Title: {fileID: 463779129}
   Description: {fileID: 1489669051}
+  LevelText: {fileID: 0}
 --- !u!1 &846252370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10293,6 +10294,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   Title: {fileID: 878882572}
   Description: {fileID: 1230190926}
+  LevelText: {fileID: 0}
 --- !u!224 &1210617573
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12505,7 +12507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1643209736
 RectTransform:
   m_ObjectHideFlags: 0

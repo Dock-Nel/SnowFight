@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f76e7ff9466ba4eb45706c12aa5974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwitcher
+  MainMenu: 0
 --- !u!4 &270131794
 Transform:
   m_ObjectHideFlags: 0
@@ -1917,14 +1918,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Title: Gingerbread Men
-  TextTuto: 'If you shoot a Gingerbread Man three times, he will get frozen ! if
-    you freeze all the enemies of the round, you will get the possibility to chose
-    one of two bonuses before starting a new round !
+  TextTuto: 'If you shoot a Gingerbread Man two times, he will get frozen ! if you
+    freeze all the enemies of the round, you will get the possibility to chose one
+    of two bonuses before starting a new round !
 
 
-    The goal of the game is
-    to reach as much rounds as possible ! You can also check your records on the
-    Learderboard in the main menu !'
+    The goal of the game is to
+    reach as many rounds as possible ! You can also check your records on the Learderboard
+    in the main menu !'
   PanelTuto: {fileID: 272400631}
 --- !u!65 &962108966
 BoxCollider:
@@ -5311,12 +5312,14 @@ MonoBehaviour:
     [Shift] (Hold)
     - Sprint
 
+    [SpaceBar] - Jump
+
     [Mouse] - Look Around
 
 
-    Your goal in this tutorial will be
-    to reach the end of the corridor ! Once the tutorial is done, you will automatically
-    hop on the game !'
+    Your goal in
+    this tutorial will be to reach the end of the corridor ! Once the tutorial is
+    done, you will automatically hop on the game !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8bc29119efb8d945b974957a2888232, type: 2}
   m_sharedMaterial: {fileID: -5861113687713040678, guid: d8bc29119efb8d945b974957a2888232, type: 2}
