@@ -15,6 +15,10 @@ public class BotControllerNoGameManager : MonoBehaviour
     [SerializeField] SceneSwitcher SceneSwitch;
     [SerializeField] GameObject Gingerbread;
 
+    private GameObject Player;
+    private float MouseSensitivity;
+    private Animator animator;
+
     TextMeshProUGUI VisualTitle;
     TextMeshProUGUI VisualTextTuto;
     TextMeshProUGUI VisualPrompt;
@@ -24,14 +28,49 @@ public class BotControllerNoGameManager : MonoBehaviour
         VisualTitle = PanelTuto.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         VisualTextTuto = PanelTuto.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         VisualPrompt = PanelTuto.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if (Player != null)
+        {
+            MouseSensitivity = Player.GetComponent<PlayerController>().rotationSpeed;
+        }
+
+        if (PanelTuto != null)
+        {
+            animator = PanelTuto.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKey("return") && dead == true)
+        if (dead)
         {
-            SceneSwitch.SwitchToGameScene();
-            Destroy(gameObject);
+            Time.timeScale = 0f;
+            if (Player != null)
+            {
+                Player.GetComponent<PlayerController>().rotationSpeed = 0f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+
+                if (animator != null)
+                {
+                    animator.SetBool("Open", false);
+                }
+                Time.timeScale = 1.0f;
+                if (Player != null)
+                {
+                    Player.GetComponent<PlayerController>().rotationSpeed = MouseSensitivity;
+                }
+
+                SceneSwitch.SwitchToGameScene();
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -48,10 +87,17 @@ public class BotControllerNoGameManager : MonoBehaviour
     private void Die()
     {
         Gingerbread.SetActive(false);
+        PanelTuto.SetActive(true);
+
         VisualTitle.text = Title;
         VisualTextTuto.text = TextTuto;
         VisualPrompt.text = Prompt;
+
         dead = true;
-        PanelTuto.SetActive(true);
+
+        if (animator != null)
+        {
+            animator.SetBool("Open", true);
+        }
     }
 }
