@@ -31,21 +31,21 @@ public class GameManager : MonoBehaviour
     private GameObject UIGame;
     [SerializeField]
     private GameObject UIItemPool;
-    [SerializeField] 
+    [SerializeField]
     private GameObject UIGeneral;
-    [SerializeField] 
+    [SerializeField]
     private GameObject UIDifficultRound;
     [SerializeField]
     private GameObject UIGameOver;
-    [SerializeField] 
+    [SerializeField]
     private GameObject UIPause;
     [SerializeField]
     private TextMeshProUGUI UIGingerbreadCountdown;
-    [SerializeField] 
+    [SerializeField]
     bool WasInGame = false;
-    [SerializeField] 
+    [SerializeField]
     bool WasChoosingItems = false;
-    [SerializeField] 
+    [SerializeField]
     bool WasOnDifficultWarning = false;
 
     //Cam
@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Transform> spawnPoint = new List<Transform>();
 
+    //Frozen ennemy
+    [SerializeField] private int maxFrozenStatues = 20;
+    private List<GameObject> frozenStatuesList = new List<GameObject>();
+
     void Start()
     {
         SpawnBots();
@@ -77,14 +81,14 @@ public class GameManager : MonoBehaviour
         upgrade2.onClick.AddListener(OnUpgradeSelected);
         camMain.gameObject.SetActive(true);
         camSecondary.gameObject.SetActive(false);
-        Time.timeScale = 1.0f; 
+        Time.timeScale = 1.0f;
     }
 
     void Update()
     {
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
-        if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf) 
+        if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf)
         {
             if (choicePowerup == false)
             {
@@ -107,7 +111,7 @@ public class GameManager : MonoBehaviour
             ButtonEnable();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!UIPause.activeSelf && !UIGameOver.activeSelf)
             {
@@ -172,7 +176,7 @@ public class GameManager : MonoBehaviour
         else if (WasChoosingItems)
         {
             Debug.Log("Play");
-            
+
             UIGeneral.SetActive(true);
             UIItemPool.SetActive(true);
 
@@ -210,7 +214,7 @@ public class GameManager : MonoBehaviour
             currentData.ApplyEffect(playerScript, this);
             DifficultRoundSetup = true;
             //Debug.Log("Difficult Round");
-            
+
         }
         else
         {
@@ -294,7 +298,7 @@ public class GameManager : MonoBehaviour
     //                SpawnSingleBot();
     //             }
     //             break;
-             
+
     //    }  
     //}
     public void SpawnBots()
@@ -304,16 +308,36 @@ public class GameManager : MonoBehaviour
         switch (roundCount)
         {
             case <= 100:
-                
+
                 break;
         }
     }
 
     public void SpawnSingleBot()
     {
-        int Random = UnityEngine.Random.Range(0, spawnPoint.Count);
+        Transform closestSpawn = null;
+
+        float closestDistance = Mathf.Infinity;
+        foreach (Transform spawn in spawnPoint)
+        {
+            float distance = Vector3.Distance(spawn.position, playerScript.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestSpawn = spawn;
+            }
+        }
+        int randomIndex = UnityEngine.Random.Range(0, spawnPoint.Count);
+        if (spawnPoint.Count > 1 && closestSpawn != null)
+        {
+            while (spawnPoint[randomIndex] == closestSpawn)
+            {
+                randomIndex = UnityEngine.Random.Range(0, spawnPoint.Count);
+            }
+        }
+
         Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-        GameObject newBot = Instantiate(botPrefab, spawnPoint[Random].position, spawnPoint[Random].rotation);
+        GameObject newBot = Instantiate(botPrefab, spawnPoint[randomIndex].position, spawnPoint[randomIndex].rotation);
         newBot.SetActive(true);
         Bots.Add(newBot);
     }
@@ -323,6 +347,22 @@ public class GameManager : MonoBehaviour
         if (Bots.Contains(botToRemove))
         {
             Bots.Remove(botToRemove);
+        }
+    }
+
+    public void RegisterFrozenStatue(GameObject newStatue)
+    {
+        frozenStatuesList.Add(newStatue);
+
+        if (frozenStatuesList.Count > maxFrozenStatues)
+        {
+            GameObject oldestStatue = frozenStatuesList[0];
+            frozenStatuesList.RemoveAt(0);
+
+            if (oldestStatue != null)
+            {
+                Destroy(oldestStatue);
+            }
         }
     }
 

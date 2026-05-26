@@ -25,7 +25,9 @@ public class BotController : MonoBehaviour
     private void Die()
     {
         gameManager.RemoveBotFromList(this.gameObject);
-        Instantiate(FrozenGingerbread, transform.position, transform.rotation).SetActive(true);
+        GameObject spawnedFrozen = Instantiate(FrozenGingerbread, transform.position, transform.rotation);
+        spawnedFrozen.SetActive(true);
+        gameManager.RegisterFrozenStatue(spawnedFrozen);
         Destroy(gameObject);    
     }
 }
