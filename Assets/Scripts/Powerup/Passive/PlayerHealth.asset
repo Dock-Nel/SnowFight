@@ -15,12 +15,12 @@ MonoBehaviour:
   powerUpName: Health Upgrade
   powerUpDescription: 'Gain bonus Max HP:
 
-    +10 HP the first time you pick this
+    +1 HP the first time you pick this
     up.
 
-    +10 HP the second time.
+    +1 HP the second time.
 
-    +20 HP the third time.'
+    +2 HP the third time.'
   icon: {fileID: 0}
   category: 0
   familyID: 2

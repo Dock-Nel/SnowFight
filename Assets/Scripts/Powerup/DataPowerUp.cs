@@ -23,4 +23,9 @@ public class DataPowerUp : ScriptableObject
     {
         return false;
     }
+
+    public virtual int GetCurrentLevel()
+    {
+        return 0; 
+    }
 }

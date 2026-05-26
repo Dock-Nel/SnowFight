@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ba9bb5f14c19646a05e49464292c2f, type: 3}
   m_Name: Heal One
   m_EditorClassIdentifier: Assembly-CSharp::HealOne
-  powerUpName: Heal 10 Hp
+  powerUpName: Heal 1Hp
   powerUpDescription: 'Don''t forget to heal sometimes !
 
-    Here you go 10 hp for
+    Here you go 1 hp for
     you !'
   icon: {fileID: 0}
-  category: 0
+  category: 2
   familyID: 1
   percentage: 30

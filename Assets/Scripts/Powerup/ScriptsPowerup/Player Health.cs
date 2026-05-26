@@ -22,4 +22,8 @@ public class PlayerHealth : DataPowerUp
     {
         return currentLevel >= bonusSteps.Length;
     }
+    public override int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
 }
