@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Candy Cane
   m_EditorClassIdentifier: Assembly-CSharp::CandyCane
   powerUpName: Candy Cane
-  powerUpDescription: 'Oops, you''ve obtained the candy cane !
+  powerUpDescription: 'Oops, you''ve obtained the candy cane!
 
-    No power-ups
-    for you this round...'
+    No power-ups for
+    you this round...
+
+    (Always appear as a pair unfortunately)'
   icon: {fileID: 0}
-  category: 0
+  category: 2
   familyID: 6
   percentage: 3

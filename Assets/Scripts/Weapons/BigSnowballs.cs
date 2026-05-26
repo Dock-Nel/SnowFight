@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 using static UnityEngine.GraphicsBuffer;
 
 public class BigSnowballs : MonoBehaviour

@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
@@ -15,6 +14,8 @@ public class PowerUpButton : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Description;
     private DataPowerUp currentData;
+    [SerializeField]
+    private TextMeshProUGUI LevelText;
 
     public void Setup(DataPowerUp data)
     {
@@ -22,6 +23,20 @@ public class PowerUpButton : MonoBehaviour
         Title.text = data.powerUpName;
         Description.text = data.powerUpDescription;
         //iconImage.sprite = data.icon;
+
+        if (LevelText != null)
+        {
+            if (data.category == DataPowerUp.PoolType.Passif)
+            {
+                LevelText.gameObject.SetActive(true);
+                LevelText.text = "Level " + data.GetCurrentLevel() + " / 3";
+                LevelText.color = Color.cyan;
+            }
+            else
+            {
+                LevelText.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void OnClick()
@@ -33,7 +48,7 @@ public class PowerUpButton : MonoBehaviour
         {
             //override
             currentData.ApplyEffect(player);
-            Debug.Log("Effet appliqué : " + currentData.powerUpName);
+            //Debug.Log("Effet appliqué : " + currentData.powerUpName);
             
             if (manager != null)
             {
