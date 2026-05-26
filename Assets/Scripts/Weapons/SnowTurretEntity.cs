@@ -26,6 +26,8 @@ public class SnowTurretEntity : MonoBehaviour
     {
         Rigidbody sb = Instantiate(snowballPrefab, shootPoint.position, shootPoint.rotation);
         sb.gameObject.SetActive(true);
+        Snowballs snowballScript = sb.GetComponent<Snowballs>();
+        snowballScript.Source = "Player";
         Vector3 force = (transform.forward * shootForce) + (Vector3.up * upwardForce);
         sb.AddForce(force, ForceMode.Impulse);
     }
