@@ -22354,7 +22354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9843137}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 1, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22778,7 +22778,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 1
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e88bf7c5a32799e4282542bae7670b9d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 131715f5e3ed0304db47f532671d7675, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &2111127774
 Transform:

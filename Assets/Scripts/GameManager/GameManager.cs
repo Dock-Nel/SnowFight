@@ -267,41 +267,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void SpawnBots()
-    //{
-    //    SpawnSingleBot();
-
-    //    switch (roundCount)
-    //    {
-    //         case <= 3:
-    //             for (int i = 0; i < roundCount + 2; i++)
-    //             {
-    //                SpawnSingleBot();
-    //            }
-    //             break;
-    //         case > 3 and <= 6 :
-    //             for (int i = 0; i < roundCount + 4; i++)
-    //             {
-    //                SpawnSingleBot();
-    //            }
-    //             break;
-    //         case > 6 and <= 10:
-    //             for (int i = 0; i < roundCount + 8; i++)
-    //             {
-    //                SpawnSingleBot();
-    //            }
-    //             break;
-    //         case > 10:
-    //             //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
-    //             for (int i = 0; i < roundCount * 1.5 + 15; i++)
-    //             {
-    //                SpawnSingleBot();
-    //             }
-    //             break;
-
-    //    }  
-    //}
-    public void SpawnBots()
+    private void SpawnBotsDebug()
     {
         SpawnSingleBot();
 
@@ -312,6 +278,42 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void SpawnBots()
+    {
+        SpawnSingleBot();
+
+        switch (roundCount)
+        {
+             case <= 3:
+                 for (int i = 0; i < roundCount + 2; i++)
+                 {
+                    SpawnSingleBot();
+                }
+                 break;
+             case > 3 and <= 6 :
+                 for (int i = 0; i < roundCount + 4; i++)
+                 {
+                    SpawnSingleBot();
+                }
+                 break;
+             case > 6 and <= 10:
+                 for (int i = 0; i < roundCount + 8; i++)
+                 {
+                    SpawnSingleBot();
+                }
+                 break;
+             case > 10:
+                 //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
+                 for (int i = 0; i < roundCount * 1.5 + 15; i++)
+                 {
+                    SpawnSingleBot();
+                 }
+                 break;
+
+        }  
+    }
+    
 
     public void SpawnSingleBot()
     {
