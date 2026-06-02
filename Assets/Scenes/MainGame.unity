@@ -4704,7 +4704,7 @@ GameObject:
   - component: {fileID: 113299027}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -10400,7 +10400,7 @@ GameObject:
   - component: {fileID: 263994128}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -16762,7 +16762,7 @@ GameObject:
   - component: {fileID: 396114879}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -16906,7 +16906,7 @@ GameObject:
   - component: {fileID: 397329736}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -38257,7 +38257,7 @@ GameObject:
   - component: {fileID: 907264070}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -63220,7 +63220,7 @@ GameObject:
   - component: {fileID: 1467395902}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -68075,6 +68075,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+      propertyPath: Terrain
+      value: 
+      objectReference: {fileID: 1752528258}
+    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: snowball
       value: 
       objectReference: {fileID: 1226907131}
@@ -69867,7 +69871,7 @@ GameObject:
   - component: {fileID: 1616241646}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -74711,7 +74715,7 @@ GameObject:
   - component: {fileID: 1752528257}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94974,7 +94978,7 @@ GameObject:
   - component: {fileID: 2031492610}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Snow
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

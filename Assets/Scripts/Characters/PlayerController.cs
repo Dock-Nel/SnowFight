@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public List<float> snowList;
+    public int posX;
+    public int posZ;
     public Terrain Terrain;
     public Camera playerCamera;
     public Slider HealthBar;
@@ -255,18 +258,25 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 2))
         {
-            Vector3 mapPosition = new Vector3(hit.transform.position.x / Terrain.terrainData.size.x, 0, hit.transform.position.z / Terrain.terrainData.size.z);
+            if (hit.collider.name == "Terrain")
+            {
+                Terrain = hit.collider.GetComponent<Terrain>();
+            }
+            Vector3 terrainPosition = hit.point - Terrain.transform.position;
+            Vector3 mapPosition = new Vector3(terrainPosition.x / Terrain.terrainData.size.x, 0, terrainPosition.z / Terrain.terrainData.size.z);
             float xCoord = mapPosition.x * Terrain.terrainData.alphamapWidth;
             float zCoord = mapPosition.z * Terrain.terrainData.alphamapHeight;
-            int posX = (int)xCoord;
-            int posZ = (int)zCoord;
-            List<float> snowList = new List<float>();
+            posX = (int)xCoord;
+            posZ = (int)zCoord;
+            snowList = new List<float>();
             float[,,] splatMap = Terrain.terrainData.GetAlphamaps(posX, posZ, 1, 1);
 
-            snowList[0] = splatMap[0, 0, 0];
-            snowList[1] = splatMap[0, 0, 1];
+            snowList.Add(splatMap[0, 0, 0]);
+            snowList.Add(splatMap[0, 0, 1]);
 
-            if (snowList.IndexOf(snowList.Max()) == 0)
+            Debug.Log(snowList.IndexOf(snowList.Max()));
+
+            if (snowList.IndexOf(snowList.Max()) == 0 || hit.collider.CompareTag("Snow"))
             {
                 if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && !isReloading)
                 {
