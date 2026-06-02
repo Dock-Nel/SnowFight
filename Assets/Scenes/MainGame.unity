@@ -68083,6 +68083,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1226907131}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+      propertyPath: Crosshair
+      value: 
+      objectReference: {fileID: 191700141}
+    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1601105279}

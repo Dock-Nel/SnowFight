@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public int posX;
     public int posZ;
     public Terrain Terrain;
+    public Image Crosshair;
     public Camera playerCamera;
     public Slider HealthBar;
     public Image HealthBarInside;
@@ -256,40 +257,60 @@ public class PlayerController : MonoBehaviour
         Vector3 fwd = playerCamera.transform.forward;
         RaycastHit hit;
 
-        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 2))
+        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 2.5f))
         {
             if (hit.collider.name == "Terrain")
             {
                 Terrain = hit.collider.GetComponent<Terrain>();
+                Vector3 terrainPosition = hit.point - Terrain.transform.position;
+                Vector3 mapPosition = new Vector3(terrainPosition.x / Terrain.terrainData.size.x, 0, terrainPosition.z / Terrain.terrainData.size.z);
+                float xCoord = mapPosition.x * Terrain.terrainData.alphamapWidth;
+                float zCoord = mapPosition.z * Terrain.terrainData.alphamapHeight;
+                posX = (int)xCoord;
+                posZ = (int)zCoord;
+                snowList = new List<float>();
+                float[,,] splatMap = Terrain.terrainData.GetAlphamaps(posX, posZ, 1, 1);
+
+                snowList.Add(splatMap[0, 0, 0]);
+                snowList.Add(splatMap[0, 0, 1]);
+                Debug.Log(snowList.IndexOf(snowList.Max()));
+
+                if (snowList.IndexOf(snowList.Max()) == 0)
+                {
+                    Crosshair.color = Color.green;
+                    if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && !isReloading)
+                    {
+                        StartCoroutine(ReloadWait());
+                    }
+                }
+                else
+                {
+                    Crosshair.color = Color.white;
+                }
             }
-            Vector3 terrainPosition = hit.point - Terrain.transform.position;
-            Vector3 mapPosition = new Vector3(terrainPosition.x / Terrain.terrainData.size.x, 0, terrainPosition.z / Terrain.terrainData.size.z);
-            float xCoord = mapPosition.x * Terrain.terrainData.alphamapWidth;
-            float zCoord = mapPosition.z * Terrain.terrainData.alphamapHeight;
-            posX = (int)xCoord;
-            posZ = (int)zCoord;
-            snowList = new List<float>();
-            float[,,] splatMap = Terrain.terrainData.GetAlphamaps(posX, posZ, 1, 1);
-
-            snowList.Add(splatMap[0, 0, 0]);
-            snowList.Add(splatMap[0, 0, 1]);
-
-            Debug.Log(snowList.IndexOf(snowList.Max()));
-
-            if (snowList.IndexOf(snowList.Max()) == 0 || hit.collider.CompareTag("Snow"))
+            else if (hit.collider.CompareTag("Snow"))
             {
+                Crosshair.color = Color.green;
                 if (Input.GetMouseButtonDown(1) && snowballCount < maxSnowball && !isReloading)
                 {
                     StartCoroutine(ReloadWait());
                 }
             }
+            else
+            {
+                Crosshair.color = Color.white;
+            }
+        }
+        else
+        {
+            Crosshair.color = Color.white;
         }
 
-        //Debug.DrawRay(
-        //    shootingDisctrict.position,
-        //    fwd * 3,
-        //    Color.red
-        //);
+        /*Debug.DrawRay(
+            shootingDisctrict.position,
+            fwd * 3,
+            Color.red
+        );*/
 
         if (Input.GetMouseButtonDown(0) && !isFiringTool)
         {
@@ -305,7 +326,7 @@ public class PlayerController : MonoBehaviour
                     {
                         FireSingleSnowball();
                     }
-                }  
+                }
             }
             else if (hasInfiniteSnowballs || snowballCount >= 1)
             {
