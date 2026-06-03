@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class EndGameUI : MonoBehaviour
 {
+    SceneSwitcher sceneSwitcher;
+
     [Header("Player and Cameras")]
     [SerializeField] PlayerController playerController;
     [SerializeField] private Camera camSecondary;
@@ -72,6 +74,7 @@ public class EndGameUI : MonoBehaviour
         {
             LeaderboardManager.instance.AddScore(playerName, finalScore);
         }
-        SceneManager.LoadScene("MainMenu");
+        sceneSwitcher = GetComponent<SceneSwitcher>();
+        sceneSwitcher.ChangeScene("MainMenu");
     }
 }

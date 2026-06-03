@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Groupe H
   productName: SweetStorm
-  defaultCursor: {fileID: 2800000, guid: 7b22d48d63990e44ea2fdcae44a4e960, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 0
@@ -299,7 +299,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7b22d48d63990e44ea2fdcae44a4e960, type: 3}
+      m_Icon: {fileID: 2800000, guid: 83e3bf78d190ef54caf40d6fdd448a28, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
