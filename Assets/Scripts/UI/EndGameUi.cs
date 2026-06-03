@@ -24,12 +24,14 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private TMP_Text currentRoundsText;
 
     private int finalScore;
+    private bool isScreenOn = false;
 
     void Update()
     {
-        if (playerController.Health == 0 || Input.GetKey(KeyCode.K))
+        if (playerController.Health == 0 && !isScreenOn)
         {
             OpenEndGameScreen();
+            isScreenOn = true;
         }
     }
 
@@ -75,6 +77,6 @@ public class EndGameUI : MonoBehaviour
             LeaderboardManager.instance.AddScore(playerName, finalScore);
         }
         sceneSwitcher = GetComponent<SceneSwitcher>();
-        sceneSwitcher.ChangeScene("MainMenu");
+        sceneSwitcher.SwitchToMainMenuScene();
     }
 }
