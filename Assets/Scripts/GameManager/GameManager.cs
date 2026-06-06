@@ -159,12 +159,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("Play");
 
             Time.timeScale = 1f;
+
             playerScript.enabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            camMain.gameObject.SetActive(true);
             camSecondary.gameObject.SetActive(false);
+            camMain.gameObject.SetActive(true);
 
             UIGeneral.SetActive(true);
             UIGame.SetActive(true);
@@ -267,7 +268,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnBotsDebug()
+    private void SpawnBotsDebug() //Used only if you only want one enemy per round, to avoid getting shot while trying to do something else
     {
         SpawnSingleBot();
 
