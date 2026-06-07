@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
+    public int frameRate;
+
     public DifficultRoundsManager manageDifficultRounds;
     private bool DifficultRoundSetup = false;
     DataDifficultRound currentData;
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
         SpawnBots();
         upgrade1.onClick.AddListener(OnUpgradeSelected);
         upgrade2.onClick.AddListener(OnUpgradeSelected);
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Application.targetFrameRate = frameRate;
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
         if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf)
