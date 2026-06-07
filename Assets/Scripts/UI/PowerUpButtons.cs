@@ -41,8 +41,8 @@ public class PowerUpButton : MonoBehaviour
 
     public void OnClick()
     {
-        PlayerController player = Object.FindFirstObjectByType<PlayerController>();
-        PowerUpManager manager = Object.FindFirstObjectByType<PowerUpManager>();
+        PlayerController player = Object.FindAnyObjectByType<PlayerController>();
+        PowerUpManager manager = Object.FindAnyObjectByType<PowerUpManager>();
 
         if (player != null && currentData != null)
         {
