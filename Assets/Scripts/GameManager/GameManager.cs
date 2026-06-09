@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
+    public int frameRate;
+
     public DifficultRoundsManager manageDifficultRounds;
     private bool DifficultRoundSetup = false;
     DataDifficultRound currentData;
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
         SpawnBots();
         upgrade1.onClick.AddListener(OnUpgradeSelected);
         upgrade2.onClick.AddListener(OnUpgradeSelected);
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Application.targetFrameRate = frameRate;
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
         if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf)
@@ -159,12 +164,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("Play");
 
             Time.timeScale = 1f;
+
             playerScript.enabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            camMain.gameObject.SetActive(true);
             camSecondary.gameObject.SetActive(false);
+            camMain.gameObject.SetActive(true);
 
             UIGeneral.SetActive(true);
             UIGame.SetActive(true);
@@ -267,7 +273,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnBotsDebug()
+    private void SpawnBotsDebug() //Used only if you only want one enemy per round, to avoid getting shot while trying to do something else
     {
         SpawnSingleBot();
 

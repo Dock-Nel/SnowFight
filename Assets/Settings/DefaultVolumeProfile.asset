@@ -103,7 +103,7 @@ MonoBehaviour:
     m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0.229
+    m_Value: 0.1226
   clamp:
     m_OverrideState: 1
     m_Value: 0.05
@@ -314,7 +314,7 @@ MonoBehaviour:
   active: 1
   normalBias:
     m_OverrideState: 1
-    m_Value: 0.916
+    m_Value: 1
   viewBias:
     m_OverrideState: 1
     m_Value: 0.158
@@ -377,6 +377,9 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
+    m_OverrideState: 1
+    m_Value: 0
+  filter:
     m_OverrideState: 1
     m_Value: 0
   downscale:
@@ -547,13 +550,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.71061015, z: 0.7572903, w: -0.11753183}
+    m_Value: {x: 1, y: 0.71061015, z: 0.75729036, w: -0.11753183}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.8433503, z: 0.95187205, w: -0.05876591}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.5653723, z: 0.7918394, w: 0.06856025}
+    m_Value: {x: 1, y: 0.5653723, z: 0.7918395, w: 0.06856025}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0

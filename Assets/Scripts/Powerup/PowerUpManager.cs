@@ -13,7 +13,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void GenerateChoice()
     {
-        PlayerController player = FindFirstObjectByType<PlayerController>();
+        PlayerController player = FindAnyObjectByType<PlayerController>();
         DataPowerUp equippedTool = player.GetCurrentTool();
 
         DataPowerUp choice1 = GetRandomPowerUp();

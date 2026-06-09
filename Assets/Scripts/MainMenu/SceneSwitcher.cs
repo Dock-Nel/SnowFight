@@ -39,8 +39,8 @@ public class SceneSwitcher : MonoBehaviour
         Debug.Log("Loading New Scene");
         Transition.SetBool("SceneEnd", true);
         yield return new WaitForSecondsRealtime(1f);
+        Resources.UnloadUnusedAssets();
         Debug.Log("New Scene Loaded");
-        Resources.Load(sceneName);
         SceneManager.LoadScene(sceneName);
     }
 
