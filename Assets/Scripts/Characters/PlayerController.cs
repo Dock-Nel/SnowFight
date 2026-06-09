@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Slider HealthBar;
     public Image HealthBarInside;
     public Slider ReloadCooldown;
+    public Slider ToolCooldown;
     public GameObject Shadow;
     public GameObject DamageFilter;
 
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour
     private bool isFiringTool = false;
     private bool isReloading = false;
     private bool isDamaged = false;
+    private bool Cooldown = false;
 
     public bool hasInfiniteSnowballs = false;
 
@@ -306,6 +308,18 @@ public class PlayerController : MonoBehaviour
             Crosshair.color = Color.white;
         }
 
+        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 20f))
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                Crosshair.color = Color.red;
+            }
+        }
+        else
+        {
+            Crosshair.color = Color.white;
+        }
+
         /*Debug.DrawRay(
             shootingDisctrict.position,
             fwd * 3,
@@ -376,9 +390,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (toolCooldownTimer > 0)
+        if (toolCooldownTimer > 0 && !Cooldown)
         {
-            toolCooldownTimer -= Time.deltaTime;
+            StartCoroutine(ItemCooldown());
         }
     }
 
@@ -402,7 +416,21 @@ public class PlayerController : MonoBehaviour
         if (!hasInfiniteSnowballs) snowballCount -= 3;
     }
 
-    
+    IEnumerator ItemCooldown()
+    {
+        Cooldown = true;
+        ToolCooldown.value = toolCooldownTimer;
+        ToolCooldown.maxValue = toolCooldownTimer;
+        ToolCooldown.gameObject.SetActive(true);
+        while (toolCooldownTimer > 0)
+        {
+            yield return null;
+            toolCooldownTimer -= Time.deltaTime;
+            ToolCooldown.value -= Time.deltaTime;
+        }
+        ToolCooldown.gameObject.SetActive(false);
+        Cooldown = false;
+    }
 
     IEnumerator FireCanonRoutine(SnowCanon canon)
     {
@@ -438,10 +466,13 @@ public class PlayerController : MonoBehaviour
         ReloadCooldown.value = delay;
         ReloadCooldown.gameObject.SetActive(true);
 
-        while (ReloadCooldown.value > 0)
+        float time = 0;
+
+        while (time < delay)
         {
-            ReloadCooldown.value -= delay/100;
-            yield return new WaitForSeconds(delay/100);
+            yield return null;
+            time += Time.deltaTime;
+            ReloadCooldown.value -= Time.deltaTime;
         }
 
         ReloadCooldown.gameObject.SetActive(false);

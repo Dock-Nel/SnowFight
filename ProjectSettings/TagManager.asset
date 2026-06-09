@@ -9,11 +9,12 @@ TagManager:
   - Bots
   - Amo
   - Obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Snowball
   - Water
   - UI
   - 
@@ -58,3 +59,4 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  m_MigratedRenderPipelines: []
