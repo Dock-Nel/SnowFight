@@ -25,7 +25,12 @@ public class AIBehaviour : MonoBehaviour
 
     //Variables
     [SerializeField] int Snowball = 3;
-
+    [SerializeField] int SnowballVelocity = 10;
+    public int snowballVelocity
+    {
+        get { return SnowballVelocity; }
+        set { SnowballVelocity = value; }
+    }
     [SerializeField] bool PlayerDetection = false;
     [SerializeField] bool MoveTowardsPlayer = false;
     [SerializeField] bool Aggressivity = false;
@@ -37,6 +42,11 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] int Speed;
     [SerializeField] int Gravity;
     [SerializeField] int Range;
+    public int range
+    {
+        get { return Range; }
+        set { Range = value; }
+    }
 
     private enum State { Idle, Move, Attack }
     [SerializeField] private State currentState = State.Idle;
@@ -165,7 +175,7 @@ public class AIBehaviour : MonoBehaviour
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
         SnowballScript.Source = "Bot";
         clone.gameObject.SetActive(true);
-        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (4 - (PlayerDistance/6)))) * 10);
+        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (4 - (PlayerDistance/6)))) * SnowballVelocity);
         yield return new WaitForSeconds(3); 
         Snowball--;
         currentState = State.Move;

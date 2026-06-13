@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 2.0f;
     [SerializeField]
     private float rotationXLimit = 45.0f;
+    public float inputMultiplier = 1f;
 
     //Snowballs managment
     [SerializeField]
@@ -178,8 +179,8 @@ public class PlayerController : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        float speedZ = Input.GetAxis("Vertical");
-        float speedX = Input.GetAxis("Horizontal");
+        float speedZ = Input.GetAxis("Vertical") * inputMultiplier;
+        float speedX = Input.GetAxis("Horizontal") * inputMultiplier;
         float speedY = moveDirection.y;
 
         if (Input.GetKey(KeyCode.LeftShift))

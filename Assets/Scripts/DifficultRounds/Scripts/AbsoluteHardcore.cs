@@ -23,15 +23,6 @@ public class AbsoluteHardcore : DataDifficultRound
         player.MaxSnowball = 1;
 
         manager.SpawnBots();
-
-        foreach (GameObject bot in manager.Bots)
-        {
-            BotController controller = bot.GetComponent<BotController>();
-            if (controller != null)
-            {
-                controller.health *= 2;
-            }
-        }
     }
     public override void RevertEffect(PlayerController player, GameManager manager)
     {
