@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4907366}
   m_Layer: 5
-  m_Name: Options Menu
+  m_Name: Settings Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2425,7 +2425,9 @@ MonoBehaviour:
   MusicSource: {fileID: 161140227}
   MusicBool: 1
   SensitivitySlider: {fileID: 1559153463}
+  SensitivityValue: 0
   SnowEffectToggle: {fileID: 724765530}
+  SnowEffectBool: 0
 --- !u!82 &161140227
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13881,7 +13883,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 161140226}
+        m_TargetAssemblyTypeName: SettingsValues, Assembly-CSharp
+        m_MethodName: SnowEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &740904514
 GameObject:
@@ -22616,7 +22630,7 @@ GameObject:
   - component: {fileID: 1419174685}
   - component: {fileID: 1419174684}
   m_Layer: 5
-  m_Name: OptionsButton
+  m_Name: SettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24365,7 +24379,19 @@ MonoBehaviour:
   m_Value: 60
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 161140226}
+        m_TargetAssemblyTypeName: SettingsValues, Assembly-CSharp
+        m_MethodName: Sensitivity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1575129322
 GameObject:
   m_ObjectHideFlags: 0
@@ -28590,7 +28616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8bc29119efb8d945b974957a2888232, type: 2}
   m_sharedMaterial: {fileID: -5861113687713040678, guid: d8bc29119efb8d945b974957a2888232, type: 2}

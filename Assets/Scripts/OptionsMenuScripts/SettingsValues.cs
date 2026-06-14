@@ -38,8 +38,10 @@ public class SettingsValues : MonoBehaviour
     [Header("Accesibility")]
     [Header("Sensitivity")]
     [SerializeField] Slider SensitivitySlider;
+    public float SensitivityValue;
     [Header("SnowEffect")]
     [SerializeField] Toggle SnowEffectToggle;
+    public bool SnowEffectBool;
 
     void Start()
     {
@@ -100,7 +102,7 @@ public class SettingsValues : MonoBehaviour
             //Audio Settings
             instance.Mixer = Mixer;
 
-            MasterVolumeSlider.value = MasterVolumeValue;
+            MasterVolumeSlider.value = instance.MasterVolumeValue;
             instance.MasterVolumeSlider = MasterVolumeSlider;
             instance.MasterVolumeSlider.onValueChanged.RemoveAllListeners();
             instance.MasterVolumeSlider.onValueChanged.AddListener(instance.MasterVolume);
@@ -118,9 +120,23 @@ public class SettingsValues : MonoBehaviour
             instance.MusicToggle.onValueChanged.AddListener(instance.Music);
             instance.MusicSource = MusicSource;
 
-            //Accessibility Settings 
+            //Accessibility Settings
+            SensitivitySlider.value = instance.SensitivityValue;
             instance.SensitivitySlider = SensitivitySlider;
+            instance.SensitivitySlider.onValueChanged.RemoveAllListeners();
+            instance.SensitivitySlider.onValueChanged.AddListener(instance.Sensitivity);
+
+            if (instance.SnowEffectBool)
+            {
+                SnowEffectToggle.isOn = true;
+            }
+            else
+            {
+                SnowEffectToggle.isOn = false;
+            }
             instance.SnowEffectToggle = SnowEffectToggle;
+            instance.SnowEffectToggle.onValueChanged.RemoveAllListeners();
+            instance.SnowEffectToggle.onValueChanged.AddListener(instance.SnowEffect);
             Destroy(gameObject);
             return;
         }
@@ -130,10 +146,6 @@ public class SettingsValues : MonoBehaviour
     public void MotionBlur(bool a) //For some reason Adding a listener to a toggle via code requires a bool (I have not a single clue why), so its normal if the bool is never used
     {
         volume.TryGet<MotionBlur>(out Blur);
-        if (Blur == null)
-        {
-            Debug.Log("BlurEmpty");
-        }
         if (MotionBlurToggle.isOn)
         {
             Blur.active = true;
@@ -195,7 +207,6 @@ public class SettingsValues : MonoBehaviour
     {
         MasterVolumeValue = MasterVolumeSlider.value;
         int VolumeValue = (((int)MasterVolumeValue * 80) / 100) - 80; //Converts the percentage to a range between -80 to 0 (to be put as a dB value)
-        Debug.Log(VolumeValue);
         Mixer.SetFloat("MasterVolume", VolumeValue);
     }
 
@@ -210,6 +221,24 @@ public class SettingsValues : MonoBehaviour
         {
             MusicSource.Stop();
             MusicBool = false;
+        }
+    }
+
+    //Accessibility Settings
+    public void Sensitivity(float a)
+    {
+        SensitivityValue = SensitivitySlider.value; 
+    }
+
+    public void SnowEffect(bool a)
+    {
+        if (SnowEffectToggle.isOn)
+        {
+            SnowEffectBool = true;
+        }
+        else
+        {
+            SnowEffectBool = false;
         }
     }
 }
