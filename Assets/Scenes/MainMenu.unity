@@ -19968,7 +19968,7 @@ MonoBehaviour:
       - m_Target: {fileID: 161140226}
         m_TargetAssemblyTypeName: SettingsValues, Assembly-CSharp
         m_MethodName: Music
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -23363,7 +23363,7 @@ MonoBehaviour:
       - m_Target: {fileID: 161140226}
         m_TargetAssemblyTypeName: SettingsValues, Assembly-CSharp
         m_MethodName: VSync
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

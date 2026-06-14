@@ -130,9 +130,13 @@ public class SettingsValues : MonoBehaviour
     public void MotionBlur(bool a) //For some reason Adding a listener to a toggle via code requires a bool (I have not a single clue why), so its normal if the bool is never used
     {
         volume.TryGet<MotionBlur>(out Blur);
+        if (Blur == null)
+        {
+            Debug.Log("BlurEmpty");
+        }
         if (MotionBlurToggle.isOn)
         {
-            Blur.intensity.value = 1f;
+            Blur.intensity.value = 0.25f;
             MotionBlurBool = true;
         }
         else
