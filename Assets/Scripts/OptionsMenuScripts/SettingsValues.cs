@@ -29,9 +29,11 @@ public class SettingsValues : MonoBehaviour
     [SerializeField] AudioMixer Mixer;
     [Header("MasterVolume")]
     [SerializeField] Slider MasterVolumeSlider;
+    public float MasterVolumeValue;
     [Header("Music")]
     [SerializeField] Toggle MusicToggle;
     [SerializeField] AudioSource MusicSource;
+    public bool MusicBool;
 
     [Header("Accesibility")]
     [Header("Sensitivity")]
@@ -51,7 +53,7 @@ public class SettingsValues : MonoBehaviour
         {
             //This part makes it so nothing is reset once you go back to the main menu
 
-            
+            //Graphics Settings
             if (instance.MotionBlurBool)
             {
                 MotionBlurToggle.isOn = true;
@@ -61,6 +63,8 @@ public class SettingsValues : MonoBehaviour
                 MotionBlurToggle.isOn = false;
             }
             instance.MotionBlurToggle = MotionBlurToggle;
+            instance.MotionBlurToggle.onValueChanged.RemoveAllListeners();
+            instance.MotionBlurToggle.onValueChanged.AddListener(instance.MotionBlur);
             instance.volume = volume;
             instance.Blur = Blur;
 
@@ -73,25 +77,48 @@ public class SettingsValues : MonoBehaviour
                 VSyncToggle.isOn = false;
             }
             instance.VSyncToggle = VSyncToggle;
+            instance.VSyncToggle.onValueChanged.RemoveAllListeners();
+            instance.VSyncToggle.onValueChanged.AddListener(instance.VSync);
 
-            FPSCapSlider.value = FPSCapValue;
-            instance.FPSCapToggle = FPSCapToggle;
-            instance.FPSCapSlider = FPSCapSlider;
             if (instance.FPSCapBool)
             {
-                instance.FPSCapToggle.isOn = true;
+                FPSCapToggle.isOn = true;
             }
             else
             {
-                instance.FPSCapToggle.isOn = false;
+                FPSCapToggle.isOn = false;
             }
+            FPSCapSlider.value = FPSCapValue;
+            instance.FPSCapToggle = FPSCapToggle;
+            instance.FPSCapToggle.onValueChanged.RemoveAllListeners();
+            instance.FPSCapToggle.onValueChanged.AddListener(instance.FPSCapWithBool);
+            instance.FPSCapSlider = FPSCapSlider;
             instance.FPSCapSlider.value = instance.FPSCapValue;
+            instance.FPSCapSlider.onValueChanged.RemoveAllListeners();
+            instance.FPSCapSlider.onValueChanged.AddListener(instance.FPSCapWithFloat);
 
-
+            //Audio Settings
             instance.Mixer = Mixer;
+
+            MasterVolumeSlider.value = MasterVolumeValue;
             instance.MasterVolumeSlider = MasterVolumeSlider;
+            instance.MasterVolumeSlider.onValueChanged.RemoveAllListeners();
+            instance.MasterVolumeSlider.onValueChanged.AddListener(instance.MasterVolume);
+
+            if (instance.MusicBool)
+            {
+                MusicToggle.isOn = true;
+            }
+            else
+            {
+                MusicToggle.isOn = false;
+            }
             instance.MusicToggle = MusicToggle;
+            instance.MusicToggle.onValueChanged.RemoveAllListeners();
+            instance.MusicToggle.onValueChanged.AddListener(instance.Music);
             instance.MusicSource = MusicSource;
+
+            //Accessibility Settings 
             instance.SensitivitySlider = SensitivitySlider;
             instance.SnowEffectToggle = SnowEffectToggle;
             Destroy(gameObject);
@@ -100,7 +127,7 @@ public class SettingsValues : MonoBehaviour
     }
 
     //Graphics Settings
-    public void MotionBlur()
+    public void MotionBlur(bool a) //For some reason Adding a listener to a toggle via code requires a bool (I have not a single clue why), so its normal if the bool is never used
     {
         volume.TryGet<MotionBlur>(out Blur);
         if (MotionBlurToggle.isOn)
@@ -115,7 +142,7 @@ public class SettingsValues : MonoBehaviour
         }
     }
 
-    public void VSync()
+    public void VSync(bool a)
     {
         if (VSyncToggle.isOn)
         {
@@ -129,7 +156,22 @@ public class SettingsValues : MonoBehaviour
         }
     }
 
-    public void FPSCap()
+    public void FPSCapWithBool(bool a)
+    {
+        if (FPSCapToggle.isOn)
+        {
+            FPSCapValue = FPSCapSlider.value;
+            Application.targetFrameRate = (int)FPSCapValue;
+            FPSCapBool = true;
+        }
+        else
+        {
+            Application.targetFrameRate = 0;
+            FPSCapBool = false;
+        }
+    }
+
+    public void FPSCapWithFloat(float a) //Its the exact same function as before but as the Toggle requires a bool for AddListener, a Slider requires a float, which in that specific case makes it quite ugly
     {
         if (FPSCapToggle.isOn)
         {
@@ -145,22 +187,25 @@ public class SettingsValues : MonoBehaviour
     }
 
     //Audio Settings
-    public void MasterVolume()
+    public void MasterVolume(float a)
     {
-        int VolumeValue = (((int)MasterVolumeSlider.value * 80) / 100) - 80; //Converts the percentage to a range between -80 to 0 (to be put as a dB value)
+        MasterVolumeValue = MasterVolumeSlider.value;
+        int VolumeValue = (((int)MasterVolumeValue * 80) / 100) - 80; //Converts the percentage to a range between -80 to 0 (to be put as a dB value)
         Debug.Log(VolumeValue);
         Mixer.SetFloat("MasterVolume", VolumeValue);
     }
 
-    public void Music()
+    public void Music(bool a)
     {
         if (MusicToggle.isOn)
         {
             MusicSource.Play();
+            MusicBool = true;
         }
         else
         {
             MusicSource.Stop();
+            MusicBool = false;
         }
     }
 }
