@@ -136,12 +136,12 @@ public class SettingsValues : MonoBehaviour
         }
         if (MotionBlurToggle.isOn)
         {
-            Blur.intensity.value = 0.25f;
+            Blur.active = true;
             MotionBlurBool = true;
         }
         else
         {
-            Blur.intensity.value = 0f;
+            Blur.active = false;
             MotionBlurBool = false;
         }
     }
