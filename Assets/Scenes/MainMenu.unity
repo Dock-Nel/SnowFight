@@ -2410,7 +2410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   MotionBlurToggle: {fileID: 417947208}
-  volume: {fileID: 11400000, guid: ab09877e2e707104187f6f83e2f62510, type: 2}
+  volume: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
   MotionBlurBool: 1
   VSyncToggle: {fileID: 1483503501}
   VSyncBool: 1
@@ -2420,10 +2420,10 @@ MonoBehaviour:
   FPSCapValue: 240
   Mixer: {fileID: 24100000, guid: 2ef48c816086d0b4a997e5f83b3e1bba, type: 2}
   MasterVolumeSlider: {fileID: 436836028}
-  MasterVolumeValue: 0
+  MasterVolumeValue: 100
   MusicToggle: {fileID: 1256105206}
   MusicSource: {fileID: 161140227}
-  MusicBool: 0
+  MusicBool: 1
   SensitivitySlider: {fileID: 1559153463}
   SnowEffectToggle: {fileID: 724765530}
 --- !u!82 &161140227
