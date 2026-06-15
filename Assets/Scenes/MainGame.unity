@@ -49887,7 +49887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bb5ecdef4a9084793f17e6309a24be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  frameRate: 240
   manageDifficultRounds: {fileID: 1472273522}
   managePowerup: {fileID: 1472273518}
   upgrade1: {fileID: 812505833}
