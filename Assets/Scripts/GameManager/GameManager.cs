@@ -75,23 +75,32 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int maxFrozenStatues = 20;
     private List<GameObject> frozenStatuesList = new List<GameObject>();
 
+    private bool isRoundOverHandled = false;
+
+    private AudioSource _WinRound;
+    private AudioSource _ClickUIPause;
+
     void Start()
     {
-        
+        _WinRound = GameObject.Find("WinRound").GetComponent<AudioSource>();
+        _ClickUIPause = GameObject.Find("ClickUIPause").GetComponent<AudioSource>();
         SpawnBots();
         upgrade1.onClick.AddListener(OnUpgradeSelected);
         upgrade2.onClick.AddListener(OnUpgradeSelected);
         camMain.gameObject.SetActive(true);
         camSecondary.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
+
     }
 
     void Update()
     {
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
-        if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf)
+        if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf && !isRoundOverHandled)
         {
+            isRoundOverHandled = true;
+            _WinRound.Play();
             if (choicePowerup == false)
             {
                 managePowerup.GenerateChoice();
@@ -102,7 +111,6 @@ public class GameManager : MonoBehaviour
                 currentData.RevertEffect(playerScript, this);
                 currentData = null;
             }
-
             StartCoroutine(Wait());
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -118,7 +126,7 @@ public class GameManager : MonoBehaviour
             if (!UIPause.activeSelf && !UIGameOver.activeSelf)
             {
                 Debug.Log("Pause");
-
+                _ClickUIPause.Play();
                 if (UIGame.activeSelf)
                 {
                     WasInGame = true;
@@ -229,6 +237,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
             choicePowerup = false;
+            isRoundOverHandled = false;
             SpawnBots();
         }
     }
@@ -244,6 +253,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         choicePowerup = false;
+        isRoundOverHandled = false;
     }
 
     void ButtonEnable()

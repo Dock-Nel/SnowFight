@@ -22,4 +22,4 @@ MonoBehaviour:
   walkingSpeedMultiplier: 1.5
   runningSpeedMultiplier: 1.5
   jumpHeightMultiplier: 1.3
-  reloadDelay: 0.1
+  reloadDelay: 0.135
