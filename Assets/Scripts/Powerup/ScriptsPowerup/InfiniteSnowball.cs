@@ -8,6 +8,5 @@ public class InfiniteSnowball : DataPowerUp
     public override void ApplyEffect(PlayerController player)
     {
        player.StartCoroutine(player.InfiniteSnowballsCoroutine(duration));
-       player.EquipEphemeral(this);
     }
 }
