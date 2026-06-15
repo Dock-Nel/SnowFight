@@ -136,11 +136,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float spawnDistance = 2f;
 
-
     //TMP
-
     [SerializeField]
     private TMP_Text tmpNbSnowballs;
+
+    private AudioSource _SnowballShot;
 
     void Start()
     {
@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
+        _SnowballShot = GameObject.Find("SnowballShot").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -335,6 +336,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
                     {
+                        _SnowballShot.Play();
                         FireCanonRoutine(canon);
                     }
                 }
@@ -343,6 +345,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Time.timeScale != 0)
                 {
+                    _SnowballShot.Play();
                     FireSingleSnowball();
                 }
             }
