@@ -49905,7 +49905,7 @@ MonoBehaviour:
   camMain: {fileID: 1563064214}
   playerScript: {fileID: 1563064213}
   tmpRounds: {fileID: 326800326}
-  roundCount: 2
+  roundCount: 1
   Bots: []
   botPrefab: {fileID: 1731197405}
   spawnPoint:

@@ -17,7 +17,7 @@ MonoBehaviour:
 
     You can only carry one tool!
 
-    
+
 
     Press
     E with the goggles to become invincible for 5 seconds.
@@ -27,5 +27,5 @@ MonoBehaviour:
   category: 1
   familyID: 412
   percentage: 20
-  invincibilityDuration: 5
-  cooldown: 40
+  invincibilityDuration: 7
+  cooldown: 35
