@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    SettingsValues Settings;
     public List<float> snowList;
     public int posX;
     public int posZ;
@@ -147,12 +148,23 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
+        Settings = FindAnyObjectByType<SettingsValues>();
     }
 
     void Update()
     {
         HealthBar.value = Health;
         HealthBar.maxValue = MaxHealth;
+        if (Settings == null)
+        {
+            Debug.Log("No Settings Found !");
+            Settings = FindAnyObjectByType<SettingsValues>();
+        }
+        else
+        {
+            rotationSpeed += Settings.SensitivityValue;
+        }
+
 
         if (isInvincible)
         {
