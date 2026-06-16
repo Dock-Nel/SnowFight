@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 2.0f;
     [SerializeField]
     private float rotationXLimit = 45.0f;
+    public float inputMultiplier = 1f;
 
     //Snowballs managment
     [SerializeField]
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
         set { shootVelocity = value; }
     }
     [SerializeField]
-    private float baseReloadDelay = 0.5f;
+    public float baseReloadDelay = 0.5f;
     private bool isFiringTool = false;
     private bool isReloading = false;
     private bool isDamaged = false;
@@ -136,11 +137,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float spawnDistance = 2f;
 
-
     //TMP
-
     [SerializeField]
     private TMP_Text tmpNbSnowballs;
+
+    private AudioManager audioManager;
 
     void Start()
     {
@@ -149,6 +150,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
         Settings = FindAnyObjectByType<SettingsValues>();
+        audioManager = Object.FindAnyObjectByType<AudioManager>();
     }
 
     void Update()
@@ -190,8 +192,8 @@ public class PlayerController : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        float speedZ = Input.GetAxis("Vertical");
-        float speedX = Input.GetAxis("Horizontal");
+        float speedZ = Input.GetAxis("Vertical") * inputMultiplier;
+        float speedX = Input.GetAxis("Horizontal") * inputMultiplier;
         float speedY = moveDirection.y;
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -346,11 +348,8 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
                     {
-                        StartCoroutine(FireCanonRoutine(canon));
-                    }
-                    else if (snowballCount >= 1)
-                    {
-                        FireSingleSnowball();
+                        audioManager.PlaySnowballShotRandomPitch();
+                        FireCanonRoutine(canon);
                     }
                 }
             }
@@ -358,18 +357,19 @@ public class PlayerController : MonoBehaviour
             {
                 if (Time.timeScale != 0)
                 {
+                    audioManager.PlaySnowballShotRandomPitch();
                     FireSingleSnowball();
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && (hasInfiniteSnowballs || snowballCount >= 3))
-        {
-            if (Time.timeScale != 0)
-            {
-                FireBigSnowball();
-            }                
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha2) && (hasInfiniteSnowballs || snowballCount >= 3))
+        //{
+        //    if (Time.timeScale != 0)
+        //    {
+        //        FireBigSnowball();
+        //    }                
+        //}
 
 
         //------------- Items ---------------
@@ -419,15 +419,6 @@ public class PlayerController : MonoBehaviour
         if (!hasInfiniteSnowballs) snowballCount -= 1;
     }
 
-    void FireBigSnowball()
-    {
-        Rigidbody clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
-        Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
-        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * 13);
-        clone.gameObject.SetActive(true);
-        if (!hasInfiniteSnowballs) snowballCount -= 3;
-    }
-
     IEnumerator ItemCooldown()
     {
         Cooldown = true;
@@ -444,24 +435,15 @@ public class PlayerController : MonoBehaviour
         Cooldown = false;
     }
 
-    IEnumerator FireCanonRoutine(SnowCanon canon)
+    void FireCanonRoutine(SnowCanon canon)
     {
-        isFiringTool = true;
-
-        if (!hasInfiniteSnowballs) snowballCount -= canon.ammoCost;
-
-        for (int i = 0; i < canon.ballsPerShot; i++)
-        {
-            Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
-            Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
-            Snowballs SnowballScript = clone.GetComponent<Snowballs>();
-            SnowballScript.Source = "Player";
-            clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
-            clone.gameObject.SetActive(true);
-            yield return new WaitForSeconds(canon.delayBetweenBalls);
-        }
-
-        isFiringTool = false;
+        Rigidbody clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
+        BigSnowballs BigSnowballScript = clone.GetComponent<BigSnowballs>();
+        BigSnowballScript.Source = "Player";
+        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+        clone.gameObject.SetActive(true);
+        if (!hasInfiniteSnowballs) snowballCount -= 1;
     }
 
     IEnumerator ReloadWait()
@@ -499,7 +481,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator InfiniteSnowballsCoroutine(float duration)
     {
         hasInfiniteSnowballs = true;
-        tmpNbSnowballs.SetText("INFINITY"); // à corriger c'est en dur pour le moment, ça me fait gagner du temps on va pas chipoter hein
+        tmpNbSnowballs.SetText("INFINITY"); // ï¿½ corriger c'est en dur pour le moment, ï¿½a me fait gagner du temps on va pas chipoter hein
         yield return new WaitForSeconds(duration);
         hasInfiniteSnowballs = false;
         tmpNbSnowballs.SetText(snowballCount.ToString());
@@ -531,11 +513,11 @@ public class PlayerController : MonoBehaviour
         OnInventoryChanged?.Invoke();
     }
 
-    public void EquipEphemeral(DataPowerUp powerUp)
-    {
-        currentEphemeral = powerUp;
-        OnInventoryChanged?.Invoke();
-    }
+    //public void EquipEphemeral(DataPowerUp powerUp)
+    //{
+    //    currentEphemeral = powerUp;
+    //    OnInventoryChanged?.Invoke();
+    //}
 
     public IEnumerator InvincibilityCoroutine(float duration)
     {
@@ -590,10 +572,10 @@ public class PlayerController : MonoBehaviour
         {
             currentTool = powerUp;
         }
-        else if (powerUp.category == DataPowerUp.PoolType.Ephemere)
-        {
-            currentEphemeral = powerUp;
-        }
+        //else if (powerUp.category == DataPowerUp.PoolType.Ephemere)
+        //{
+        //    currentEphemeral = powerUp;
+        //}
         OnInventoryChanged?.Invoke(); // Signal Update to UI
     }
 }

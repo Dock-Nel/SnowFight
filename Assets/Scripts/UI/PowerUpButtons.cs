@@ -17,6 +17,15 @@ public class PowerUpButton : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI LevelText;
 
+    private AudioSource _GrabBonus1;
+    private AudioSource _GrabBonus2;
+
+    private void Start()
+    {
+        _GrabBonus1 = GameObject.Find("GrabBonus_1").GetComponent<AudioSource>();
+        _GrabBonus2 = GameObject.Find("GrabBonus_2").GetComponent<AudioSource>();
+    }
+
     public void Setup(DataPowerUp data)
     {
         currentData = data;
@@ -55,5 +64,15 @@ public class PowerUpButton : MonoBehaviour
                 manager.NoMorePowerUps(currentData);
             }
         }
+    }
+
+    public void LeftChoice()
+    {
+        _GrabBonus1.Play();
+    }
+
+    public void RightChoice()
+    {
+        _GrabBonus2.Play();
     }
 }
