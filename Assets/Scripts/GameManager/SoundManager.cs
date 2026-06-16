@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    SettingsValues Settings;
     [Header("--MUSIC--")]
 
     [SerializeField] private AudioSource _MainMusic;
@@ -27,6 +28,24 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         AssignButtonSounds();
+        Settings = FindAnyObjectByType<SettingsValues>();
+    }
+
+    public void Update()
+    {
+        if (Settings == null)
+        {
+            Debug.Log("No Settings Found !");
+            Settings = FindAnyObjectByType<SettingsValues>();
+        }
+        else if (Settings.MusicBool)
+        {
+            StopMainMusic();
+        }
+        else if (!Settings.MusicBool)
+        {
+            StartMainMusic();
+        }
     }
 
     public void AssignButtonSounds()

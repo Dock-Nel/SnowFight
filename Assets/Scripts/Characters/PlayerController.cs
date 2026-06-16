@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     SettingsValues Settings;
+    bool SettingsApplied;
     public List<float> snowList;
     public int posX;
     public int posZ;
@@ -162,9 +163,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("No Settings Found !");
             Settings = FindAnyObjectByType<SettingsValues>();
         }
-        else
+        else if (!SettingsApplied)
         {
             rotationSpeed += Settings.SensitivityValue;
+            SettingsApplied = true;
         }
 
 
