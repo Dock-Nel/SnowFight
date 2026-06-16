@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         set { shootVelocity = value; }
     }
     [SerializeField]
-    private float baseReloadDelay = 0.5f;
+    public float baseReloadDelay = 0.5f;
     private bool isFiringTool = false;
     private bool isReloading = false;
     private bool isDamaged = false;
