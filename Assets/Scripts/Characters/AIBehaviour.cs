@@ -42,6 +42,7 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] int Speed;
     [SerializeField] int Gravity;
     [SerializeField] int Range;
+
     public int range
     {
         get { return Range; }
@@ -51,10 +52,18 @@ public class AIBehaviour : MonoBehaviour
     private enum State { Idle, Move, Attack }
     [SerializeField] private State currentState = State.Idle;
 
+    private AudioManager audioManager;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
+
+    private void Start()
+    {
+        audioManager = UnityEngine.Object.FindAnyObjectByType<AudioManager>();
+    }
+
     void Update()
     {
 
@@ -171,6 +180,7 @@ public class AIBehaviour : MonoBehaviour
     {
         //Debug.Log("Shooting...");
         CRRunning = true;
+        audioManager.PlaySnowballShotRandomPitchAI(transform.position);
         Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
         SnowballScript.Source = "Bot";
