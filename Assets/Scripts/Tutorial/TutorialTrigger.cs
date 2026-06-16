@@ -70,6 +70,7 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PanelTuto.SetActive(true);
             VisualTitle.text = Title;
             VisualTextTuto.text = TextTuto;
             isTutoActive = true;

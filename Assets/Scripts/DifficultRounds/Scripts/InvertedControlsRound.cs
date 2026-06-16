@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [CreateAssetMenu(fileName = "InvertedControlsRound", menuName = "DifficultRound/InvertedControlsRound")]
 public class InvertedControlsRound : DataDifficultRound

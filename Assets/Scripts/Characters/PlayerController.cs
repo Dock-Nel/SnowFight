@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     SettingsValues Settings;
-    bool SettingsApplied;
+    float CurrentSensitivity;
     public List<float> snowList;
     public int posX;
     public int posZ;
@@ -163,11 +163,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("No Settings Found !");
             Settings = FindAnyObjectByType<SettingsValues>();
         }
-        else if (!SettingsApplied)
+        else if (CurrentSensitivity != Settings.SensitivityValue)
         {
-            rotationSpeed += Settings.SensitivityValue;
-            SettingsApplied = true;
+            rotationSpeed = Settings.SensitivityValue;
+            CurrentSensitivity = Settings.SensitivityValue;
         }
+        
 
 
         if (isInvincible)
@@ -365,13 +366,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.Alpha2) && (hasInfiniteSnowballs || snowballCount >= 3))
-        //{
-        //    if (Time.timeScale != 0)
-        //    {
-        //        FireBigSnowball();
-        //    }                
-        //}
+        /*if (Input.GetKeyDown(KeyCode.Alpha2) && (hasInfiniteSnowballs || snowballCount >= 3))
+        {
+            if (Time.timeScale != 0)
+            {
+                FireBigSnowball();
+            }                
+        }*/
 
 
         //------------- Items ---------------
@@ -450,6 +451,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ReloadWait()
     {
+        if (Time.timeScale == 0) { yield break; }
         isReloading = true;
 
         float delay = baseReloadDelay;

@@ -40,11 +40,12 @@ public class AudioManager : MonoBehaviour
         }
         else if (Settings.MusicBool)
         {
-            StopMainMusic();
+            StartMainMusic();
+
         }
         else if (!Settings.MusicBool)
         {
-            StartMainMusic();
+            StopMainMusic();
         }
     }
 
@@ -81,7 +82,7 @@ public class AudioManager : MonoBehaviour
         if (!_MainMusicPlaying)
         {
             _MainMusic.Play();
-            _MainMusicPlaying = false;
+            _MainMusicPlaying = true;
         }
     }
 
