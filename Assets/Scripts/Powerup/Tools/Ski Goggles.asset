@@ -20,9 +20,9 @@ MonoBehaviour:
 
 
     Press
-    E with the goggles to become invincible for 5 seconds.
+    E with the goggles to become invincible for 7 seconds.
 
-    Cooldown: 40 seconds.'
+    Cooldown: 35 seconds.'
   icon: {fileID: 21300000, guid: 86c08af401a46c94a8aef2f7641e14c1, type: 3}
   category: 1
   familyID: 412
