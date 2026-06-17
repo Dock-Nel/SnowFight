@@ -35,6 +35,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4229278621871510894
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -80,6 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: ed76002e1c5f20d468a8cd2ff61e0a31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -89,7 +91,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &57965595290015606
 MonoBehaviour:
@@ -103,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9e6edba3d94dd4bb41ea77df35011a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteCameraBehaviour3
-  Camera: {fileID: 0}
+  MainCamera: {fileID: 0}
+  SideCamera: {fileID: 0}
 --- !u!1 &7480177764706321249
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,8 +138,8 @@ Transform:
   m_LocalScale: {x: 0.7232327, y: 0.7232327, z: 0.7232327}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6290946793266589060}
   - {fileID: 6432603088877174327}
+  - {fileID: 6290946793266589060}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &6554837807966645612
@@ -200,7 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194274e90768c54e8920012068bcfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigSnowballs
+  Player: {fileID: 0}
   snowExplosionPrefab: {fileID: 2305397894697483, guid: 4fa68b9c90e77a442a78d991ff1245c6, type: 3}
+  Source: 
 --- !u!1001 &4101959941154484464
 PrefabInstance:
   m_ObjectHideFlags: 0

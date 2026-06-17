@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Invincibility
   m_EditorClassIdentifier: Assembly-CSharp::EphemeralInvincibility
   powerUpName: Invincibility
-  powerUpDescription: "\"Just\" 20 seconds of invicibility. \nNot bad hum ?"
+  powerUpDescription: "\"Just\" 40 seconds of invicibility. \nNot bad hum ?"
   icon: {fileID: 0}
   category: 2
   familyID: 7
   percentage: 30
-  duration: 35
+  duration: 40

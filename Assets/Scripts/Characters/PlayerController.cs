@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Time.timeScale != 0)
                 {
-                    if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
+                    if (hasInfiniteSnowballs || snowballCount >= 1)
                     {
                         audioManager.PlaySnowballShotRandomPitch();
                         FireCanonRoutine(canon);

@@ -9,7 +9,7 @@ public class Pause : MonoBehaviour
     public GameObject camMain;
     public GameObject camSecondary;
     public GameObject PanelTuto;
-
+    public AudioManager audioManager;
     void Start()
     {
         _ClickUIPause = GameObject.Find("ClickUIPause").GetComponent<AudioSource>();
@@ -21,8 +21,11 @@ public class Pause : MonoBehaviour
         {
             if (!UIPause.activeSelf && Time.timeScale != 0f)
             {
-                PanelTuto.SetActive(false);
                 Debug.Log("Pause");
+
+                audioManager.PauseMainMusic();
+                PanelTuto.SetActive(false);
+
                 _ClickUIPause.Play();
 
                 Time.timeScale = 0f;
@@ -47,7 +50,7 @@ public class Pause : MonoBehaviour
     public void ResumeGame()
     {
         Debug.Log("Play");
-
+        audioManager.StartMainMusic();
         Time.timeScale = 1f;
 
         playerScript.enabled = true;

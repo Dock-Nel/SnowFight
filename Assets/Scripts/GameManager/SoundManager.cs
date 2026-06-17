@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
     [Header("--MUSIC--")]
 
     [SerializeField] private AudioSource _MainMusic;
-    private bool _MainMusicPlaying = true;
+    [SerializeField] private bool _MainMusicPlaying = true;
+    [SerializeField] private bool _MainMusicPaused;
 
     [Header("--SFX--")]
 
@@ -38,12 +39,12 @@ public class AudioManager : MonoBehaviour
             Debug.Log("No Settings Found !");
             Settings = FindAnyObjectByType<SettingsValues>();
         }
-        else if (Settings.MusicBool)
+        else if (Settings.MusicBool && !_MainMusicPaused)
         {
             StartMainMusic();
 
         }
-        else if (!Settings.MusicBool)
+        else if (!Settings.MusicBool && !_MainMusicPaused)
         {
             StopMainMusic();
         }
@@ -77,12 +78,23 @@ public class AudioManager : MonoBehaviour
             _MainMusicPlaying = false;
         }
     }
+
+    public void PauseMainMusic()
+    {
+        if (!_MainMusicPaused)
+        {
+            _MainMusicPaused = true;
+            _MainMusic.Pause();
+        }
+    }
+
     public void StartMainMusic()
     {
-        if (!_MainMusicPlaying)
+        if (!_MainMusicPlaying || _MainMusicPaused)
         {
             _MainMusic.Play();
             _MainMusicPlaying = true;
+            _MainMusicPaused = false;
         }
     }
 
