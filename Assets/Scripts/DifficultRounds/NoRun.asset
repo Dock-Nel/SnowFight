@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 922cb1657e4627747b1552ac098b35ad, type: 3}
-  m_Name: FoggyRound
-  m_EditorClassIdentifier: Assembly-CSharp::FoggyRound
-  DifficultRoundDescription: This round, your view will be obstructed !
+  m_Script: {fileID: 11500000, guid: 635ca2b4c973dce439158141092e57fc, type: 3}
+  m_Name: NoRun
+  m_EditorClassIdentifier: Assembly-CSharp::NoRun
+  DifficultRoundDescription: This round, you won't be able to run !
   percentage: 24

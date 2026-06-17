@@ -39968,6 +39968,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 57aabcd43ca0827418d9abb13f0c7dfd, type: 2}
   - {fileID: 11400000, guid: 22072200728959d4bb8da2220c683228, type: 2}
   - {fileID: 11400000, guid: ac15cefefa0da6e44ac882dbf20f2268, type: 2}
+  - {fileID: 11400000, guid: 289707b587100b44ab94c3bc5d1a0640, type: 2}
 --- !u!114 &1472273523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42109,7 +42110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: runningSpeed
-      value: 9.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: walkingSpeed

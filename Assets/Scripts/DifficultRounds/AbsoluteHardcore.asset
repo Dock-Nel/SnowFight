@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbsoluteHardcore
   DifficultRoundDescription: You got unlucky and stumbled across the Hardcore round
     ! In this round, you only have one HP, one Snowball, there are twice as much
-    Gingerbread Men ! May the Force be with you !
+    Gingerbread Men and they have double health ! May the Force be with you !
   percentage: 1

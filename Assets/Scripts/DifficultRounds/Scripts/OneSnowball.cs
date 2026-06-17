@@ -11,7 +11,7 @@ public class OneSnowball : DataDifficultRound
         currentSnowball = player.SnowballCount;
         currentMaxSnowball = player.MaxSnowball;
         CurrentbaseReloadDelay = player.baseReloadDelay;
-        player.baseReloadDelay = 0.15f;
+        player.baseReloadDelay = 0.5f;
         player.SnowballCount = 1;
         player.MaxSnowball = 1;
     }

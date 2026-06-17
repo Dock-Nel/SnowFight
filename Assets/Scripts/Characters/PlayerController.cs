@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         get { return runningSpeed; }
         set { runningSpeed = value; }
     }
+    public bool CanRun = true;
 
     [SerializeField]
     private float jumpSpeed = 8f;
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
         float speedX = Input.GetAxis("Horizontal") * inputMultiplier;
         float speedY = moveDirection.y;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && CanRun)
         {
             isRunning = true;
         }
