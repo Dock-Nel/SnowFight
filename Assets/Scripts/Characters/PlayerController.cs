@@ -122,11 +122,11 @@ public class PlayerController : MonoBehaviour
     private bool isFiringTool = false;
     private bool isReloading = false;
     private bool isDamaged = false;
-    private bool Cooldown = false;
+    private bool Cooldown;
 
     public bool hasInfiniteSnowballs = false;
 
-    private float toolCooldownTimer = 0f;
+    public float toolCooldownTimer = 0f;
 
     //TOOLS
     [SerializeField]
@@ -151,8 +151,11 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
+
         Settings = FindAnyObjectByType<SettingsValues>();
         audioManager = Object.FindAnyObjectByType<AudioManager>();
+
+        Cooldown = false;
     }
 
     void Update()
@@ -426,8 +429,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator ItemCooldown()
     {
         Cooldown = true;
-        ToolCooldown.value = toolCooldownTimer;
         ToolCooldown.maxValue = toolCooldownTimer;
+        ToolCooldown.value = toolCooldownTimer;
         ToolCooldown.gameObject.SetActive(true);
         while (toolCooldownTimer > 0)
         {
