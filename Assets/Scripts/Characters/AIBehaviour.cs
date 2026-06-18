@@ -185,7 +185,8 @@ public class AIBehaviour : MonoBehaviour
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
         SnowballScript.Source = "Bot";
         clone.gameObject.SetActive(true);
-        clone.linearVelocity = transform.TransformDirection((Vector3.forward + (Vector3.up / (4 - (PlayerDistance/6)))) * SnowballVelocity);
+        Vector3 Randomize = new Vector3(UnityEngine.Random.Range(-0.25f, 0.25f), 0, 0);
+        clone.linearVelocity = transform.TransformDirection(((Vector3.forward + Randomize) + (Vector3.up / (4 - (PlayerDistance/6)))) * SnowballVelocity);
         yield return new WaitForSeconds(3); 
         Snowball--;
         currentState = State.Move;

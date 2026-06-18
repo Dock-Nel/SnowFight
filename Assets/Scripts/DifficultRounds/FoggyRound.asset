@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922cb1657e4627747b1552ac098b35ad, type: 3}
   m_Name: FoggyRound
   m_EditorClassIdentifier: Assembly-CSharp::FoggyRound
-  DifficultRoundDescription: This round, your view will be obstructed!
+  DifficultRoundDescription: This round, your view will be obstructed !
   percentage: 24

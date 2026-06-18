@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51be9da00f3fee47b5eb061f023c394, type: 3}
   m_Name: OneSnowball
   m_EditorClassIdentifier: Assembly-CSharp::OneSnowball
-  DifficultRoundName: 
-  DifficultRoundDescription: 'This round, you will be able to only carry one Snowball
-    ! '
-  ID: 0
+  DifficultRoundDescription: 'This round, you will be able to only carry one Snowball,
+    but the reload delay is a bit faster ! '
   percentage: 24

@@ -12,6 +12,12 @@ public class BigSnowballs : MonoBehaviour
     private BotController bot;
     private BotControllerNoGameManager botDumb;
     public string Source;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = UnityEngine.Object.FindAnyObjectByType<AudioManager>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,23 +30,22 @@ public class BigSnowballs : MonoBehaviour
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             BotController bot = collision.gameObject.GetComponent<BotController>();
             BotControllerNoGameManager botDumb = collision.gameObject.GetComponent<BotControllerNoGameManager>();
-            if (player != null && Source == "Bot")
-            {
-                player.TakeDamage(30);
-                Explodes();
-            }
-            else if (bot != null && Source == "Player")
+
+            if (bot != null && Source == "Player")
             {
                 bot.TakeDamage(30);
+                audioManager.PlaySnowballExplosionRandomPitch(transform.position);
                 Explodes();
             }
             else if (botDumb != null)
             {
                 botDumb.TakeDamage(30);
+                audioManager.PlaySnowballExplosionRandomPitch(transform.position);
                 Explodes();
             }
             else
             {
+                audioManager.PlaySnowballExplosionRandomPitch(transform.position);
                 Explodes();
             }
         }

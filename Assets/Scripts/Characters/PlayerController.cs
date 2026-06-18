@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         get { return runningSpeed; }
         set { runningSpeed = value; }
     }
+    public bool CanRun = true;
 
     [SerializeField]
     private float jumpSpeed = 8f;
@@ -121,11 +122,11 @@ public class PlayerController : MonoBehaviour
     private bool isFiringTool = false;
     private bool isReloading = false;
     private bool isDamaged = false;
-    private bool Cooldown = false;
+    private bool Cooldown;
 
     public bool hasInfiniteSnowballs = false;
 
-    private float toolCooldownTimer = 0f;
+    public float toolCooldownTimer = 0f;
 
     //TOOLS
     [SerializeField]
@@ -150,8 +151,11 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
+
         Settings = FindAnyObjectByType<SettingsValues>();
         audioManager = Object.FindAnyObjectByType<AudioManager>();
+
+        Cooldown = false;
     }
 
     void Update()
@@ -199,7 +203,7 @@ public class PlayerController : MonoBehaviour
         float speedX = Input.GetAxis("Horizontal") * inputMultiplier;
         float speedY = moveDirection.y;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && CanRun)
         {
             isRunning = true;
         }
@@ -349,7 +353,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Time.timeScale != 0)
                 {
-                    if (hasInfiniteSnowballs || snowballCount >= canon.ammoCost)
+                    if (hasInfiniteSnowballs || snowballCount >= 1)
                     {
                         audioManager.PlaySnowballShotRandomPitch();
                         FireCanonRoutine(canon);
@@ -425,8 +429,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator ItemCooldown()
     {
         Cooldown = true;
-        ToolCooldown.value = toolCooldownTimer;
         ToolCooldown.maxValue = toolCooldownTimer;
+        ToolCooldown.value = toolCooldownTimer;
         ToolCooldown.gameObject.SetActive(true);
         while (toolCooldownTimer > 0)
         {

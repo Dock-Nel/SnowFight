@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public DifficultRoundsManager manageDifficultRounds;
     private bool DifficultRoundSetup = false;
     DataDifficultRound currentData;
+    public AudioManager audioManager;
 
     //Powerup
 
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
         if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf && !isRoundOverHandled)
         {
+            audioManager.PauseMainMusic();
             isRoundOverHandled = true;
             _WinRound.Play();
             if (choicePowerup == false)
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Pause");
                 _ClickUIPause.Play();
+                audioManager.PauseMainMusic();
                 if (UIGame.activeSelf)
                 {
                     WasInGame = true;
@@ -173,6 +176,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Play");
 
             Time.timeScale = 1f;
+
+            audioManager.StartMainMusic();
 
             playerScript.enabled = true;
             Cursor.visible = false;
@@ -243,6 +248,7 @@ public class GameManager : MonoBehaviour
             choicePowerup = false;
             isRoundOverHandled = false;
             SpawnBots();
+            audioManager.StartMainMusic();
         }
     }
 
@@ -258,6 +264,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         choicePowerup = false;
         isRoundOverHandled = false;
+        audioManager.StartMainMusic();
     }
 
     void ButtonEnable()
