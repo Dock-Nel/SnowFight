@@ -90,10 +90,20 @@ public class AudioManager : MonoBehaviour
 
     public void StartMainMusic()
     {
-        if (!_MainMusicPlaying || _MainMusicPaused)
+        if (!_MainMusicPlaying && _MainMusicPaused && Time.timeScale != 0)
         {
             _MainMusic.Play();
             _MainMusicPlaying = true;
+            _MainMusicPaused = false;
+        }
+        else if (!_MainMusicPlaying && Time.timeScale != 0)
+        {
+            _MainMusic.Play();
+            _MainMusicPlaying = true;
+        }
+        else if (_MainMusicPaused && Time.timeScale != 0)
+        {
+            _MainMusic.Play();
             _MainMusicPaused = false;
         }
     }

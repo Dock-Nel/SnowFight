@@ -32,7 +32,7 @@ public class SettingsValues : MonoBehaviour
     public float MasterVolumeValue;
     [Header("Music")]
     [SerializeField] Toggle MusicToggle;
-    [SerializeField] AudioSource MusicSource;
+    [SerializeField] AudioManager audioManager;
     public bool MusicBool;
 
     [Header("Accesibility")]
@@ -118,7 +118,7 @@ public class SettingsValues : MonoBehaviour
             instance.MusicToggle = MusicToggle;
             instance.MusicToggle.onValueChanged.RemoveAllListeners();
             instance.MusicToggle.onValueChanged.AddListener(instance.Music);
-            instance.MusicSource = MusicSource;
+            instance.audioManager = audioManager;
 
             //Accessibility Settings
             SensitivitySlider.value = instance.SensitivityValue;
@@ -214,12 +214,12 @@ public class SettingsValues : MonoBehaviour
     {
         if (MusicToggle.isOn)
         {
-            MusicSource.Play();
+            audioManager.StartMainMusic();
             MusicBool = true;
         }
         else
         {
-            MusicSource.Stop();
+            audioManager.StopMainMusic();
             MusicBool = false;
         }
     }

@@ -19,6 +19,7 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private GameObject UIGeneral;
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TMP_Text roundsDisplay;
+    [SerializeField] private AudioManager audioManager;
 
     [Header("Game Data")]
     [SerializeField] private TMP_Text currentRoundsText;
@@ -32,6 +33,7 @@ public class EndGameUI : MonoBehaviour
         {
             OpenEndGameScreen();
             isScreenOn = true;
+            audioManager.StopMainMusic();
         }
     }
 
@@ -70,6 +72,7 @@ public class EndGameUI : MonoBehaviour
 
     public void OnClickSubmit()
     {
+        Time.timeScale = 0f;
         string playerName = nameInputField.text;
 
         if (LeaderboardManager.instance != null)
