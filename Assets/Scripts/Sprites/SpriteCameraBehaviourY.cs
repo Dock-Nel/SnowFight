@@ -7,8 +7,26 @@ public class SpriteCameraBehaviourY : MonoBehaviour
     private Camera CodeCamera;
 
     [SerializeField] float TargetRotation;
+
+    void Start()
+    {
+        if (MainCamera == null)
+        {
+            GameObject mainCamObj = GameObject.Find("Main Camera");
+            if (mainCamObj != null) MainCamera = mainCamObj.GetComponent<Camera>();
+        }
+
+        if (SideCamera == null)
+        {
+            GameObject sideCamObj = GameObject.Find("Side Camera");
+            if (sideCamObj != null) SideCamera = sideCamObj.GetComponent<Camera>();
+        }
+    }
+
     void Update()
     {
+        if (MainCamera == null || SideCamera == null) return;
+
         if (MainCamera.isActiveAndEnabled == true)
         {
             CodeCamera = MainCamera;

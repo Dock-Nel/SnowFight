@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Bots = new List<GameObject>();
     [SerializeField]
     private GameObject botPrefab;
+
+    [SerializeField] private GameObject chaserPrefab;  
+    [SerializeField] private float chaserSpawnChance = 0.3f;
+
     [SerializeField]
     private List<Transform> spawnPoint = new List<Transform>();
 
@@ -294,8 +298,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBots()
     {
-        SpawnSingleBot();
-        
+     
         switch (roundCount)
         {
              case <= 3:
@@ -351,8 +354,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        GameObject prefabToSpawn = botPrefab;
+
+        if (UnityEngine.Random.value < chaserSpawnChance)
+        {
+            Debug.Log("CHASER HERE");
+            prefabToSpawn = chaserPrefab;
+        }
+
         Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-        GameObject newBot = Instantiate(botPrefab, spawnPoint[randomIndex].position, spawnPoint[randomIndex].rotation);
+        GameObject newBot = Instantiate(prefabToSpawn, spawnPoint[randomIndex].position, spawnPoint[randomIndex].rotation);
         newBot.SetActive(true);
         Bots.Add(newBot);
     }

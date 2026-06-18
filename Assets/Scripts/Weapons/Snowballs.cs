@@ -29,11 +29,18 @@ public class Snowballs : MonoBehaviour
             //Debug.Log(collision.gameObject.name);
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             BotController bot = collision.gameObject.GetComponent<BotController>();
+            ChaserController chaser = collision.gameObject.GetComponent<ChaserController>();
             BotControllerNoGameManager botDumb = collision.gameObject.GetComponent<BotControllerNoGameManager>();
             if (player != null && Source == "Bot")
             {
                 player.TakeDamage(10);
                 audioManager.PlaySnowballExplosionRandomPitch(transform.position);
+                Explodes();
+            }
+            else if (chaser != null && Source == "Player")
+            {
+                chaser.TakeDamage(10);
+                if (audioManager != null) audioManager.PlaySnowballExplosionRandomPitch(transform.position);
                 Explodes();
             }
             else if (bot != null && Source == "Player")
@@ -54,6 +61,18 @@ public class Snowballs : MonoBehaviour
                 Explodes();
             }
         }     
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ChaserController chaser = other.gameObject.GetComponent<ChaserController>();
+
+        if (chaser != null)
+        {
+            chaser.TakeDamage(10);
+            audioManager.PlaySnowballExplosionRandomPitch(transform.position);
+            Explodes();
+        }
     }
 
     private void Explodes()
