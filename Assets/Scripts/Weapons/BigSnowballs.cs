@@ -51,6 +51,18 @@ public class BigSnowballs : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        ChaserController chaser = other.gameObject.GetComponent<ChaserController>();
+
+        if (chaser != null)
+        {
+            chaser.TakeDamage(10);
+            audioManager.PlaySnowballExplosionRandomPitch(transform.position);
+            Explodes();
+        }
+    }
+
     private void Explodes()
     {
         hasExploded = true;
