@@ -8,9 +8,14 @@ public class EnemyHPDoubled : DataDifficultRound
         foreach (GameObject bot in manager.Bots)
         {
             BotController controller = bot.GetComponent<BotController>();
+            ChaserController chasercontroller = bot.GetComponent<ChaserController>();
             if (controller != null)
             {
                 controller.health *= 2;
+            }
+            if (chasercontroller != null)
+            {
+                chasercontroller.health *= 2;
             }
         }
     }

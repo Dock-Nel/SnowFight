@@ -21589,6 +21589,10 @@ PrefabInstance:
       value: EnemyChaser
       objectReference: {fileID: 0}
     - target: {fileID: 3926295890046470547, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926295890046470547, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
       propertyPath: FrozenGingerbread
       value: 
       objectReference: {fileID: 542141247}

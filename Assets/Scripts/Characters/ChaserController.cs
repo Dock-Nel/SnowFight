@@ -3,7 +3,7 @@ using UnityEngine;
 public class ChaserController : MonoBehaviour
 {
     private GameManager gameManager;
-    public float health = 1f; 
+    public float health = 15f; 
     public GameObject FrozenGingerbread;
 
     private void Start()
