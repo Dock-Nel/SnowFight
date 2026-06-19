@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip[] _FootStepClip;
     [SerializeField] private AudioSource _SnowballExplosion;
     [SerializeField] private AudioSource _WinRound;
+    [SerializeField] private AudioSource _Reload;
+    [SerializeField] private AudioSource _Hit;
 
     [Header("ui")]
     [SerializeField] private AudioSource _ClickUI;
@@ -121,6 +123,25 @@ public class AudioManager : MonoBehaviour
         {
             _SnowballShot.pitch = Random.Range(0.60f, 1.15f);
             _SnowballShot.PlayOneShot(_SnowballShot.clip);
+        }
+    }
+    public void PlaySnowballReloadRandomPitch()
+    {
+        if (_Reload != null && _Reload.clip != null)
+        {
+            _Reload.volume = 0.20f;
+            _Reload.pitch = Random.Range(0.60f, 1.15f);
+            _Reload.PlayOneShot(_Reload.clip);
+        }
+    }
+
+    public void PlayShotHigherPitch()
+    {
+        if (_Hit != null && _Hit.clip != null)
+        {
+            _Hit.volume = 0.80f;
+            _Hit.pitch = Random.Range(1.30f, 1.50f);
+            _Hit.PlayOneShot(_Hit.clip);
         }
     }
 

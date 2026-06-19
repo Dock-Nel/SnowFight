@@ -457,6 +457,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale == 0) { yield break; }
         isReloading = true;
+        
+        audioManager.PlaySnowballReloadRandomPitch();
 
         float delay = baseReloadDelay;
         if (currentTool is SnowSkis skis)
@@ -505,6 +507,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator TakeDamageCoroutine(float damage)
     {
+        audioManager.PlayShotHigherPitch();
         isDamaged = true;
         Health -= damage;
         DamageFilter.SetActive(true);
