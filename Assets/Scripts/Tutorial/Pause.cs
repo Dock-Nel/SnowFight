@@ -40,7 +40,7 @@ public class Pause : MonoBehaviour
 
                 UIPause.SetActive(true);
             }
-            else
+            else if (UIPause.activeSelf)
             {
                 ResumeGame();
             }

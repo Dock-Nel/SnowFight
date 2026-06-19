@@ -4502,7 +4502,7 @@ MonoBehaviour:
   MasterVolumeSlider: {fileID: 436836028}
   MasterVolumeValue: 100
   MusicToggle: {fileID: 1256105206}
-  MusicSource: {fileID: 2137219097}
+  audioManager: {fileID: 1985506829}
   MusicBool: 1
   SensitivitySlider: {fileID: 1559153463}
   SensitivityValue: 2

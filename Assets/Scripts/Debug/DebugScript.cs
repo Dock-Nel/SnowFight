@@ -6,7 +6,7 @@ public class DebugScript : MonoBehaviour
     public TextMeshProUGUI FPSCount;
     void Start()
     {
-        InvokeRepeating("GetFPS", 1, 1);
+        InvokeRepeating("GetFPS", 1, 0.25f);
     }
 
     // Update is called once per frame
