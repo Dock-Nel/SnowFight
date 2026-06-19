@@ -10,6 +10,7 @@ public class SnowTurretEntity : MonoBehaviour
 
     void Start()
     {
+        SnapToGround();
         StartCoroutine(ShootRoutine());
     }
 
@@ -30,5 +31,22 @@ public class SnowTurretEntity : MonoBehaviour
         snowballScript.Source = "Player";
         Vector3 force = (transform.forward * shootForce) + (Vector3.up * upwardForce);
         sb.AddForce(force, ForceMode.Impulse);
+    }
+
+    void SnapToGround()
+    {
+        Collider myCollider = GetComponent<Collider>();
+        myCollider.enabled = false;
+
+        Vector3 rayStart = transform.position + Vector3.up * 2f;
+        Ray ray = new Ray(rayStart, Vector3.down);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 15f))
+        {
+            float offsetVersLeHaut = 0.67f;
+            transform.position = hit.point + Vector3.up * offsetVersLeHaut;
+        }
+        myCollider.enabled = true;
     }
 }

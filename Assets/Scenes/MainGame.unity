@@ -39567,71 +39567,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125463568}
   m_CullTransparentMesh: 1
---- !u!1001 &1125546320
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 558318751057534685, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: snowballPrefab
-      value: 
-      objectReference: {fileID: 1226907131}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644464820933547058, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6162612722795688323, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_Name
-      value: SnowTurretEntity
-      objectReference: {fileID: 0}
-    - target: {fileID: 6162612722795688323, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
 --- !u!1001 &1128090129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51460,11 +51395,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d31c3a02cd547cd41a1088b0c8185e20, type: 2}
   - {fileID: 11400000, guid: 626ef609dec995b458a5b7bf5b26c597, type: 2}
   toolPool:
+  - {fileID: 11400000, guid: cb5ff162d824e3342bb0c5e1a0e919d6, type: 2}
   - {fileID: 11400000, guid: aff4984605c5fa44e940078acfe309b9, type: 2}
   - {fileID: 11400000, guid: e90e4d70ce2e63b4b8828b78d51f2b25, type: 2}
   - {fileID: 11400000, guid: 61dcba97558e56a45a5463069001d97f, type: 2}
   - {fileID: 11400000, guid: 398bf49dc58f9af4ab7e2f0634814e4e, type: 2}
-  - {fileID: 11400000, guid: cb5ff162d824e3342bb0c5e1a0e919d6, type: 2}
   ephemerePool:
   - {fileID: 11400000, guid: f30604496a782b748830249de5adf37e, type: 2}
   - {fileID: 11400000, guid: 2d21c31723c9de944b3f07ceabcfc327, type: 2}
@@ -54442,7 +54377,7 @@ PrefabInstance:
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: Turret
       value: 
-      objectReference: {fileID: 2066584067}
+      objectReference: {fileID: 6162612721706354899}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: health
       value: 30
@@ -76025,11 +75960,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7896919999335359551, guid: 51ca11e42bd4049439f276e62bbb2e4d, type: 3}
   m_PrefabInstance: {fileID: 2064573909}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2066584067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6162612722795688323, guid: 5c5b12ff3b477e44486e018f99c0d98d, type: 3}
-  m_PrefabInstance: {fileID: 1125546320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2069415977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78567,6 +78497,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b827e290a33dce489dfdeb2765dde76, type: 3}
+--- !u!1001 &1648313097189831688
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3718340622795222043, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_Name
+      value: SnowTurretEntity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718340622795222043, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947664958409736478, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350800184919073301, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+      propertyPath: snowballPrefab
+      value: 
+      objectReference: {fileID: 1226907131}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a54075901200ea04580f1c28216c3e37, type: 3}
 --- !u!1001 &2591740157832136061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78862,6 +78857,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ca11e42bd4049439f276e62bbb2e4d, type: 3}
+--- !u!1 &6162612721706354899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3718340622795222043, guid: a54075901200ea04580f1c28216c3e37, type: 3}
+  m_PrefabInstance: {fileID: 1648313097189831688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6723469708751169482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79134,5 +79134,5 @@ SceneRoots:
   - {fileID: 728271310}
   - {fileID: 1859069026}
   - {fileID: 7335550483113218562}
-  - {fileID: 1125546320}
+  - {fileID: 1648313097189831688}
   - {fileID: 1923297232}
