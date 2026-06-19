@@ -91,6 +91,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform shootingDisctrict;
     [SerializeField]
+    private Transform shootingDistrictSC;
+    private Transform activeShootingDistrict;
+    [SerializeField]
     private Rigidbody snowball;
     [SerializeField]
     private Rigidbody biggerSnowball;
@@ -143,6 +146,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private TMP_Text tmpNbSnowballs;
 
+    //MODELS
+    [SerializeField]
+    private GameObject snowCanonModel;
+
     private AudioManager audioManager;
 
     void Start()
@@ -154,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
         Settings = FindAnyObjectByType<SettingsValues>();
         audioManager = Object.FindAnyObjectByType<AudioManager>();
-
+        activeShootingDistrict = shootingDisctrict;
         Cooldown = false;
     }
 
@@ -280,7 +287,7 @@ public class PlayerController : MonoBehaviour
         Vector3 fwd = playerCamera.transform.forward;
         RaycastHit hit;
 
-        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 2.5f))
+        if (Physics.Raycast(activeShootingDistrict.position, fwd, out hit, 2.5f))
         {
             if (hit.collider.name == "Terrain")
             {
@@ -329,7 +336,7 @@ public class PlayerController : MonoBehaviour
             Crosshair.color = Color.white;
         }
 
-        if (Physics.Raycast(shootingDisctrict.position, fwd, out hit, 20f))
+        if (Physics.Raycast(activeShootingDistrict.position, fwd, out hit, 20f))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
@@ -342,7 +349,7 @@ public class PlayerController : MonoBehaviour
         }
 
         /*Debug.DrawRay(
-            shootingDisctrict.position,
+            activeShootingDistrict.position,
             fwd * 3,
             Color.red
         );*/
@@ -417,7 +424,7 @@ public class PlayerController : MonoBehaviour
 
     void FireSingleSnowball()
     {
-        Rigidbody clone = Instantiate(snowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        Rigidbody clone = Instantiate(snowball, activeShootingDistrict.position, activeShootingDistrict.rotation);
         Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
         Snowballs SnowballScript = clone.GetComponent<Snowballs>();
         SnowballScript.Source = "Player";
@@ -444,7 +451,7 @@ public class PlayerController : MonoBehaviour
 
     void FireCanonRoutine(SnowCanon canon)
     {
-        Rigidbody clone = Instantiate(biggerSnowball, shootingDisctrict.position, shootingDisctrict.rotation);
+        Rigidbody clone = Instantiate(biggerSnowball, activeShootingDistrict.position, activeShootingDistrict.rotation);
         Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
         BigSnowballs BigSnowballScript = clone.GetComponent<BigSnowballs>();
         BigSnowballScript.Source = "Player";
@@ -521,6 +528,19 @@ public class PlayerController : MonoBehaviour
         ClearAllTurrets();
 
         currentTool = powerUp;
+       
+
+        if (currentTool is SnowCanon)
+        {
+            activeShootingDistrict = shootingDistrictSC;
+            snowCanonModel.SetActive(true);
+        }
+        else
+        {
+            activeShootingDistrict = shootingDisctrict;
+            snowCanonModel.SetActive(false);
+        }
+
         OnInventoryChanged?.Invoke();
     }
 

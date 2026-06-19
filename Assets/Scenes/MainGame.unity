@@ -12352,6 +12352,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7896919999335359551, guid: 51ca11e42bd4049439f276e62bbb2e4d, type: 3}
   m_PrefabInstance: {fileID: 321707687}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &322800376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a16f4f9b78382e428dfebb1d15aad69, type: 3}
+  m_PrefabInstance: {fileID: 2001786367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &322800377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a16f4f9b78382e428dfebb1d15aad69, type: 3}
@@ -54491,6 +54496,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1200459025}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+      propertyPath: snowCanonModel
+      value: 
+      objectReference: {fileID: 322800376}
+    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: tmpNbSnowballs
       value: 
       objectReference: {fileID: 1973783308}
@@ -54506,6 +54515,10 @@ PrefabInstance:
       propertyPath: shootingDisctrict
       value: 
       objectReference: {fileID: 801466530}
+    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+      propertyPath: shootingDistrictSC
+      value: 
+      objectReference: {fileID: 787398485}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: hasInfiniteSnowballs
       value: 0
@@ -73677,6 +73690,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4a16f4f9b78382e428dfebb1d15aad69, type: 3}
       propertyPath: m_Name
       value: SnowCanon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a16f4f9b78382e428dfebb1d15aad69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
