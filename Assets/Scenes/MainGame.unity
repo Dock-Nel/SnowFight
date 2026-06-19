@@ -21588,6 +21588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyChaser
       objectReference: {fileID: 0}
+    - target: {fileID: 3926295890046470547, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
+      propertyPath: FrozenGingerbread
+      value: 
+      objectReference: {fileID: 542141247}
     - target: {fileID: 6136632391942778426, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
       propertyPath: MainCamera
       value: 
@@ -21596,6 +21600,10 @@ PrefabInstance:
       propertyPath: SideCamera
       value: 
       objectReference: {fileID: 1563064215}
+    - target: {fileID: 8447930484439744268, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
