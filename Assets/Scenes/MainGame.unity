@@ -21824,14 +21824,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2583475637914486549, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: f8ce5115f931881419c916acebe24ea6, type: 2}
     - target: {fileID: 2338043408414522624, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
       propertyPath: chaseSpeed
       value: 6.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2583475637914486549, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f8ce5115f931881419c916acebe24ea6, type: 2}
     - target: {fileID: 3926295890046470547, guid: fe88f7420f6e12c408ec843eb4f9d926, type: 3}
       propertyPath: health
       value: 10
@@ -77571,7 +77571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2103736567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -79524,7 +79524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160253746732447190, guid: ad7d24b7901c13a49b6db3c6129c7584, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 980483386764323463, guid: ad7d24b7901c13a49b6db3c6129c7584, type: 3}
       propertyPath: m_Color.b
