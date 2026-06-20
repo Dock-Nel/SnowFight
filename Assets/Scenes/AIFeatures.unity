@@ -221,6 +221,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &10142239
 MeshFilter:
@@ -386,6 +387,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -506,6 +508,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -581,6 +584,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &239404012
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -626,6 +630,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 8ee341a0f23e3294d820c4157c5e96b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -635,7 +640,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &328568975
 PrefabInstance:
@@ -771,17 +775,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ebe09784337fc4397a31de64e1ecaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  wayPoints: []
+  Destination: {fileID: 0}
+  Shadow: {fileID: 0}
   Player: {fileID: 2037405363}
+  snowball: {fileID: 0}
+  shootingDisctrict: {fileID: 0}
   Snowball: 3
-  Health: 3
+  SnowballVelocity: 10
   PlayerDetection: 0
   MoveTowardsPlayer: 0
+  Aggressivity: 0
   PlayerDistance: 0
   TargetRotation: 0
-  CRrunning: 0
+  CRRunning: 0
   Speed: 0
   Gravity: 0
   Range: 20
+  currentState: 0
 --- !u!1 &792600717
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +912,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &792600722
 MeshFilter:
@@ -998,6 +1010,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &801676948
 MeshFilter:
@@ -1141,6 +1154,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1077713613
 MeshFilter:
@@ -1254,6 +1268,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1082126556
 MeshFilter:
@@ -1398,6 +1413,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1096011179
 MeshFilter:
@@ -1526,6 +1542,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1123074183
 MeshFilter:
@@ -1564,7 +1581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2720e5f17e9c94595649226a176b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteCameraBehaviour
-  Camera: {fileID: 2036534151}
+  MainCamera: {fileID: 0}
+  SideCamera: {fileID: 0}
   TargetRotation: 0
 --- !u!4 &1733887432
 Transform:
@@ -1772,6 +1790,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1796832596
 MeshFilter:
@@ -1781,11 +1800,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796832591}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!20 &2036534151 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7414410857823309057, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
-  m_PrefabInstance: {fileID: 328568975}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2037405363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6310207820978186558, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
@@ -1817,14 +1831,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111904667}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -1869,7 +1883,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1

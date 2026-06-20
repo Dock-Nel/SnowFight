@@ -72,7 +72,10 @@ public class PowerUpManager : MonoBehaviour
         List<DataPowerUp> selectedPool;
 
         if (roll <= 35f)
-            selectedPool = passifPool;
+            if (passifPool.Count > 0)
+                selectedPool = passifPool;
+            else
+                selectedPool = toolPool;
         else if (roll <= 60f) //?
             selectedPool = toolPool;
         else
@@ -83,6 +86,7 @@ public class PowerUpManager : MonoBehaviour
 
     private DataPowerUp GetItem(List<DataPowerUp> pool)
     {
+        if (pool == null || pool.Count == 0) return null;
         float totalPercent = 0;
 
         foreach (var item in pool)
