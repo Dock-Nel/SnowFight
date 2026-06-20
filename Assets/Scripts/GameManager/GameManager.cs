@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject botPrefab;
 
-    [SerializeField] private GameObject chaserPrefab;  
+    [SerializeField] private GameObject chaserPrefab;
     [SerializeField] private float chaserSpawnChance = 0.3f;
 
     [SerializeField]
@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
 
     private bool isRoundOverHandled = false;
 
+    //Outline end round
+    [SerializeField] private float radarTime = 60f;
+    [SerializeField] private int radarEnemy = 3;
+    private float roundTimer = 0f;
+    private bool radarActive = false;
+
     private AudioSource _WinRound;
     private AudioSource _ClickUIPause;
 
@@ -89,6 +95,8 @@ public class GameManager : MonoBehaviour
     {
         _WinRound = GameObject.Find("WinRound").GetComponent<AudioSource>();
         _ClickUIPause = GameObject.Find("ClickUIPause").GetComponent<AudioSource>();
+        roundTimer = 0f;
+        radarActive = false;
         SpawnBots();
         upgrade1.onClick.AddListener(OnUpgradeSelected);
         upgrade2.onClick.AddListener(OnUpgradeSelected);
@@ -102,6 +110,16 @@ public class GameManager : MonoBehaviour
     {
         tmpRounds.SetText("Round " + roundCount.ToString());
         UIGingerbreadCountdown.SetText("{0} Gingerbread left", Bots.Count);
+
+        if (!UIPause.activeSelf && !isRoundOverHandled && Time.timeScale > 0)
+        {
+            roundTimer += Time.deltaTime;
+            if (!radarActive && roundTimer >= radarTime && Bots.Count <= radarEnemy)
+            {
+                SetRadarState(true);
+            }
+        }
+
         if (Bots.Count == 0 && !DifficultRoundSetup && !UIPause.activeSelf && !isRoundOverHandled)
         {
             audioManager.PauseMainMusic();
@@ -249,6 +267,8 @@ public class GameManager : MonoBehaviour
             isRoundOverHandled = false;
             SpawnBots();
             audioManager.StartMainMusic();
+            roundTimer = 0f;
+            radarActive = false;
         }
     }
 
@@ -265,6 +285,8 @@ public class GameManager : MonoBehaviour
         choicePowerup = false;
         isRoundOverHandled = false;
         audioManager.StartMainMusic();
+        roundTimer = 0f;
+        radarActive = false;
     }
 
     void ButtonEnable()
@@ -305,38 +327,38 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBots()
     {
-     
+
         switch (roundCount)
         {
-             case <= 3:
-                 for (int i = 0; i < roundCount + 2; i++)
-                 {
+            case <= 3:
+                for (int i = 0; i < roundCount + 2; i++)
+                {
                     SpawnSingleBot();
                 }
-                 break;
-             case > 3 and <= 6 :
-                 for (int i = 0; i < roundCount + 4; i++)
-                 {
+                break;
+            case > 3 and <= 6:
+                for (int i = 0; i < roundCount + 4; i++)
+                {
                     SpawnSingleBot();
                 }
-                 break;
-             case > 6 and <= 10:
-                 for (int i = 0; i < roundCount + 8; i++)
-                 {
+                break;
+            case > 6 and <= 10:
+                for (int i = 0; i < roundCount + 8; i++)
+                {
                     SpawnSingleBot();
                 }
-                 break;
-             case > 10:
-                 //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
-                 for (int i = 0; i < roundCount * 1.5 + 15; i++)
-                 {
+                break;
+            case > 10:
+                //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
+                for (int i = 0; i < roundCount * 1.5 + 15; i++)
+                {
                     SpawnSingleBot();
-                 }
-                 break;
+                }
+                break;
 
-        }  
+        }
     }
-    
+
 
     public void SpawnSingleBot()
     {
@@ -397,6 +419,23 @@ public class GameManager : MonoBehaviour
                 Destroy(oldestStatue);
             }
         }
+    }
+
+    private void SetRadarState(bool state)
+    {
+        radarActive = state;
+        foreach (GameObject bot in Bots)
+        {
+            if (bot != null)
+            {
+                Outline outlineScript = bot.GetComponent<Outline>();
+                if (outlineScript != null)
+                {
+                    outlineScript.enabled = state;
+                }
+            }
+        }
+        if (state) Debug.Log("Radar Activé");
     }
 
 }

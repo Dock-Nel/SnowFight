@@ -77,6 +77,14 @@ public class PlayerController : MonoBehaviour
         set { jumpSpeed = value; }
     }
 
+    [SerializeField]
+    private int amountToReload = 1;
+    public int AmountToReload
+    {
+        get { return amountToReload; }
+        set { amountToReload = value; }
+    }
+
     [SerializeField] float gravity = 20f;
     Vector3 moveDirection;
     private bool isRunning = false;
@@ -133,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     //TOOLS
     [SerializeField]
-    private GameObject gogglesVisualEffect; // Glisse ton "GogglesOverlay" ici
+    private GameObject gogglesVisualEffect; 
 
     [SerializeField]
     private GameObject Turret;
@@ -400,7 +408,10 @@ public class PlayerController : MonoBehaviour
         {
             if (currentTool is SnowTurretTool turretTool)
             {
-                turretTool.PlaceTurret(this);
+                if (toolCooldownTimer <= 0)
+                {
+                    turretTool.PlaceTurret(this);
+                }
             }
             else if (currentTool is SkiGoggles goggles)
             {
@@ -488,7 +499,7 @@ public class PlayerController : MonoBehaviour
 
         ReloadCooldown.gameObject.SetActive(false);
 
-        int amountToReload = 1;
+        
         if (currentTool is SnowShovel shovel) amountToReload = shovel.reloadAmount;
 
         snowballCount = Mathf.Min(snowballCount + amountToReload, maxSnowball);
@@ -569,8 +580,17 @@ public class PlayerController : MonoBehaviour
         isInvincible = false;
     }
 
-    public void SpawnTurret()
+    public void SpawnTurret(SnowTurretTool turretTool)
     {
+        if (activeTurrets.Count >= 3)
+        {
+            foreach (GameObject t in activeTurrets)
+            {
+                if (t != null) Destroy(t);
+            }
+            activeTurrets.Clear();
+        }
+
         //Position devant joueur
         Vector3 spawnPos = transform.position + transform.forward * spawnDistance;
         spawnPos.y = transform.position.y; 
@@ -579,10 +599,9 @@ public class PlayerController : MonoBehaviour
         newTurret.SetActive(true);
         activeTurrets.Add(newTurret);
 
-        if (activeTurrets.Count > 3)
+        if (activeTurrets.Count == 3)
         {
-            Destroy(activeTurrets[0]);
-            activeTurrets.RemoveAt(0);
+            toolCooldownTimer = turretTool.cooldown;
         }
     }
 

@@ -2,6 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 
 public class EndGameUI : MonoBehaviour
@@ -15,6 +16,8 @@ public class EndGameUI : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private CanvasGroup gameOverCanvasGroup;
+    [SerializeField] private float fadeDuration = 0.6f;
     [SerializeField] private GameObject UIGame;
     [SerializeField] private GameObject UIGeneral;
     [SerializeField] private TMP_InputField nameInputField;
@@ -53,21 +56,37 @@ public class EndGameUI : MonoBehaviour
         }
 
         gameOverPanel.SetActive(true);
+
+        if (gameOverCanvasGroup != null)
+        {
+            gameOverCanvasGroup.alpha = 0f;
+            StartCoroutine(FadeInPanel());
+        }
+
         camMain.gameObject.SetActive(false);
         camSecondary.gameObject.SetActive(true);
         UIGame.SetActive(false);
         UIGeneral.SetActive(false);
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         playerController.rotationSpeed = 0f;
-
         Time.timeScale = 0f;
 
         if (roundsDisplay != null)
         {
             roundsDisplay.text = ("You reached round " + finalScore + " !" );
         }
+    }
+    private IEnumerator FadeInPanel()
+    {
+        float t = 0f;
+        while (t < fadeDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            gameOverCanvasGroup.alpha = Mathf.Clamp01(t / fadeDuration);
+            yield return null;
+        }
+        gameOverCanvasGroup.alpha = 1f;
     }
 
     public void OnClickSubmit()
