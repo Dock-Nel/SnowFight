@@ -6390,14 +6390,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Title: Gingerbread Men
-  TextTuto: 'If you shoot a Gingerbread Man two times, he will get frozen ! if you
-    freeze all the enemies of the round, you will get the possibility to chose one
-    of two bonuses before starting a new round !
+  TextTuto: 'There are two types of Gingerbread Men :
+
+    -The regular one (this
+    one) will shoot snowballs at you and need two snowballs to freeze !
+
+    -The
+    chaser one (which has green clothings) will run at you to freeze you, but will
+    freeze himself at the same time ! This one only requires one snowball to be frozen
+    !
 
 
-    The goal of the game is to
-    reach as much rounds as possible ! You can also check your records on the Learderboard
-    in the main menu !'
+    The game is divided by rounds, and you need to freeze all of the Gingerbread
+    Men to finish a round !'
   PanelTuto: {fileID: 272400631}
 --- !u!65 &962108966
 BoxCollider:
@@ -7639,12 +7644,16 @@ MonoBehaviour:
   health: 20
   dead: 0
   Title: Congratulations !
-  TextTuto: "You finished the tutorial ! \n\nYou will now automatically be thrown
-    in a new adventure, enjoy !"
+  TextTuto: "At the end of a round, you will get to choose one of two randomly picked
+    bonuses ; there are three types of bonuses : \n-The Ephemerals, that will affect
+    you for a short amount of time !\n-The Passives, that will upgrade your stats
+    !\n-The Tools, that affect your playstyle and that you carry through the game
+    !\n\nYou will now automatically be thrown in a new adventure, enjoy !"
   Prompt: Press Return to finish...
   PanelTuto: {fileID: 272400631}
   SceneSwitch: {fileID: 270131793}
   Gingerbread: {fileID: 2055544059}
+  Sprite: {fileID: 0}
 --- !u!1 &1158934564
 GameObject:
   m_ObjectHideFlags: 0

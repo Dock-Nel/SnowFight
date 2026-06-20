@@ -38,9 +38,8 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] float TargetRotation;
 
     [SerializeField] bool CRRunning;
+
     //Constants 
-    [SerializeField] int Speed;
-    [SerializeField] int Gravity;
     [SerializeField] int Range;
 
     public int range
@@ -53,6 +52,10 @@ public class AIBehaviour : MonoBehaviour
     [SerializeField] private State currentState = State.Idle;
 
     private AudioManager audioManager;
+
+    public float ShootBoost = 0f;
+    public float ShootDelay = 3f;
+    public float RelaodDelay = 2f;
 
     void Awake()
     {
@@ -187,7 +190,15 @@ public class AIBehaviour : MonoBehaviour
         clone.gameObject.SetActive(true);
         Vector3 Randomize = new Vector3(UnityEngine.Random.Range(-0.25f, 0.25f), 0, 0);
         clone.linearVelocity = transform.TransformDirection(((Vector3.forward + Randomize) + (Vector3.up / (4 - (PlayerDistance/6)))) * SnowballVelocity);
-        yield return new WaitForSeconds(3); 
+        if (ShootDelay - ShootBoost >= 0.5f)
+        {
+            yield return new WaitForSeconds(ShootDelay - ShootBoost);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
         Snowball--;
         currentState = State.Move;
         CRRunning = false;
@@ -198,7 +209,14 @@ public class AIBehaviour : MonoBehaviour
     {
         //Debug.Log("Reloading...");
         CRRunning = true;
-        yield return new WaitForSeconds(2);
+        if (RelaodDelay - ShootBoost >= 0.5f)
+        {
+            yield return new WaitForSeconds(RelaodDelay - ShootBoost);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
         //Debug.Log("Reload");
         Snowball++;
         CRRunning = false;
