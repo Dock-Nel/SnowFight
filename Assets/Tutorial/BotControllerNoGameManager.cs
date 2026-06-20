@@ -14,6 +14,7 @@ public class BotControllerNoGameManager : MonoBehaviour
     [SerializeField] GameObject PanelTuto;
     [SerializeField] SceneSwitcher SceneSwitch;
     [SerializeField] GameObject Gingerbread;
+    [SerializeField] SpriteRenderer Sprite;
 
     private GameObject Player;
     private float MouseSensitivity;
@@ -86,6 +87,8 @@ public class BotControllerNoGameManager : MonoBehaviour
     }
     private void Die()
     {
+
+
         Gingerbread.SetActive(false);
         PanelTuto.SetActive(true);
 

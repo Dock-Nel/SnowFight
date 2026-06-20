@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.8509804, g: 0.6784314, b: 0.6784314, a: 1}
@@ -2112,6 +2112,8 @@ MonoBehaviour:
   _FootStepClip: []
   _SnowballExplosion: {fileID: 1109853846}
   _WinRound: {fileID: 1494168907}
+  _Reload: {fileID: 0}
+  _Hit: {fileID: 0}
   _ClickUI: {fileID: 742475453}
   _ClickUIPause: {fileID: 251065671}
   _GrabBonus1: {fileID: 0}
@@ -17335,7 +17337,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e0bf9399e01c4d54f8854c9b7e74f710, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19198,7 +19200,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e0bf9399e01c4d54f8854c9b7e74f710, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
