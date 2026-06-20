@@ -4,6 +4,7 @@ using UnityEngine;
 public class SnowTurretTool : DataPowerUp
 {
     public GameObject turretPrefab;
+    public float cooldown = 10f;
 
     public override void ApplyEffect(PlayerController player)
     {
@@ -11,7 +12,7 @@ public class SnowTurretTool : DataPowerUp
     }
 
     public void PlaceTurret(PlayerController player)
-    {
-        player.SpawnTurret();
+    {   
+        player.SpawnTurret(this);
     }
 }
