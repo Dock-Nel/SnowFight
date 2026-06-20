@@ -127,7 +127,7 @@ MonoBehaviour:
     m_FamilyName: Knewave
     m_StyleName: Regular
     m_PointSize: 90
-    m_Scale: 2
+    m_Scale: 1
     m_UnitsPerEM: 1000
     m_LineHeight: 139.86
     m_AscentLine: 105.21001
