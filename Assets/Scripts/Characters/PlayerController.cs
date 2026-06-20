@@ -77,6 +77,14 @@ public class PlayerController : MonoBehaviour
         set { jumpSpeed = value; }
     }
 
+    [SerializeField]
+    private int amountToReload = 1;
+    public int AmountToReload
+    {
+        get { return amountToReload; }
+        set { amountToReload = value; }
+    }
+
     [SerializeField] float gravity = 20f;
     Vector3 moveDirection;
     private bool isRunning = false;
@@ -491,7 +499,7 @@ public class PlayerController : MonoBehaviour
 
         ReloadCooldown.gameObject.SetActive(false);
 
-        int amountToReload = 1;
+        
         if (currentTool is SnowShovel shovel) amountToReload = shovel.reloadAmount;
 
         snowballCount = Mathf.Min(snowballCount + amountToReload, maxSnowball);
