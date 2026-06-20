@@ -163,10 +163,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c0b84d83a3199ac4eb4dfc20d8ba5dec, type: 2}
+    - target: {fileID: -1439730007547781893, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6eb4ca2eb0f670d41a62e96cb5ae486c, type: 2}
+    - target: {fileID: -678588488315902003, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f596e2f7b25a184599bdb96f6623e74, type: 2}
+    - target: {fileID: -678588488315902003, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c0b84d83a3199ac4eb4dfc20d8ba5dec, type: 2}
     - target: {fileID: 919132149155446097, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
       propertyPath: m_Name
       value: SnowTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 7071182760956848314, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c0b84d83a3199ac4eb4dfc20d8ba5dec, type: 2}
+    - target: {fileID: 7071182760956848314, guid: 7868caaba229f2446b2728f9b11b34b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6eb4ca2eb0f670d41a62e96cb5ae486c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
