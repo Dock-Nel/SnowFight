@@ -37132,7 +37132,7 @@ RectTransform:
   m_GameObject: {fileID: 1029382829}
   m_LocalRotation: {x: -0, y: -0, z: 0.17991915, w: 0.98368144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2797, y: 4.354227, z: 2.2797}
+  m_LocalScale: {x: 2.509038, y: 4.354227, z: 2.2797}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 391538989}
@@ -51560,6 +51560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpManager
   passifPool:
+  - {fileID: 11400000, guid: 16925a3029ffeeb4da2912cabff1e711, type: 2}
   - {fileID: 11400000, guid: 2fe7ede298378de4fa1f52c1926dc4fc, type: 2}
   - {fileID: 11400000, guid: 88bf190f7c9107f47a7781e13721eb52, type: 2}
   - {fileID: 11400000, guid: d31c3a02cd547cd41a1088b0c8185e20, type: 2}
@@ -79274,7 +79275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160253746732447190, guid: ad7d24b7901c13a49b6db3c6129c7584, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 980483386764323463, guid: ad7d24b7901c13a49b6db3c6129c7584, type: 3}
       propertyPath: m_Color.b
@@ -79282,7 +79283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 980483386764323463, guid: ad7d24b7901c13a49b6db3c6129c7584, type: 3}
       propertyPath: m_Color.g
-      value: 0.5937941
+      value: 0.5921569
       objectReference: {fileID: 0}
     - target: {fileID: 980483386764323463, guid: ad7d24b7901c13a49b6db3c6129c7584, type: 3}
       propertyPath: m_Color.r

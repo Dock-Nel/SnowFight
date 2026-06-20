@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2b376815a74984c9e0c1550a61d1bb, type: 3}
   m_Name: PlayerReload
   m_EditorClassIdentifier: Assembly-CSharp::PlayerReload
-  powerUpName: 
-  powerUpDescription: 
+  powerUpName: Reload Upgrade
+  powerUpDescription: "You can now reload faster ! \nTake snowballs 2 by 2 !"
   icon: {fileID: 0}
-  category: 0
-  familyID: 0
-  percentage: 0
+  category: 2
+  familyID: 4812
+  percentage: 15
