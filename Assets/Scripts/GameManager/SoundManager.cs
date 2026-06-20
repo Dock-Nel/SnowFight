@@ -139,7 +139,7 @@ public class AudioManager : MonoBehaviour
     {
         if (_Hit != null && _Hit.clip != null)
         {
-            _Hit.volume = 0.80f;
+            _Hit.volume = 1.20f;
             _Hit.pitch = Random.Range(1.30f, 1.50f);
             _Hit.PlayOneShot(_Hit.clip);
         }
