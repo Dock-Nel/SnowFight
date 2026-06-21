@@ -195,6 +195,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        if (UIGameOver.activeSelf) return;
         if (WasInGame)
         {
             Debug.Log("Play");
