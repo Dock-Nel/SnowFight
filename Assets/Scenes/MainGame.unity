@@ -47693,7 +47693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986839436055475788, guid: d2598e2665b89ff46957fa398e9dc9b2, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4013191756553712508, guid: d2598e2665b89ff46957fa398e9dc9b2, type: 3}
       propertyPath: m_Radius
@@ -47899,9 +47899,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5697085464263846738, guid: d2598e2665b89ff46957fa398e9dc9b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1731197415}
-    - targetCorrespondingSourceObject: {fileID: 5697085464263846738, guid: d2598e2665b89ff46957fa398e9dc9b2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1731197420}
   m_SourcePrefab: {fileID: 100100000, guid: d2598e2665b89ff46957fa398e9dc9b2, type: 3}
 --- !u!1001 &1366830280
 PrefabInstance:
@@ -60042,31 +60039,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!143 &1731197420
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731197405}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1734642472
 GameObject:
   m_ObjectHideFlags: 0
