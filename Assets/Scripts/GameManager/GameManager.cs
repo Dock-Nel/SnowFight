@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Playables;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -90,6 +91,10 @@ public class GameManager : MonoBehaviour
 
     private AudioSource _WinRound;
     private AudioSource _ClickUIPause;
+
+    //Upgrade enemies
+    [SerializeField] private float SpeedBoost = 0;
+    private float ShootBoost = 0;
 
     void Start()
     {
@@ -243,6 +248,12 @@ public class GameManager : MonoBehaviour
     void OnUpgradeSelected()
     {
         roundCount++;
+        if (roundCount % 9 == 0)
+        {
+            SpeedBoost += 0.5f;
+            ShootBoost += 0.1f;
+        }
+
         if (roundCount % 3 == 0)
         {
             SpawnBots();
@@ -392,7 +403,13 @@ public class GameManager : MonoBehaviour
         }
 
         Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
-        GameObject newBot = Instantiate(prefabToSpawn, spawnPoint[randomIndex].position, spawnPoint[randomIndex].rotation);
+        GameObject newBot = Instantiate(prefabToSpawn, spawnPoint[randomIndex].position + RandomPosition, spawnPoint[randomIndex].rotation);
+        newBot.GetComponent<NavMeshAgent>().speed += SpeedBoost;
+        AIBehaviour Behaviour = newBot.GetComponent<AIBehaviour>();
+        if (Behaviour == null)
+        {
+            newBot.GetComponent<AIBehaviour>().ShootBoost += SpeedBoost;
+        }
         newBot.SetActive(true);
         Bots.Add(newBot);
     }
