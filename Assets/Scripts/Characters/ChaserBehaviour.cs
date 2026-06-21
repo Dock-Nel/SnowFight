@@ -7,14 +7,12 @@ public class ChaserBehaviour : MonoBehaviour
     private GameObject player;
     private ChaserController controller;
 
-    [SerializeField] private float chaseSpeed = 6f; 
     [SerializeField] private int damageToPlayer = 10;
 
     public GameObject Shadow;
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
         controller = GetComponent<ChaserController>();
     }
 
@@ -24,12 +22,6 @@ public class ChaserBehaviour : MonoBehaviour
         if (playerScript != null)
         {
             player = playerScript.gameObject;
-        }
-
-        if (agent != null)
-        {
-            agent.speed = chaseSpeed;
-            agent.angularSpeed = 120f;
         }
     }
 

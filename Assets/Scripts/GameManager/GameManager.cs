@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour
 
     //Upgrade enemies
     [SerializeField] private float SpeedBoost = 0;
-    private float ShootBoost = 0;
+    [SerializeField] private float ShootBoost = 0;
+    [SerializeField] GameObject TextIncrease;
 
     void Start()
     {
@@ -298,6 +299,10 @@ public class GameManager : MonoBehaviour
         audioManager.StartMainMusic();
         roundTimer = 0f;
         radarActive = false;
+        if (roundCount % 9 == 0)
+        {
+            StartCoroutine(IncreaseText());
+        }
     }
 
     void ButtonEnable()
@@ -361,13 +366,20 @@ public class GameManager : MonoBehaviour
                 break;
             case > 10:
                 //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
-                for (int i = 0; i < roundCount * 1.5 + 15; i++)
+                for (int i = 0; i < roundCount * 1.5 + 12; i++)
                 {
                     SpawnSingleBot();
                 }
                 break;
 
         }
+    }
+
+    IEnumerator IncreaseText()
+    {
+        TextIncrease.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        TextIncrease.SetActive(false);
     }
 
 
@@ -402,11 +414,11 @@ public class GameManager : MonoBehaviour
             prefabToSpawn = chaserPrefab;
         }
 
-        Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6));
+        Vector3 RandomPosition = new Vector3(UnityEngine.Random.Range(-3, 4), 0, UnityEngine.Random.Range(-3, 4));
         GameObject newBot = Instantiate(prefabToSpawn, spawnPoint[randomIndex].position + RandomPosition, spawnPoint[randomIndex].rotation);
         newBot.GetComponent<NavMeshAgent>().speed += SpeedBoost;
         AIBehaviour Behaviour = newBot.GetComponent<AIBehaviour>();
-        if (Behaviour == null)
+        if (Behaviour != null)
         {
             newBot.GetComponent<AIBehaviour>().ShootBoost += SpeedBoost;
         }
@@ -452,7 +464,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        if (state) Debug.Log("Radar Activé");
+        if (state) Debug.Log("Radar Activated");
     }
 
 }
