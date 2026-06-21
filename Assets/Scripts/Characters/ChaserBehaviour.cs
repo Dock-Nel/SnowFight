@@ -13,6 +13,7 @@ public class ChaserBehaviour : MonoBehaviour
 
     void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         controller = GetComponent<ChaserController>();
     }
 
@@ -23,6 +24,7 @@ public class ChaserBehaviour : MonoBehaviour
         {
             player = playerScript.gameObject;
         }
+
     }
 
     void Update()
