@@ -466,7 +466,7 @@ public class PlayerController : MonoBehaviour
         Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
         BigSnowballs BigSnowballScript = clone.GetComponent<BigSnowballs>();
         BigSnowballScript.Source = "Player";
-        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * (shootVelocity+2));
         clone.gameObject.SetActive(true);
         if (!hasInfiniteSnowballs) snowballCount -= 1;
     }

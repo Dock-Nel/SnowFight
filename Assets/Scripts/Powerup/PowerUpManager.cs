@@ -67,8 +67,8 @@ public class PowerUpManager : MonoBehaviour
     private DataPowerUp GetRandomPowerUp()
     {
         // Pools pick
-        float roll = Random.Range(0f, 100f);
-        //float roll = Random.Range(36f, 60f); //Only for debug purposes
+        //float roll = Random.Range(0f, 100f);
+        float roll = Random.Range(36f, 60f); //Only for debug purposes
         List<DataPowerUp> selectedPool;
 
         if (roll <= 35f)
