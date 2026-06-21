@@ -69,7 +69,6 @@ public class AIBehaviour : MonoBehaviour
 
     void Update()
     {
-
         Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
         RaycastHit hitShadow;
 

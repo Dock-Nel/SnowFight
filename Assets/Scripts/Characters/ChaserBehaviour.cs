@@ -7,7 +7,6 @@ public class ChaserBehaviour : MonoBehaviour
     private GameObject player;
     private ChaserController controller;
 
-    [SerializeField] private float chaseSpeed = 6f; 
     [SerializeField] private int damageToPlayer = 10;
 
     public GameObject Shadow;
@@ -26,11 +25,6 @@ public class ChaserBehaviour : MonoBehaviour
             player = playerScript.gameObject;
         }
 
-        if (agent != null)
-        {
-            agent.speed = chaseSpeed;
-            agent.angularSpeed = 120f;
-        }
     }
 
     void Update()
