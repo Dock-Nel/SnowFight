@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         get { return amountToReload; }
         set { amountToReload = value; }
     }
+    public bool ReloadTwo;
 
     [SerializeField] float gravity = 20f;
     Vector3 moveDirection;
@@ -501,6 +502,7 @@ public class PlayerController : MonoBehaviour
 
 
         if (currentTool is SnowShovel shovel) amountToReload = shovel.reloadAmount;
+        else if (ReloadTwo) amountToReload = 2;
         else amountToReload = 1;
 
         snowballCount = Mathf.Min(snowballCount + amountToReload, maxSnowball);

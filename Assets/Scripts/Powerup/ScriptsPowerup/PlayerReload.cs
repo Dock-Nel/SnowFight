@@ -8,7 +8,7 @@ public class PlayerReload : DataPowerUp
     public bool currentLevel = false;
     public override void ApplyEffect(PlayerController player)
     {
-        player.AmountToReload += 1;
+        player.ReloadTwo = true;
         currentLevel = true;  
     }
     public override bool IsMaxedOut()
