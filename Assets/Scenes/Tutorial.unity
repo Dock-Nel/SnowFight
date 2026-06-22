@@ -18449,6 +18449,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2010419351}
     - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+      propertyPath: shootingDistrict
+      value: 
+      objectReference: {fileID: 2120767466}
+    - target: {fileID: 7188367400963243000, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
       propertyPath: hasInfiniteSnowballs
       value: 0
       objectReference: {fileID: 0}
@@ -20564,6 +20568,11 @@ Transform:
   - {fileID: 885730454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2120767466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6392452625635384222, guid: 87ec16e635fbe8548adac2db89d6f4c7, type: 3}
+  m_PrefabInstance: {fileID: 1846819395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2145984441
 PrefabInstance:
   m_ObjectHideFlags: 0
