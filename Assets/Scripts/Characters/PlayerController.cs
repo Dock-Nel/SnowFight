@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
     //Snowballs managment
     [SerializeField]
-    private Transform shootingDisctrict;
+    private Transform shootingDistrict;
     [SerializeField]
     private Transform shootingDistrictSC;
     private Transform activeShootingDistrict;
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
         Settings = FindAnyObjectByType<SettingsValues>();
         audioManager = Object.FindAnyObjectByType<AudioManager>();
-        activeShootingDistrict = shootingDisctrict;
+        activeShootingDistrict = shootingDistrict;
         Cooldown = false;
     }
 
@@ -295,7 +295,7 @@ public class PlayerController : MonoBehaviour
         Vector3 fwd = playerCamera.transform.forward;
         RaycastHit hit;
 
-        if (Physics.Raycast(activeShootingDistrict.position, fwd, out hit, 2.5f))
+        if (Physics.Raycast(shootingDistrict.position, fwd, out hit, 2.5f))
         {
             if (hit.collider.name == "Terrain")
             {
@@ -344,7 +344,7 @@ public class PlayerController : MonoBehaviour
             Crosshair.color = Color.white;
         }
 
-        if (Physics.Raycast(activeShootingDistrict.position, fwd, out hit, 20f))
+        if (Physics.Raycast(shootingDistrict.position, fwd, out hit, 20f))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
@@ -466,7 +466,7 @@ public class PlayerController : MonoBehaviour
         Physics.IgnoreCollision(this.GetComponent<Collider>(), clone.GetComponent<Collider>(), true);
         BigSnowballs BigSnowballScript = clone.GetComponent<BigSnowballs>();
         BigSnowballScript.Source = "Player";
-        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * shootVelocity);
+        clone.linearVelocity = playerCamera.transform.TransformDirection(Vector3.forward * (shootVelocity+2));
         clone.gameObject.SetActive(true);
         if (!hasInfiniteSnowballs) snowballCount -= 1;
     }
@@ -499,8 +499,9 @@ public class PlayerController : MonoBehaviour
 
         ReloadCooldown.gameObject.SetActive(false);
 
-        
+
         if (currentTool is SnowShovel shovel) amountToReload = shovel.reloadAmount;
+        else amountToReload = 1;
 
         snowballCount = Mathf.Min(snowballCount + amountToReload, maxSnowball);
         isReloading = false;
@@ -548,7 +549,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            activeShootingDistrict = shootingDisctrict;
+            activeShootingDistrict = shootingDistrict;
             snowCanonModel.SetActive(false);
         }
 
