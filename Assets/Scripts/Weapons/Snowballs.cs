@@ -67,7 +67,7 @@ public class Snowballs : MonoBehaviour
     {
         ChaserController chaser = other.gameObject.GetComponent<ChaserController>();
 
-        if (chaser != null)
+        if (chaser != null && Source == "Player")
         {
             chaser.TakeDamage(10);
             audioManager.PlaySnowballExplosionRandomPitch(transform.position);

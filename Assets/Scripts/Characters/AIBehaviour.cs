@@ -12,6 +12,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class AIBehaviour : MonoBehaviour
 {
+    [SerializeField] float remainingDistance;
+
     //Components
     NavMeshAgent agent;
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
@@ -69,6 +71,8 @@ public class AIBehaviour : MonoBehaviour
 
     void Update()
     {
+        
+
         Ray downRay = new Ray(new Vector3(this.transform.position.x, this.transform.position.y - 1, this.transform.position.z), -Vector3.up);
         RaycastHit hitShadow;
 
@@ -114,7 +118,7 @@ public class AIBehaviour : MonoBehaviour
                     }
                     else if (Snowball == 3)
                     {
-                        Movements();
+                        StartCoroutine(Movements());
                     }
                     break;
 
@@ -128,7 +132,7 @@ public class AIBehaviour : MonoBehaviour
                         MoveTowardsPlayer = false;
                         Aggressivity = true;
                     }
-                    Movements();
+                    StartCoroutine(Movements());
                     break;
 
                 case State.Attack: //When the AI attacks the player
@@ -142,30 +146,47 @@ public class AIBehaviour : MonoBehaviour
                         StartCoroutine(Reload());
                     }
                     Aggressivity = false;
-                    Movements();
+                    StartCoroutine(Movements());
                     break;
             }
     }
 
     //AI Movements
-    void Movements()
+    IEnumerator Movements()
     {
         //Velocity Movements
         if (MoveTowardsPlayer)
         {
-            agent.destination = Player.transform.position;
+            agent.SetDestination(Player.transform.position);
+            yield return null;
         }
+
         else if (!MoveTowardsPlayer && !PlayerDetection)
         {
-            if (Destination == null || agent.remainingDistance <= 5)
+            if (Destination == null)
             {
+                remainingDistance = agent.remainingDistance;
                 Destination = wayPoints[UnityEngine.Random.Range(0, wayPoints.Count)];
             }
-            agent.destination = Destination.position;
+            else if (!agent.pathPending)
+            {
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                    {
+                        remainingDistance = agent.remainingDistance;
+                        Destination = wayPoints[UnityEngine.Random.Range(0, wayPoints.Count)];
+                    }
+                }
+            }
+            agent.SetDestination(Destination.position);
+            yield return new WaitForSeconds(1f);
         }
+
         else
         {
-            agent.destination = transform.position;
+            agent.SetDestination(transform.position);
+            yield return null;
         }
         
 

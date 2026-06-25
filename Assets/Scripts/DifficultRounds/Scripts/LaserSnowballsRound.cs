@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -13,7 +14,8 @@ public class LaserSnowballsRound : DataDifficultRound
       
         originalShootVelocity = player.ShootVelocity;
         player.ShootVelocity = 70;
-        player.hasInfiniteSnowballs = true;
+        player.StartCoroutine(player.InfiniteSnowballsCoroutine(0));
+        player.InfiniteSnowballsRound = true;
 
         for (int i = 0; i < 3; i++)
         {
@@ -25,5 +27,12 @@ public class LaserSnowballsRound : DataDifficultRound
     {
         player.ShootVelocity = originalShootVelocity;
         player.hasInfiniteSnowballs = false;
+        player.InfiniteSnowballsRound = false;
+        player.tmpNbSnowballs.SetText(player.SnowballCount.ToString());
+    }
+
+    IEnumerator StartCoroutine(PlayerController player)
+    {
+        yield return null;
     }
 }

@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject FogBubble;
     public DifficultRoundsManager manageDifficultRounds;
     private bool DifficultRoundSetup = false;
     DataDifficultRound currentData;
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviour
         if (!UIPause.activeSelf && !isRoundOverHandled && Time.timeScale > 0)
         {
             roundTimer += Time.deltaTime;
-            if (!radarActive && roundTimer >= radarTime && Bots.Count <= radarEnemy)
+            if (!radarActive && roundTimer >= radarTime && Bots.Count <= radarEnemy && !FogBubble.activeSelf)
             {
                 SetRadarState(true);
             }
@@ -366,7 +367,6 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case > 10:
-                //faire scale le multiplicateur au fur et a mesure. Car passe de 18 ennemies vague 10 à 31 vague 11.
                 for (int i = 0; i < roundCount * 1.5 + 12; i++)
                 {
                     SpawnSingleBot();

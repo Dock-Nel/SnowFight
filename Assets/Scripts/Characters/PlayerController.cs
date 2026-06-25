@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
     private bool Cooldown;
 
     public bool hasInfiniteSnowballs = false;
+    public bool InfiniteSnowballsRound = false;
 
     public float toolCooldownTimer = 0f;
 
@@ -153,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
     //TMP
     [SerializeField]
-    private TMP_Text tmpNbSnowballs;
+    public TMP_Text tmpNbSnowballs;
 
     //MODELS
     [SerializeField]
@@ -514,8 +515,11 @@ public class PlayerController : MonoBehaviour
         hasInfiniteSnowballs = true;
         tmpNbSnowballs.SetText("INFINITY"); // � corriger c'est en dur pour le moment, �a me fait gagner du temps on va pas chipoter hein
         yield return new WaitForSeconds(duration);
-        hasInfiniteSnowballs = false;
-        tmpNbSnowballs.SetText(snowballCount.ToString());
+        if (!InfiniteSnowballsRound)
+        {
+            hasInfiniteSnowballs = false;
+            tmpNbSnowballs.SetText(snowballCount.ToString());
+        }
     }
 
     public void TakeDamage(float damage)
